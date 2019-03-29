@@ -29,7 +29,7 @@ spring:
         type: com.zaxxer.hikari.HikariDataSource
         url: jdbc:postgresql://localhost:5432/openpbr
         username: openpbr
-        password:
+        password: openpbr
         hikari:
             poolName: Hikari
             auto-commit: false

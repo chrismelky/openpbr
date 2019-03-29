@@ -1,0 +1,35 @@
+{
+    "openpbrApp": {
+        "userInfo": {
+            "home": {
+                "title": "User Infos",
+                "createLabel": "Create a new User Info",
+                "createOrEditLabel": "Create or edit a User Info",
+                "search": "Search for User Info"
+            },
+            "created": "A new User Info is created with identifier {{ param }}",
+            "updated": "A User Info is updated with identifier {{ param }}",
+            "deleted": "A User Info is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete User Info {{ id }}?"
+            },
+            "detail": {
+                "title": "User Info"
+            },
+            "uid": "Uid",
+            "code": "Code",
+            "lastName": "Last Name",
+            "firstName": "First Name",
+            "email": "Email",
+            "phoneNumber": "Phone Number",
+            "jobTitle": "Job Title",
+            "introduction": "Introduction",
+            "gender": "Gender",
+            "birthDay": "Birth Day",
+            "nationality": "Nationality",
+            "employer": "Employer",
+            "education": "Education",
+            "user": "User"
+        }
+    }
+}
