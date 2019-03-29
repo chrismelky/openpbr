@@ -1,0 +1,38 @@
+{
+    "generator-jhipster": {
+        "promptValues": {
+            "packageName": "org.openpbr",
+            "nativeLanguage": "en"
+        },
+        "jhipsterVersion": "5.8.2",
+        "applicationType": "monolith",
+        "baseName": "openpbr",
+        "packageName": "org.openpbr",
+        "packageFolder": "org/openpbr",
+        "serverPort": "8080",
+        "authenticationType": "jwt",
+        "cacheProvider": "ehcache",
+        "enableHibernateCache": true,
+        "websocket": "spring-websocket",
+        "databaseType": "sql",
+        "devDatabaseType": "postgresql",
+        "prodDatabaseType": "postgresql",
+        "searchEngine": "elasticsearch",
+        "messageBroker": false,
+        "serviceDiscoveryType": false,
+        "buildTool": "maven",
+        "enableSwaggerCodegen": true,
+        "jwtSecretKey": "NDU5YTdlMzViMTJiZjYxZjU5MzE4OGI1MDA2YjFlMmZjZDllYmU1YWIwMzNmMzkyMTQ2NDMyYjM2NjQxMjA0MTE4YzhjYzM5ZjlhYmQ1MDExYTE4MTk1MDcxNTIzZjE2MjVmOGNiOGVjZDZmNzQxY2M4ZTU4M2E0NTgxMzcyNTg=",
+        "clientFramework": "angularX",
+        "useSass": true,
+        "clientPackageManager": "npm",
+        "testFrameworks": [],
+        "jhiPrefix": "pbr",
+        "entitySuffix": "",
+        "dtoSuffix": "DTO",
+        "otherModules": [],
+        "enableTranslation": true,
+        "nativeLanguage": "en",
+        "languages": ["en", "fr", "pt-pt"]
+    }
+}
