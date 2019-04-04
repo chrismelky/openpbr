@@ -18,12 +18,17 @@ import { OpenpbrHomeModule } from './home/home.module';
 import { OpenpbrAccountModule } from './account/account.module';
 import { OpenpbrEntityModule } from './entities/entity.module';
 import * as moment from 'moment';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import 'hammerjs';
 // jhipster-needle-angular-add-module-import JHipster will add new module here
 import { PbrMainComponent, NavbarComponent, FooterComponent, PageRibbonComponent, ActiveMenuDirective, ErrorComponent } from './layouts';
 
 @NgModule({
     imports: [
         BrowserModule,
+        BrowserAnimationsModule,
+        FlexLayoutModule,
         Ng2Webstorage.forRoot({ prefix: 'pbr', separator: '-' }),
         NgJhipsterModule.forRoot({
             // set below to true to make alerts look like toast
