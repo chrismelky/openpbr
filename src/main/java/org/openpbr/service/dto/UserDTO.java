@@ -3,20 +3,27 @@ package org.openpbr.service.dto;
 import org.openpbr.config.Constants;
 
 import org.openpbr.domain.Authority;
+import org.openpbr.domain.IdentifiableEntity;
 import org.openpbr.domain.User;
+import org.openpbr.domain.UserInfo;
+import org.openpbr.domain.enumeration.Gender;
 
+import javax.persistence.Column;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 
 import javax.validation.constraints.*;
 import java.time.Instant;
+import java.time.LocalDate;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
  * A DTO representing a user, with his authorities.
  */
-public class UserDTO {
+public class UserDTO extends IdentifiableEntity  {
 
     private Long id;
 
@@ -34,6 +41,92 @@ public class UserDTO {
     @Email
     @Size(min = 5, max = 254)
     private String email;
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public String getJobTitle() {
+        return jobTitle;
+    }
+
+    public void setJobTitle(String jobTitle) {
+        this.jobTitle = jobTitle;
+    }
+
+    public String getIntroduction() {
+        return introduction;
+    }
+
+    public void setIntroduction(String introduction) {
+        this.introduction = introduction;
+    }
+
+    public Gender getGender() {
+        return gender;
+    }
+
+    public void setGender(Gender gender) {
+        this.gender = gender;
+    }
+
+    public LocalDate getBirthDay() {
+        return birthDay;
+    }
+
+    public void setBirthDay(LocalDate birthDay) {
+        this.birthDay = birthDay;
+    }
+
+    public String getNationality() {
+        return nationality;
+    }
+
+    public void setNationality(String nationality) {
+        this.nationality = nationality;
+    }
+
+    public String getEmployer() {
+        return employer;
+    }
+
+    public void setEmployer(String employer) {
+        this.employer = employer;
+    }
+
+    public String getEducation() {
+        return education;
+    }
+
+    public void setEducation(String education) {
+        this.education = education;
+    }
+
+    @Size(max = 80)
+    private String phoneNumber;
+
+    @Size(max = 160)
+    private String jobTitle;
+
+    private String introduction;
+
+    @Enumerated(EnumType.STRING)
+    private Gender gender;
+
+    private LocalDate birthDay;
+
+    @Size(max = 160)
+    private String nationality;
+
+    @Size(max = 160)
+    private String employer;
+
+    private String education;
+
 
     @Size(max = 256)
     private String imageUrl;
@@ -73,6 +166,22 @@ public class UserDTO {
         this.authorities = user.getAuthorities().stream()
             .map(Authority::getName)
             .collect(Collectors.toSet());
+        if( user.getUserInfo() != null){
+            this.code = user.getUserInfo().getCode();
+            this.uid = user.getUserInfo().getUid();
+            this.firstName = user.getUserInfo().getFirstName();
+            this.lastName = user.getUserInfo().getLastName();
+            this.email = user.getUserInfo().getEmail();
+            this.phoneNumber = user.getUserInfo().getPhoneNumber();
+            this.jobTitle = user.getUserInfo().getJobTitle();
+            this.introduction = user.getUserInfo().getIntroduction();
+            this.gender = user.getUserInfo().getGender();
+            this.birthDay = user.getUserInfo().getBirthDay();
+            this.nationality = user.getUserInfo().getNationality();
+            this.employer = user.getUserInfo().getEmployer();
+            this.education = user.getUserInfo().getEducation();
+        }
+
     }
 
     public Long getId() {

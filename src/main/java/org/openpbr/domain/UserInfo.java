@@ -1,6 +1,8 @@
 package org.openpbr.domain;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -69,10 +71,11 @@ public class UserInfo extends IdentifiableEntity implements Serializable {
     @Column(name = "education")
     private String education;
 
-    @OneToOne(optional = false)    @NotNull
-
+    @OneToOne(optional = false)
+    @NotNull
     @MapsId
     @JoinColumn(name = "id")
+    @JsonIgnoreProperties("userInfo")
     private User user;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
@@ -84,31 +87,15 @@ public class UserInfo extends IdentifiableEntity implements Serializable {
         this.id = id;
     }
 
-//    public String getUid() {
-//        return uid;
-//    }
-//
     public UserInfo uid(String uid) {
         this.uid = uid;
         return this;
     }
-//
-//    public void setUid(String uid) {
-//        this.uid = uid;
-//    }
-//
-//    public String getCode() {
-//        return code;
-//    }
-//
+
     public UserInfo code(String code) {
         this.code = code;
         return this;
     }
-//
-//    public void setCode(String code) {
-//        this.code = code;
-//    }
 
     public String getLastName() {
         return lastName;

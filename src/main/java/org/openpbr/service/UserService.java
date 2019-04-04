@@ -3,8 +3,11 @@ package org.openpbr.service;
 import org.openpbr.config.Constants;
 import org.openpbr.domain.Authority;
 import org.openpbr.domain.User;
+import org.openpbr.domain.UserInfo;
 import org.openpbr.repository.AuthorityRepository;
+import org.openpbr.repository.UserInfoRepository;
 import org.openpbr.repository.UserRepository;
+import org.openpbr.repository.search.UserInfoSearchRepository;
 import org.openpbr.repository.search.UserSearchRepository;
 import org.openpbr.security.AuthoritiesConstants;
 import org.openpbr.security.SecurityUtils;
@@ -42,14 +45,20 @@ public class UserService {
 
     private final UserSearchRepository userSearchRepository;
 
+    private final UserInfoRepository userInfoRepository;
+
+    private final UserInfoSearchRepository userInfoSearchRepository;
+
     private final AuthorityRepository authorityRepository;
 
     private final CacheManager cacheManager;
 
-    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder, UserSearchRepository userSearchRepository, AuthorityRepository authorityRepository, CacheManager cacheManager) {
+    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder, UserSearchRepository userSearchRepository, UserInfoRepository userInfoRepository, UserInfoSearchRepository userInfoSearchRepository, AuthorityRepository authorityRepository, CacheManager cacheManager) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.userSearchRepository = userSearchRepository;
+        this.userInfoRepository = userInfoRepository;
+        this.userInfoSearchRepository = userInfoSearchRepository;
         this.authorityRepository = authorityRepository;
         this.cacheManager = cacheManager;
     }
@@ -124,6 +133,7 @@ public class UserService {
         newUser.setAuthorities(authorities);
         userRepository.save(newUser);
         userSearchRepository.save(newUser);
+        saveUserInfo(userDTO, newUser);
         this.clearUserCaches(newUser);
         log.debug("Created Information for User: {}", newUser);
         return newUser;
@@ -166,6 +176,7 @@ public class UserService {
         }
         userRepository.save(user);
         userSearchRepository.save(user);
+        saveUserInfo(userDTO, user);
         this.clearUserCaches(user);
         log.debug("Created Information for User: {}", user);
         return user;
@@ -223,11 +234,33 @@ public class UserService {
                     .map(Optional::get)
                     .forEach(managedAuthorities::add);
                 userSearchRepository.save(user);
+                saveUserInfo(userDTO, user);
                 this.clearUserCaches(user);
                 log.debug("Changed Information for User: {}", user);
                 return user;
             })
             .map(UserDTO::new);
+    }
+
+    public void saveUserInfo(UserDTO userDTO, User user){
+        UserInfo userInfo = user.getUserInfo();
+        if(userInfo == null){
+            userInfo = new UserInfo();
+        }
+        userInfo.setUser(user);
+        userInfo.setFirstName(userDTO.getFirstName());
+        userInfo.setLastName(userDTO.getLastName());
+        userInfo.setEmail(userDTO.getEmail().toLowerCase());
+        userInfo.setPhoneNumber(userDTO.getPhoneNumber());
+        userInfo.setJobTitle(userDTO.getJobTitle());
+        userInfo.setIntroduction(userDTO.getIntroduction());
+        userInfo.setGender(userDTO.getGender());
+        userInfo.setBirthDay(userDTO.getBirthDay());
+        userInfo.setNationality(userDTO.getNationality());
+        userInfo.setEmployer(userDTO.getEmployer());
+        userInfo.setEducation(userDTO.getEducation());
+        userInfoRepository.save(userInfo);
+        userInfoSearchRepository.save(userInfo);
     }
 
     public void deleteUser(String login) {

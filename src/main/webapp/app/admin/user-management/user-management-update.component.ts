@@ -2,12 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { JhiLanguageHelper, User, UserService } from 'app/core';
+import { UserInfo } from 'app/shared/model/user-info.model';
 
 @Component({
     selector: 'pbr-user-mgmt-update',
     templateUrl: './user-management-update.component.html'
 })
 export class UserMgmtUpdateComponent implements OnInit {
+    userInfo: UserInfo;
     user: User;
     languages: any[];
     authorities: any[];

@@ -1,9 +1,20 @@
+import { Gender } from 'app/shared/model/user-info.model';
+import { Moment } from 'moment';
+
 export interface IUser {
     id?: any;
     login?: string;
     firstName?: string;
     lastName?: string;
     email?: string;
+    phoneNumber?: string;
+    jobTitle?: string;
+    introduction?: string;
+    gender?: Gender;
+    birthDay?: Moment;
+    nationality?: string;
+    employer?: string;
+    education?: string;
     activated?: boolean;
     langKey?: string;
     authorities?: any[];
@@ -21,6 +32,14 @@ export class User implements IUser {
         public firstName?: string,
         public lastName?: string,
         public email?: string,
+        public phoneNumber?: string,
+        public jobTitle?: string,
+        public introduction?: string,
+        public gender?: Gender,
+        public birthDay?: Moment,
+        public nationality?: string,
+        public employer?: string,
+        public education?: string,
         public activated?: boolean,
         public langKey?: string,
         public authorities?: any[],
@@ -35,6 +54,14 @@ export class User implements IUser {
         this.firstName = firstName ? firstName : null;
         this.lastName = lastName ? lastName : null;
         this.email = email ? email : null;
+        this.phoneNumber = phoneNumber ? phoneNumber : null;
+        this.jobTitle = jobTitle ? jobTitle : null;
+        this.introduction = introduction ? introduction : null;
+        this.gender = gender ? gender : null;
+        this.birthDay = birthDay ? birthDay : null;
+        this.nationality = nationality ? nationality : null;
+        this.employer = employer ? employer : null;
+        this.education = education ? employer : null;
         this.activated = activated ? activated : false;
         this.langKey = langKey ? langKey : null;
         this.authorities = authorities ? authorities : null;
