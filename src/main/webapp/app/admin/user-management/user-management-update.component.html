@@ -34,7 +34,6 @@
                         </mat-error>
                 </mat-form-field>
                 <mat-form-field class="input-full-width">
-                    <!--<label class="form-control-label" jhiTranslate="userManagement.firstName">First Name</label>-->
                     <input placeholder="First Name" matInput name="firstName" #firstNameInput="ngModel"
                         [(ngModel)]="user.firstName" maxlength="50" />
 
@@ -87,6 +86,26 @@
 
                 </mat-form-field>
 
+                <mat-form-field class="input-full-width">
+                    <input matInput type="text" placeholder="Mobile phone Number"  name="phoneNumber" #phoneNumberInput="ngModel"
+                           [(ngModel)]="user.phoneNumber" minlength="10" maxlength="80">
+                    <mat-error *ngIf="phoneNumberInput.dirty && phoneNumberInput.invalid">
+
+                        <small class="form-text text-danger"
+                               *ngIf="phoneNumberInput.errors.maxlength" jhiTranslate="entity.validation.maxlength"
+                               [translateValues]="{max: 80}">
+                            This field cannot be longer than 80 characters.
+                        </small>
+
+                        <small class="form-text text-danger"
+                               *ngIf="phoneNumberInput.errors.minlength" jhiTranslate="entity.validation.minlength"
+                               [translateValues]="{min: 10}">
+                            This field is required to be at least 10 characters.
+                        </small>
+                    </mat-error>
+
+                </mat-form-field>
+
                 <mat-checkbox  [disabled]="user.id === null" type="checkbox" id="activated" name="activated" [(ngModel)]="user.activated">
                         <mat-label jhiTranslate="userManagement.activated">Activated</mat-label>
                 </mat-checkbox>
@@ -97,19 +116,15 @@
                     </mat-select>
                 </mat-form-field>
 
-                <mat-form-field class="input-full-width">
-                    <mat-select  multiple name="authority" [(ngModel)]="user.authorities" placeholder="Authorities">
-                        <mat-option *ngFor="let authority of authorities" [value]="authority">{{authority}}</mat-option>
-                    </mat-select>
-                </mat-form-field>
+                <pbr-multselect title="Authorities" (notify)="onAuthoritiesChanged($event)" *ngIf="authorities" [items]="authorities" isObject="false" [selectedItems]="user.authorities"></pbr-multselect>
 
             </div>
-            <div>
+            <div class="pbr-action-footer">
+                <button mat-raised-button type="submit" [disabled]="editForm.form.invalid || isSaving" >
+                    <span jhiTranslate="entity.action.save">Save</span>
+                </button>
                 <button mat-raised-button type="button"  (click)="previousState()">
                     <span jhiTranslate="entity.action.cancel">Cancel</span>
-                </button>
-                <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
-                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
                 </button>
             </div>
         </form>

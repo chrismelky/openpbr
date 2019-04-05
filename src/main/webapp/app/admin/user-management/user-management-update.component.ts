@@ -40,6 +40,10 @@ export class UserMgmtUpdateComponent implements OnInit {
         window.history.back();
     }
 
+    onAuthoritiesChanged(authorities) {
+        this.user.authorities = authorities;
+    }
+
     save() {
         this.isSaving = true;
         if (this.user.id !== null) {

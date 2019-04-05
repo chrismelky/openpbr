@@ -1,0 +1,36 @@
+<table style="width: 100%" class="pbr-multselect">
+    <tr>
+        <td style="width: 45%">
+            <label for="itemToSelect">Available {{title}}</label>
+            <select class="mat-elevation-z2" id="itemToSelect" multiple [(ngModel)]="itemToSelect" style="width: 100%" (dblclick)="selectItem(itemToSelect)">
+                <option *ngFor="let item of items" [ngValue]="item">{{(isObject == true)?item.name: item}}</option>
+            </select>
+            <button mat-raised-button color="accent" style="float: left" type="button" [disabled]="items.length === 0" (click)="selectAll()">
+                <span>ASSIGN ALL {{items.length}}</span><mat-icon>arrow_right</mat-icon>
+            </button>
+        </td>
+        <td style="width: 10%; vertical-align: center; text-align: center">
+            <div>
+               <span *ngIf="itemToSelect.length">{{itemToSelect.length}} Selected</span>
+               <span *ngIf="itemToRemove.length">{{itemToRemove.length}} Selected</span>
+            </div>
+            <div>
+                <button color="accent" type="button" mat-raised-button [disabled]="itemToSelect.length === 0" (click)="selectItem(itemToSelect)">
+                    <mat-icon>arrow_right</mat-icon>
+                </button>
+                <button color="accent" type="button" mat-raised-button [disabled]="itemToRemove.length === 0" (click)="removeItem(itemToRemove)">
+                    <mat-icon>arrow_left</mat-icon>
+                </button>
+            </div>
+        </td>
+        <td style="width: 45%" >
+            <label for="itemToRemove">Selected {{title}}</label>
+            <select class="mat-elevation-z2" id="itemToRemove" multiple style="width: 100%" [(ngModel)]="itemToRemove" (dblclick)="removeItem(itemToRemove)">
+                <option *ngFor="let selectedItem of selectedItems" [ngValue]="selectedItem">{{(isObject == true)?selectedItem.name:selectedItem}}</option>
+            </select>
+            <button mat-raised-button color="accent" style="float: right" type="button" [disabled]="selectedItems.length === 0" (click)="removeAll()">
+                <mat-icon>arrow_left</mat-icon><span>REMOVE ALL {{selectedItems.length}}</span>
+            </button>
+        </td>
+    </tr>
+</table>

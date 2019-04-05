@@ -57,17 +57,38 @@ Generic styles
     align-items: center;
 
     button {
-        background-color: #3e8acc !important;
+        background-color: rgb(33, 150, 243) !important;
     }
 }
 
 .input-full-width {
     width: 100%;
 }
+
+.pbr-multselect {
+    select {
+        padding: 8px;
+        border: none;
+        border-radius: 2px;
+        min-height: 100px;
+        margin-bottom: 8px;
+    }
+}
+.pbr-action-footer {
+    margin-top: 20px;
+
+    button {
+        text-transform: uppercase;
+    }
+
+    button[type='submit'] {
+        //background-color: rgb(33, 150, 243) !important;
+    }
+}
 /* other generic styles */
 
 .jh-card {
-    padding: 40px !important;
+    padding: 40px 60px !important;
     margin: 40px 20px;
     border: none;
 }
