@@ -1,0 +1,27 @@
+{
+    "openpbrApp": {
+        "optionSet": {
+            "home": {
+                "title": "OptionSets",
+                "createLabel": "Créer un nouveau Option Set",
+                "createOrEditLabel": "Créer ou éditer un Option Set",
+                "search": "Recherche pour Option Set"
+            },
+            "created": "Un nouveau Option Set a été créé avec l'identifiant {{ param }}",
+            "updated": "Le Option Set avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le Option Set avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer le Option Set {{ id }} ?"
+            },
+            "detail": {
+                "title": "Option Set"
+            },
+            "uid": "Uid",
+            "code": "Code",
+            "name": "Name",
+            "valueType": "Value Type",
+            "sortOrder": "Sort Order",
+            "optionValues": "Option Values"
+        }
+    }
+}

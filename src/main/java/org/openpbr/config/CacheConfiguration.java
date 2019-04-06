@@ -39,6 +39,11 @@ public class CacheConfiguration {
             cm.createCache(org.openpbr.domain.Authority.class.getName(), jcacheConfiguration);
             cm.createCache(org.openpbr.domain.User.class.getName() + ".authorities", jcacheConfiguration);
             cm.createCache(org.openpbr.domain.UserInfo.class.getName(), jcacheConfiguration);
+            cm.createCache(org.openpbr.domain.OptionSet.class.getName(), jcacheConfiguration);
+            cm.createCache(org.openpbr.domain.OptionSet.class.getName() + ".optionValues", jcacheConfiguration);
+            cm.createCache(org.openpbr.domain.OptionValue.class.getName(), jcacheConfiguration);
+            cm.createCache(org.openpbr.domain.Attribute.class.getName(), jcacheConfiguration);
+            cm.createCache(org.openpbr.domain.AttributeValue.class.getName(), jcacheConfiguration);
             // jhipster-needle-ehcache-add-entry
         };
     }

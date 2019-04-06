@@ -1,0 +1,29 @@
+{
+    "openpbrApp": {
+        "attribute": {
+            "home": {
+                "title": "Attributes",
+                "createLabel": "Créer un nouveau Attribute",
+                "createOrEditLabel": "Créer ou éditer un Attribute",
+                "search": "Recherche pour Attribute"
+            },
+            "created": "Un nouveau Attribute a été créé avec l'identifiant {{ param }}",
+            "updated": "Le Attribute avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le Attribute avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer le Attribute {{ id }} ?"
+            },
+            "detail": {
+                "title": "Attribute"
+            },
+            "uid": "Uid",
+            "code": "Code",
+            "name": "Name",
+            "valueType": "Value Type",
+            "isMandatory": "Is Mandatory",
+            "isUnique": "Is Unique",
+            "sortOrder": "Sort Order",
+            "optionSet": "Option Set"
+        }
+    }
+}

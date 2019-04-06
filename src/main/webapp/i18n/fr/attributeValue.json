@@ -1,0 +1,23 @@
+{
+    "openpbrApp": {
+        "attributeValue": {
+            "home": {
+                "title": "AttributeValues",
+                "createLabel": "Créer un nouveau Attribute Value",
+                "createOrEditLabel": "Créer ou éditer un Attribute Value",
+                "search": "Recherche pour Attribute Value"
+            },
+            "created": "Un nouveau Attribute Value a été créé avec l'identifiant {{ param }}",
+            "updated": "Le Attribute Value avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le Attribute Value avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer le Attribute Value {{ id }} ?"
+            },
+            "detail": {
+                "title": "Attribute Value"
+            },
+            "value": "Value",
+            "attribute": "Attribute"
+        }
+    }
+}

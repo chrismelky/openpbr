@@ -8,6 +8,10 @@
             "entities": {
                 "main": "Entities",
                 "userInfo": "User Info",
+                "optionSet": "Option Set",
+                "optionValue": "Option Value",
+                "attribute": "Attribute",
+                "attributeValue": "Attribute Value",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {

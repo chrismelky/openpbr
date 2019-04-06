@@ -1,0 +1,57 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="attribute">
+            <h2><span jhiTranslate="openpbrApp.attribute.detail.title">Attribute</span> {{attribute.id}}</h2>
+            <hr>
+            <pbr-alert-error></pbr-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="openpbrApp.attribute.uid">Uid</span></dt>
+                <dd>
+                    <span>{{attribute.uid}}</span>
+                </dd>
+                <dt><span jhiTranslate="openpbrApp.attribute.code">Code</span></dt>
+                <dd>
+                    <span>{{attribute.code}}</span>
+                </dd>
+                <dt><span jhiTranslate="openpbrApp.attribute.name">Name</span></dt>
+                <dd>
+                    <span>{{attribute.name}}</span>
+                </dd>
+                <dt><span jhiTranslate="openpbrApp.attribute.valueType">Value Type</span></dt>
+                <dd>
+                    <span jhiTranslate="{{'openpbrApp.ValueType.' + attribute.valueType}}">{{attribute.valueType}}</span>
+                </dd>
+                <dt><span jhiTranslate="openpbrApp.attribute.isMandatory">Is Mandatory</span></dt>
+                <dd>
+                    <span>{{attribute.isMandatory}}</span>
+                </dd>
+                <dt><span jhiTranslate="openpbrApp.attribute.isUnique">Is Unique</span></dt>
+                <dd>
+                    <span>{{attribute.isUnique}}</span>
+                </dd>
+                <dt><span jhiTranslate="openpbrApp.attribute.sortOrder">Sort Order</span></dt>
+                <dd>
+                    <span>{{attribute.sortOrder}}</span>
+                </dd>
+                <dt><span jhiTranslate="openpbrApp.attribute.optionSet">Option Set</span></dt>
+                <dd>
+                    <div *ngIf="attribute.optionSet">
+                        <a [routerLink]="['/option-set', attribute.optionSet?.id, 'view']">{{attribute.optionSet?.name}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/attribute', attribute.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

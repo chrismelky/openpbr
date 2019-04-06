@@ -1,0 +1,131 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="pbr-attribute-heading" jhiTranslate="openpbrApp.attribute.home.createOrEditLabel">Create or edit a Attribute</h2>
+            <div>
+                <pbr-alert-error></pbr-alert-error>
+                <div class="form-group" [hidden]="!attribute.id">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="attribute.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="openpbrApp.attribute.uid" for="field_uid">Uid</label>
+                    <input type="text" class="form-control" name="uid" id="field_uid"
+                        [(ngModel)]="attribute.uid" required maxlength="11"/>
+                    <div [hidden]="!(editForm.controls.uid?.dirty && editForm.controls.uid?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.uid?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.uid?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 11 }">
+                        This field cannot be longer than 11 characters.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="openpbrApp.attribute.code" for="field_code">Code</label>
+                    <input type="text" class="form-control" name="code" id="field_code"
+                        [(ngModel)]="attribute.code" maxlength="50"/>
+                    <div [hidden]="!(editForm.controls.code?.dirty && editForm.controls.code?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.code?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 50 }">
+                        This field cannot be longer than 50 characters.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="openpbrApp.attribute.name" for="field_name">Name</label>
+                    <input type="text" class="form-control" name="name" id="field_name"
+                        [(ngModel)]="attribute.name" required maxlength="230"/>
+                    <div [hidden]="!(editForm.controls.name?.dirty && editForm.controls.name?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.name?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.name?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 230 }">
+                        This field cannot be longer than 230 characters.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="openpbrApp.attribute.valueType" for="field_valueType">Value Type</label>
+                    <select class="form-control" name="valueType" [(ngModel)]="attribute.valueType" id="field_valueType"  required>
+                        <option value="TEXT">{{'openpbrApp.ValueType.TEXT' | translate}}</option>
+                        <option value="LONG_TEXT">{{'openpbrApp.ValueType.LONG_TEXT' | translate}}</option>
+                        <option value="LETTER">{{'openpbrApp.ValueType.LETTER' | translate}}</option>
+                        <option value="PHONE_NUMBER">{{'openpbrApp.ValueType.PHONE_NUMBER' | translate}}</option>
+                        <option value="EMAIL">{{'openpbrApp.ValueType.EMAIL' | translate}}</option>
+                        <option value="YES_NO">{{'openpbrApp.ValueType.YES_NO' | translate}}</option>
+                        <option value="YES_ONLY">{{'openpbrApp.ValueType.YES_ONLY' | translate}}</option>
+                        <option value="DATE">{{'openpbrApp.ValueType.DATE' | translate}}</option>
+                        <option value="DATE_TIME">{{'openpbrApp.ValueType.DATE_TIME' | translate}}</option>
+                        <option value="TIME">{{'openpbrApp.ValueType.TIME' | translate}}</option>
+                        <option value="NUMBER">{{'openpbrApp.ValueType.NUMBER' | translate}}</option>
+                        <option value="UNIT_INTERVAL">{{'openpbrApp.ValueType.UNIT_INTERVAL' | translate}}</option>
+                        <option value="PERCENTAGE">{{'openpbrApp.ValueType.PERCENTAGE' | translate}}</option>
+                        <option value="INTEGER">{{'openpbrApp.ValueType.INTEGER' | translate}}</option>
+                        <option value="POSITIVE_INTEGER">{{'openpbrApp.ValueType.POSITIVE_INTEGER' | translate}}</option>
+                        <option value="NEGATIVE_INTEGER">{{'openpbrApp.ValueType.NEGATIVE_INTEGER' | translate}}</option>
+                        <option value="POSITIVE_OR_ZERO_INTEGER">{{'openpbrApp.ValueType.POSITIVE_OR_ZERO_INTEGER' | translate}}</option>
+                        <option value="COORDINATE">{{'openpbrApp.ValueType.COORDINATE' | translate}}</option>
+                        <option value="URL">{{'openpbrApp.ValueType.URL' | translate}}</option>
+                        <option value="FILE">{{'openpbrApp.ValueType.FILE' | translate}}</option>
+                        <option value="IMAGE">{{'openpbrApp.ValueType.IMAGE' | translate}}</option>
+                    </select>
+                    <div [hidden]="!(editForm.controls.valueType?.dirty && editForm.controls.valueType?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.valueType?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="openpbrApp.attribute.isMandatory" for="field_isMandatory">Is Mandatory</label>
+                    <input type="checkbox" class="form-control" name="isMandatory" id="field_isMandatory"
+                        [(ngModel)]="attribute.isMandatory" />
+                    <div [hidden]="!(editForm.controls.isMandatory?.dirty && editForm.controls.isMandatory?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.isMandatory?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="openpbrApp.attribute.isUnique" for="field_isUnique">Is Unique</label>
+                    <input type="checkbox" class="form-control" name="isUnique" id="field_isUnique"
+                        [(ngModel)]="attribute.isUnique" />
+                    <div [hidden]="!(editForm.controls.isUnique?.dirty && editForm.controls.isUnique?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.isUnique?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="openpbrApp.attribute.sortOrder" for="field_sortOrder">Sort Order</label>
+                    <input type="number" class="form-control" name="sortOrder" id="field_sortOrder"
+                        [(ngModel)]="attribute.sortOrder" />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="openpbrApp.attribute.optionSet" for="field_optionSet">Option Set</label>
+                    <select class="form-control" id="field_optionSet" name="optionSet" [(ngModel)]="attribute.optionSet" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="optionSetOption.id === attribute.optionSet?.id ? attribute.optionSet : optionSetOption" *ngFor="let optionSetOption of optionsets; trackBy: trackOptionSetById">{{optionSetOption.name}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

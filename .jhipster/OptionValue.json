@@ -1,0 +1,56 @@
+{
+    "name": "OptionValue",
+    "fields": [
+        {
+            "fieldName": "uid",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "maxlength",
+                "unique"
+            ],
+            "fieldValidateRulesMaxlength": 11
+        },
+        {
+            "fieldName": "code",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength",
+                "unique"
+            ],
+            "fieldValidateRulesMaxlength": 50
+        },
+        {
+            "fieldName": "name",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "maxlength",
+                "unique"
+            ],
+            "fieldValidateRulesMaxlength": 230
+        },
+        {
+            "fieldName": "sortOrder",
+            "fieldType": "Integer"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "optionSet",
+            "otherEntityRelationshipName": "optionValues",
+            "relationshipName": "optionSet",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20190406114517",
+    "entityTableName": "option_value",
+    "dto": "no",
+    "pagination": "pagination",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

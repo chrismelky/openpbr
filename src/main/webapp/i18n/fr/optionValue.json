@@ -1,0 +1,26 @@
+{
+    "openpbrApp": {
+        "optionValue": {
+            "home": {
+                "title": "OptionValues",
+                "createLabel": "Créer un nouveau Option Value",
+                "createOrEditLabel": "Créer ou éditer un Option Value",
+                "search": "Recherche pour Option Value"
+            },
+            "created": "Un nouveau Option Value a été créé avec l'identifiant {{ param }}",
+            "updated": "Le Option Value avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le Option Value avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer le Option Value {{ id }} ?"
+            },
+            "detail": {
+                "title": "Option Value"
+            },
+            "uid": "Uid",
+            "code": "Code",
+            "name": "Name",
+            "sortOrder": "Sort Order",
+            "optionSet": "Option Set"
+        }
+    }
+}

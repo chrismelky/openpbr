@@ -1,0 +1,43 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="optionSet">
+            <h2><span jhiTranslate="openpbrApp.optionSet.detail.title">Option Set</span> {{optionSet.id}}</h2>
+            <hr>
+            <pbr-alert-error></pbr-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="openpbrApp.optionSet.uid">Uid</span></dt>
+                <dd>
+                    <span>{{optionSet.uid}}</span>
+                </dd>
+                <dt><span jhiTranslate="openpbrApp.optionSet.code">Code</span></dt>
+                <dd>
+                    <span>{{optionSet.code}}</span>
+                </dd>
+                <dt><span jhiTranslate="openpbrApp.optionSet.name">Name</span></dt>
+                <dd>
+                    <span>{{optionSet.name}}</span>
+                </dd>
+                <dt><span jhiTranslate="openpbrApp.optionSet.valueType">Value Type</span></dt>
+                <dd>
+                    <span jhiTranslate="{{'openpbrApp.ValueType.' + optionSet.valueType}}">{{optionSet.valueType}}</span>
+                </dd>
+                <dt><span jhiTranslate="openpbrApp.optionSet.sortOrder">Sort Order</span></dt>
+                <dd>
+                    <span>{{optionSet.sortOrder}}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/option-set', optionSet.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

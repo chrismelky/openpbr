@@ -1,0 +1,31 @@
+{
+    "name": "AttributeValue",
+    "fields": [
+        {
+            "fieldName": "value",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "attribute",
+            "otherEntityRelationshipName": "attributeValue",
+            "relationshipValidateRules": "required",
+            "relationshipName": "attribute",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20190406114519",
+    "entityTableName": "attribute_value",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

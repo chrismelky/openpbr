@@ -1,0 +1,33 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="attributeValue">
+            <h2><span jhiTranslate="openpbrApp.attributeValue.detail.title">Attribute Value</span> {{attributeValue.id}}</h2>
+            <hr>
+            <pbr-alert-error></pbr-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="openpbrApp.attributeValue.value">Value</span></dt>
+                <dd>
+                    <span>{{attributeValue.value}}</span>
+                </dd>
+                <dt><span jhiTranslate="openpbrApp.attributeValue.attribute">Attribute</span></dt>
+                <dd>
+                    <div *ngIf="attributeValue.attribute">
+                        <a [routerLink]="['/attribute', attributeValue.attribute?.id, 'view']">{{attributeValue.attribute?.id}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/attribute-value', attributeValue.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>
