@@ -23,7 +23,7 @@ import org.openpbr.domain.enumeration.ValueType;
 @Table(name = "option_set")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 @Document(indexName = "optionset")
-public class OptionSet implements Serializable {
+public class OptionSet extends IdentifiableEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
     
@@ -31,15 +31,6 @@ public class OptionSet implements Serializable {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequenceGenerator")
     @SequenceGenerator(name = "sequenceGenerator")
     private Long id;
-
-    @NotNull
-    @Size(max = 11)
-    @Column(name = "pbr_uid", length = 11, nullable = false, unique = true)
-    private String uid;
-
-    @Size(max = 50)
-    @Column(name = "code", length = 50, unique = true)
-    private String code;
 
     @NotNull
     @Size(max = 230)
@@ -66,30 +57,14 @@ public class OptionSet implements Serializable {
         this.id = id;
     }
 
-    public String getUid() {
-        return uid;
-    }
-
     public OptionSet uid(String uid) {
         this.uid = uid;
         return this;
     }
 
-    public void setUid(String uid) {
-        this.uid = uid;
-    }
-
-    public String getCode() {
-        return code;
-    }
-
     public OptionSet code(String code) {
         this.code = code;
         return this;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
     }
 
     public String getName() {

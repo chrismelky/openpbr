@@ -9,26 +9,6 @@ import { RouterModule } from '@angular/router';
                 loadChildren: './user-info/user-info.module#OpenpbrUserInfoModule'
             },
             {
-                path: 'user-info',
-                loadChildren: './user-info/user-info.module#OpenpbrUserInfoModule'
-            },
-            {
-                path: 'user-info',
-                loadChildren: './user-info/user-info.module#OpenpbrUserInfoModule'
-            },
-            {
-                path: 'user-info',
-                loadChildren: './user-info/user-info.module#OpenpbrUserInfoModule'
-            },
-            {
-                path: 'user-info',
-                loadChildren: './user-info/user-info.module#OpenpbrUserInfoModule'
-            },
-            {
-                path: 'user-info',
-                loadChildren: './user-info/user-info.module#OpenpbrUserInfoModule'
-            },
-            {
                 path: 'option-set',
                 loadChildren: './option-set/option-set.module#OpenpbrOptionSetModule'
             },

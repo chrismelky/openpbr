@@ -30,6 +30,7 @@ export class OptionSetComponent implements OnInit, OnDestroy {
     predicate: any;
     previousPage: any;
     reverse: any;
+    displayColumns = ['name'];
 
     constructor(
         protected optionSetService: OptionSetService,

@@ -1,0 +1,24 @@
+<div>
+    <button mat-icon-button [matMenuTriggerFor]="menu">
+        <mat-icon>more_vert</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+        <button type="submit" mat-menu-item
+                [routerLink]="['/'+objectName, object.id, 'view' ]">
+            <mat-icon>pageview</mat-icon>
+            <span jhiTranslate="entity.action.view">View</span>
+        </button>
+        <button type="submit" mat-menu-item
+                [routerLink]="['/'+objectName, object.id, 'edit']">
+            <mat-icon>edit</mat-icon>
+            <span jhiTranslate="entity.action.edit">Edit</span>
+        </button>
+        <button mat-menu-item
+                [routerLink]="['/', objectName, { outlets: { popup: object.id + '/delete'} }]"
+                replaceUrl="true"
+                queryParamsHandling="merge">
+            <mat-icon>delete</mat-icon>
+            <span jhiTranslate="entity.action.delete">Delete</span>
+        </button>
+    </mat-menu>
+</div>

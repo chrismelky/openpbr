@@ -29,7 +29,7 @@ public class AttributeValue implements Serializable {
     private Long id;
 
     @NotNull
-    @Column(name = "pbr_value", nullable = false)
+    @Column(name = "value", nullable = false)
     private String value;
 
     @ManyToOne(optional = false)

@@ -21,7 +21,7 @@ import org.openpbr.domain.enumeration.ValueType;
 @Table(name = "attribute")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 @Document(indexName = "attribute")
-public class Attribute implements Serializable {
+public class Attribute extends IdentifiableEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
     
@@ -29,15 +29,6 @@ public class Attribute implements Serializable {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequenceGenerator")
     @SequenceGenerator(name = "sequenceGenerator")
     private Long id;
-
-    @NotNull
-    @Size(max = 11)
-    @Column(name = "pbr_uid", length = 11, nullable = false, unique = true)
-    private String uid;
-
-    @Size(max = 50)
-    @Column(name = "code", length = 50, unique = true)
-    private String code;
 
     @NotNull
     @Size(max = 230)
@@ -73,30 +64,14 @@ public class Attribute implements Serializable {
         this.id = id;
     }
 
-    public String getUid() {
-        return uid;
-    }
-
     public Attribute uid(String uid) {
         this.uid = uid;
         return this;
     }
 
-    public void setUid(String uid) {
-        this.uid = uid;
-    }
-
-    public String getCode() {
-        return code;
-    }
-
     public Attribute code(String code) {
         this.code = code;
         return this;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
     }
 
     public String getName() {
