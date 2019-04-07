@@ -120,5 +120,6 @@
     "entityTableName": "user_info",
     "databaseType": "sql",
     "jpaMetamodelFiltering": false,
-    "pagination": "no"
+    "pagination": "no",
+    "enableEntityAudit": true
 }
