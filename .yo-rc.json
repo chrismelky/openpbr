@@ -34,5 +34,8 @@
         "enableTranslation": true,
         "nativeLanguage": "en",
         "languages": ["en", "fr", "pt-pt"]
+    },
+    "generator-jhipster-entity-audit": {
+        "auditFramework": "custom"
     }
 }

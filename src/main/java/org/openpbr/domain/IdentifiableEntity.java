@@ -9,7 +9,7 @@ import javax.validation.constraints.Size;
 import java.io.Serializable;
 
 @MappedSuperclass
-public class IdentifiableEntity implements Serializable {
+public class IdentifiableEntity extends  AbstractAuditingEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
 

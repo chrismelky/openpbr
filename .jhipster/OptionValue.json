@@ -52,5 +52,6 @@
     "jpaMetamodelFiltering": true,
     "fluentMethods": true,
     "clientRootFolder": "",
-    "applications": "*"
+    "applications": "*",
+    "enableEntityAudit": true
 }

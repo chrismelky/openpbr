@@ -10,6 +10,7 @@
     <include file="config/liquibase/changelog/20190406114517_added_entity_OptionValue.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20190406114518_added_entity_Attribute.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20190406114519_added_entity_AttributeValue.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190407101653_added_entity_EntityAuditEvent.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
     <include file="config/liquibase/changelog/20190329085732_added_entity_constraints_UserInfo.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20190406114517_added_entity_constraints_OptionValue.xml" relativeToChangelogFile="false"/>

@@ -19,7 +19,7 @@ import java.util.Objects;
 @Table(name = "attribute_value")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 @Document(indexName = "attributevalue")
-public class AttributeValue implements Serializable {
+public class AttributeValue extends AbstractAuditingEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
     

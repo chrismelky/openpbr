@@ -34,6 +34,7 @@
                 "audits": "Auditorias",
                 "apidocs": "API",
                 "database": "Base de Dados",
+                "entity-audit": "Entity Audit",
                 "jhipster-needle-menu-add-admin-element": "JHipster will add additional menu entries here (do not translate!)"
             },
             "language": "Idioma"

@@ -21,7 +21,7 @@ import org.openpbr.domain.enumeration.ValueType;
 @Table(name = "attribute")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 @Document(indexName = "attribute")
-public class Attribute extends IdentifiableEntity implements Serializable {
+public class Attribute extends  IdentifiableEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
     
