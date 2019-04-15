@@ -122,7 +122,6 @@
 
                 <ng-container *ngIf="user.attributeValues">
                     <ng-container *ngFor="let attValue of user.attributeValues">
-                        <!--<ng-container [ngSwitch]="attValue.attribute.valueType" >-->
                             <mat-form-field *ngIf="attValue.attribute.valueType === 'TEXT' " class="input-full-width">
                                 <input matInput type="text" placeholder="{{attValue.attribute.name}}"  [required]="attValue.attribute.isMandatory"
                                        name="{{attValue.attribute.name}}"
@@ -131,10 +130,17 @@
                             <mat-radio-group  *ngIf="attValue.attribute.valueType === 'YES_NO'"  [(ngModel)]="attValue.value"
                                               name="{{attValue.attribute.name}}"
                                              aria-label="Select {{attValue.attribute.name}}">
+                                <mat-label>{{attValue.attribute.name}}? </mat-label>
                                 <mat-radio-button [value]="'YES'">YES</mat-radio-button>
                                 <mat-radio-button [value]="'NO'">NO</mat-radio-button>
                             </mat-radio-group>
-                        <!--</ng-container>-->
+                            <mat-form-field *ngIf="attValue.attribute.valueType === 'DATE' " class="input-full-width">
+                                <input name="{{attValue.attribute.name}}"
+                                       [(ngModel)]="attValue.value" matInput [matDatepicker]="dp3"
+                                       placeholder="{{attValue.attribute.name}}" disabled>
+                                <mat-datepicker-toggle matSuffix [for]="dp3"></mat-datepicker-toggle>
+                                <mat-datepicker touchUi #dp3 disabled="false"></mat-datepicker>
+                            </mat-form-field>
                     </ng-container>
                 </ng-container>
 
