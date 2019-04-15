@@ -26,7 +26,7 @@
     </div>
     <br/>
     <div class="table-responsive" *ngIf="attributes">
-        <table class="table">
+        <table class="table table-striped">
             <thead>
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
             <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
@@ -37,6 +37,7 @@
             <th jhiSortBy="isMandatory"><span jhiTranslate="openpbrApp.attribute.isMandatory">Is Mandatory</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="isUnique"><span jhiTranslate="openpbrApp.attribute.isUnique">Is Unique</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="sortOrder"><span jhiTranslate="openpbrApp.attribute.sortOrder">Sort Order</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="isUserAttribute"><span jhiTranslate="openpbrApp.attribute.isUserAttribute">Is User Attribute</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="optionSet.name"><span jhiTranslate="openpbrApp.attribute.optionSet">Option Set</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th></th>
             </tr>
@@ -51,13 +52,35 @@
                 <td>{{attribute.isMandatory}}</td>
                 <td>{{attribute.isUnique}}</td>
                 <td>{{attribute.sortOrder}}</td>
+                <td>{{attribute.isUserAttribute}}</td>
                 <td>
                     <div *ngIf="attribute.optionSet">
                         <a [routerLink]="['../option-set', attribute.optionSet?.id, 'view' ]" >{{attribute.optionSet?.name}}</a>
                     </div>
                 </td>
                 <td class="text-right">
-                    <pbr-action-menu objectName="attribute" [object]="attribute" ></pbr-action-menu>
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['/attribute', attribute.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/attribute', attribute.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', 'attribute', { outlets: { popup: attribute.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
                 </td>
             </tr>
             </tbody>

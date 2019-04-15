@@ -118,6 +118,19 @@
 
                 <pbr-multselect title="Authorities" (notify)="onAuthoritiesChanged($event)" *ngIf="authorities" [items]="authorities" isObject="false" [selectedItems]="user.authorities"></pbr-multselect>
 
+                <!--<pbr-org-unit></pbr-org-unit>-->
+
+                <ng-container *ngIf="attributes">
+                    <ng-container *ngFor="let att of attributes">
+                        <ng-container [ngSwitch]="att.type" >
+                            <mat-form-field *ngSwitchCase="TEXT" class="input-full-width">
+                                <input matInput type="text" placeholder="{{att.name}}"  name="{{att.name}}"
+                                       [(ngModel)]="att.value" minlength="10" maxlength="80">
+                            </mat-form-field>
+                        </ng-container>
+                    </ng-container>
+                </ng-container>
+
             </div>
             <div class="pbr-action-footer">
                 <button mat-raised-button type="submit" [disabled]="editForm.form.invalid || isSaving" >

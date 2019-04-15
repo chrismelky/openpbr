@@ -23,6 +23,10 @@ import { RouterModule } from '@angular/router';
             {
                 path: 'attribute-value',
                 loadChildren: './attribute-value/attribute-value.module#OpenpbrAttributeValueModule'
+            },
+            {
+                path: 'attribute',
+                loadChildren: './attribute/attribute.module#OpenpbrAttributeModule'
             }
             /* jhipster-needle-add-entity-route - JHipster will add entity modules routes here */
         ])

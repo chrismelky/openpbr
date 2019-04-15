@@ -6,6 +6,7 @@ import { AccountService, User, UserService } from 'app/core';
 import { UserMgmtComponent } from './user-management.component';
 import { UserMgmtDetailComponent } from './user-management-detail.component';
 import { UserMgmtUpdateComponent } from './user-management-update.component';
+import { AttributeByTypeResolve } from '../../entities/attribute';
 
 @Injectable({ providedIn: 'root' })
 export class UserResolve implements CanActivate {
@@ -55,14 +56,19 @@ export const userMgmtRoute: Routes = [
         path: 'user-management/new',
         component: UserMgmtUpdateComponent,
         resolve: {
-            user: UserMgmtResolve
+            user: UserMgmtResolve,
+            attributes: AttributeByTypeResolve
+        },
+        data: {
+            attributeType: { 'isUserAttribute.equals': true }
         }
     },
     {
         path: 'user-management/:login/edit',
         component: UserMgmtUpdateComponent,
         resolve: {
-            user: UserMgmtResolve
+            user: UserMgmtResolve,
+            attributes: AttributeByTypeResolve
         }
     }
 ];

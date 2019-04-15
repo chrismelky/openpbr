@@ -10,6 +10,21 @@
                         [(ngModel)]="attribute.id" readonly />
                 </div>
                 <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="openpbrApp.attribute.uid" for="field_uid">Uid</label>
+                    <input type="text" class="form-control" name="uid" id="field_uid"
+                        [(ngModel)]="attribute.uid" required maxlength="11"/>
+                    <div [hidden]="!(editForm.controls.uid?.dirty && editForm.controls.uid?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.uid?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.uid?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 11 }">
+                        This field cannot be longer than 11 characters.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
                     <label class="form-control-label" jhiTranslate="openpbrApp.attribute.code" for="field_code">Code</label>
                     <input type="text" class="form-control" name="code" id="field_code"
                         [(ngModel)]="attribute.code" maxlength="50"/>
@@ -93,6 +108,17 @@
                     <label class="form-control-label" jhiTranslate="openpbrApp.attribute.sortOrder" for="field_sortOrder">Sort Order</label>
                     <input type="number" class="form-control" name="sortOrder" id="field_sortOrder"
                         [(ngModel)]="attribute.sortOrder" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="openpbrApp.attribute.isUserAttribute" for="field_isUserAttribute">Is User Attribute</label>
+                    <input type="checkbox" class="form-control" name="isUserAttribute" id="field_isUserAttribute"
+                        [(ngModel)]="attribute.isUserAttribute" />
+                    <div [hidden]="!(editForm.controls.isUserAttribute?.dirty && editForm.controls.isUserAttribute?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.isUserAttribute?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
                 </div>
 
                 <div class="form-group">

@@ -108,6 +108,9 @@ public class AttributeQueryService extends QueryService<Attribute> {
             if (criteria.getSortOrder() != null) {
                 specification = specification.and(buildRangeSpecification(criteria.getSortOrder(), Attribute_.sortOrder));
             }
+            if (criteria.getIsUserAttribute() != null) {
+                specification = specification.and(buildSpecification(criteria.getIsUserAttribute(), Attribute_.isUserAttribute));
+            }
             if (criteria.getOptionSetId() != null) {
                 specification = specification.and(buildSpecification(criteria.getOptionSetId(),
                     root -> root.join(Attribute_.optionSet, JoinType.LEFT).get(OptionSet_.id)));

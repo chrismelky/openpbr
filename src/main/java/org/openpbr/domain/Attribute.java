@@ -21,7 +21,7 @@ import org.openpbr.domain.enumeration.ValueType;
 @Table(name = "attribute")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 @Document(indexName = "attribute")
-public class Attribute extends  IdentifiableEntity implements Serializable {
+public class Attribute extends IdentifiableEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
     
@@ -51,6 +51,10 @@ public class Attribute extends  IdentifiableEntity implements Serializable {
     @Column(name = "sort_order")
     private Integer sortOrder;
 
+    @NotNull
+    @Column(name = "is_user_attribute", nullable = false)
+    private Boolean isUserAttribute;
+
     @ManyToOne
     @JsonIgnoreProperties("attributes")
     private OptionSet optionSet;
@@ -64,6 +68,7 @@ public class Attribute extends  IdentifiableEntity implements Serializable {
         this.id = id;
     }
 
+
     public Attribute uid(String uid) {
         this.uid = uid;
         return this;
@@ -73,6 +78,7 @@ public class Attribute extends  IdentifiableEntity implements Serializable {
         this.code = code;
         return this;
     }
+
 
     public String getName() {
         return name;
@@ -139,6 +145,19 @@ public class Attribute extends  IdentifiableEntity implements Serializable {
         this.sortOrder = sortOrder;
     }
 
+    public Boolean isIsUserAttribute() {
+        return isUserAttribute;
+    }
+
+    public Attribute isUserAttribute(Boolean isUserAttribute) {
+        this.isUserAttribute = isUserAttribute;
+        return this;
+    }
+
+    public void setIsUserAttribute(Boolean isUserAttribute) {
+        this.isUserAttribute = isUserAttribute;
+    }
+
     public OptionSet getOptionSet() {
         return optionSet;
     }
@@ -184,6 +203,7 @@ public class Attribute extends  IdentifiableEntity implements Serializable {
             ", isMandatory='" + isIsMandatory() + "'" +
             ", isUnique='" + isIsUnique() + "'" +
             ", sortOrder=" + getSortOrder() +
+            ", isUserAttribute='" + isIsUserAttribute() + "'" +
             "}";
     }
 }

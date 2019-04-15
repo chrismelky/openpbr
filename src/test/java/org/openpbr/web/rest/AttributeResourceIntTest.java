@@ -72,6 +72,9 @@ public class AttributeResourceIntTest {
     private static final Integer DEFAULT_SORT_ORDER = 1;
     private static final Integer UPDATED_SORT_ORDER = 2;
 
+    private static final Boolean DEFAULT_IS_USER_ATTRIBUTE = false;
+    private static final Boolean UPDATED_IS_USER_ATTRIBUTE = true;
+
     @Autowired
     private AttributeRepository attributeRepository;
 
@@ -134,7 +137,8 @@ public class AttributeResourceIntTest {
             .valueType(DEFAULT_VALUE_TYPE)
             .isMandatory(DEFAULT_IS_MANDATORY)
             .isUnique(DEFAULT_IS_UNIQUE)
-            .sortOrder(DEFAULT_SORT_ORDER);
+            .sortOrder(DEFAULT_SORT_ORDER)
+            .isUserAttribute(DEFAULT_IS_USER_ATTRIBUTE);
         return attribute;
     }
 
@@ -165,6 +169,7 @@ public class AttributeResourceIntTest {
         assertThat(testAttribute.isIsMandatory()).isEqualTo(DEFAULT_IS_MANDATORY);
         assertThat(testAttribute.isIsUnique()).isEqualTo(DEFAULT_IS_UNIQUE);
         assertThat(testAttribute.getSortOrder()).isEqualTo(DEFAULT_SORT_ORDER);
+        assertThat(testAttribute.isIsUserAttribute()).isEqualTo(DEFAULT_IS_USER_ATTRIBUTE);
 
         // Validate the Attribute in Elasticsearch
         verify(mockAttributeSearchRepository, times(1)).save(testAttribute);
@@ -284,6 +289,24 @@ public class AttributeResourceIntTest {
 
     @Test
     @Transactional
+    public void checkIsUserAttributeIsRequired() throws Exception {
+        int databaseSizeBeforeTest = attributeRepository.findAll().size();
+        // set the field null
+        attribute.setIsUserAttribute(null);
+
+        // Create the Attribute, which fails.
+
+        restAttributeMockMvc.perform(post("/api/attributes")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(attribute)))
+            .andExpect(status().isBadRequest());
+
+        List<Attribute> attributeList = attributeRepository.findAll();
+        assertThat(attributeList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
     public void getAllAttributes() throws Exception {
         // Initialize the database
         attributeRepository.saveAndFlush(attribute);
@@ -299,7 +322,8 @@ public class AttributeResourceIntTest {
             .andExpect(jsonPath("$.[*].valueType").value(hasItem(DEFAULT_VALUE_TYPE.toString())))
             .andExpect(jsonPath("$.[*].isMandatory").value(hasItem(DEFAULT_IS_MANDATORY.booleanValue())))
             .andExpect(jsonPath("$.[*].isUnique").value(hasItem(DEFAULT_IS_UNIQUE.booleanValue())))
-            .andExpect(jsonPath("$.[*].sortOrder").value(hasItem(DEFAULT_SORT_ORDER)));
+            .andExpect(jsonPath("$.[*].sortOrder").value(hasItem(DEFAULT_SORT_ORDER)))
+            .andExpect(jsonPath("$.[*].isUserAttribute").value(hasItem(DEFAULT_IS_USER_ATTRIBUTE.booleanValue())));
     }
     
     @Test
@@ -319,7 +343,8 @@ public class AttributeResourceIntTest {
             .andExpect(jsonPath("$.valueType").value(DEFAULT_VALUE_TYPE.toString()))
             .andExpect(jsonPath("$.isMandatory").value(DEFAULT_IS_MANDATORY.booleanValue()))
             .andExpect(jsonPath("$.isUnique").value(DEFAULT_IS_UNIQUE.booleanValue()))
-            .andExpect(jsonPath("$.sortOrder").value(DEFAULT_SORT_ORDER));
+            .andExpect(jsonPath("$.sortOrder").value(DEFAULT_SORT_ORDER))
+            .andExpect(jsonPath("$.isUserAttribute").value(DEFAULT_IS_USER_ATTRIBUTE.booleanValue()));
     }
 
     @Test
@@ -624,6 +649,45 @@ public class AttributeResourceIntTest {
 
     @Test
     @Transactional
+    public void getAllAttributesByIsUserAttributeIsEqualToSomething() throws Exception {
+        // Initialize the database
+        attributeRepository.saveAndFlush(attribute);
+
+        // Get all the attributeList where isUserAttribute equals to DEFAULT_IS_USER_ATTRIBUTE
+        defaultAttributeShouldBeFound("isUserAttribute.equals=" + DEFAULT_IS_USER_ATTRIBUTE);
+
+        // Get all the attributeList where isUserAttribute equals to UPDATED_IS_USER_ATTRIBUTE
+        defaultAttributeShouldNotBeFound("isUserAttribute.equals=" + UPDATED_IS_USER_ATTRIBUTE);
+    }
+
+    @Test
+    @Transactional
+    public void getAllAttributesByIsUserAttributeIsInShouldWork() throws Exception {
+        // Initialize the database
+        attributeRepository.saveAndFlush(attribute);
+
+        // Get all the attributeList where isUserAttribute in DEFAULT_IS_USER_ATTRIBUTE or UPDATED_IS_USER_ATTRIBUTE
+        defaultAttributeShouldBeFound("isUserAttribute.in=" + DEFAULT_IS_USER_ATTRIBUTE + "," + UPDATED_IS_USER_ATTRIBUTE);
+
+        // Get all the attributeList where isUserAttribute equals to UPDATED_IS_USER_ATTRIBUTE
+        defaultAttributeShouldNotBeFound("isUserAttribute.in=" + UPDATED_IS_USER_ATTRIBUTE);
+    }
+
+    @Test
+    @Transactional
+    public void getAllAttributesByIsUserAttributeIsNullOrNotNull() throws Exception {
+        // Initialize the database
+        attributeRepository.saveAndFlush(attribute);
+
+        // Get all the attributeList where isUserAttribute is not null
+        defaultAttributeShouldBeFound("isUserAttribute.specified=true");
+
+        // Get all the attributeList where isUserAttribute is null
+        defaultAttributeShouldNotBeFound("isUserAttribute.specified=false");
+    }
+
+    @Test
+    @Transactional
     public void getAllAttributesByOptionSetIsEqualToSomething() throws Exception {
         // Initialize the database
         OptionSet optionSet = OptionSetResourceIntTest.createEntity(em);
@@ -654,7 +718,8 @@ public class AttributeResourceIntTest {
             .andExpect(jsonPath("$.[*].valueType").value(hasItem(DEFAULT_VALUE_TYPE.toString())))
             .andExpect(jsonPath("$.[*].isMandatory").value(hasItem(DEFAULT_IS_MANDATORY.booleanValue())))
             .andExpect(jsonPath("$.[*].isUnique").value(hasItem(DEFAULT_IS_UNIQUE.booleanValue())))
-            .andExpect(jsonPath("$.[*].sortOrder").value(hasItem(DEFAULT_SORT_ORDER)));
+            .andExpect(jsonPath("$.[*].sortOrder").value(hasItem(DEFAULT_SORT_ORDER)))
+            .andExpect(jsonPath("$.[*].isUserAttribute").value(hasItem(DEFAULT_IS_USER_ATTRIBUTE.booleanValue())));
 
         // Check, that the count call also returns 1
         restAttributeMockMvc.perform(get("/api/attributes/count?sort=id,desc&" + filter))
@@ -710,7 +775,8 @@ public class AttributeResourceIntTest {
             .valueType(UPDATED_VALUE_TYPE)
             .isMandatory(UPDATED_IS_MANDATORY)
             .isUnique(UPDATED_IS_UNIQUE)
-            .sortOrder(UPDATED_SORT_ORDER);
+            .sortOrder(UPDATED_SORT_ORDER)
+            .isUserAttribute(UPDATED_IS_USER_ATTRIBUTE);
 
         restAttributeMockMvc.perform(put("/api/attributes")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -728,6 +794,7 @@ public class AttributeResourceIntTest {
         assertThat(testAttribute.isIsMandatory()).isEqualTo(UPDATED_IS_MANDATORY);
         assertThat(testAttribute.isIsUnique()).isEqualTo(UPDATED_IS_UNIQUE);
         assertThat(testAttribute.getSortOrder()).isEqualTo(UPDATED_SORT_ORDER);
+        assertThat(testAttribute.isIsUserAttribute()).isEqualTo(UPDATED_IS_USER_ATTRIBUTE);
 
         // Validate the Attribute in Elasticsearch
         verify(mockAttributeSearchRepository, times(1)).save(testAttribute);
@@ -793,7 +860,8 @@ public class AttributeResourceIntTest {
             .andExpect(jsonPath("$.[*].valueType").value(hasItem(DEFAULT_VALUE_TYPE.toString())))
             .andExpect(jsonPath("$.[*].isMandatory").value(hasItem(DEFAULT_IS_MANDATORY.booleanValue())))
             .andExpect(jsonPath("$.[*].isUnique").value(hasItem(DEFAULT_IS_UNIQUE.booleanValue())))
-            .andExpect(jsonPath("$.[*].sortOrder").value(hasItem(DEFAULT_SORT_ORDER)));
+            .andExpect(jsonPath("$.[*].sortOrder").value(hasItem(DEFAULT_SORT_ORDER)))
+            .andExpect(jsonPath("$.[*].isUserAttribute").value(hasItem(DEFAULT_IS_USER_ATTRIBUTE.booleanValue())));
     }
 
     @Test

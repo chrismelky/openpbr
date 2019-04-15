@@ -55,20 +55,12 @@
 
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>
-        
     </changeSet>
-    
-    <!-- Added the entity audit columns -->
-    <changeSet id="20190407101653-audit-1" author="jhipster-entity-audit">
+    <changeSet id="20190406114518-2" author="chris">
         <addColumn tableName="attribute">
-            <column name="created_by" type="varchar(50)">
-                <constraints nullable="false"/>
+            <column name="is_user_attribute" type="boolean">
+                <constraints nullable="false" />
             </column>
-            <column name="created_date" type="timestamp" defaultValueDate="${now}">
-                <constraints nullable="false"/>
-            </column>
-            <column name="last_modified_by" type="varchar(50)"/>
-            <column name="last_modified_date" type="timestamp"/>
         </addColumn>
     </changeSet>
     <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here, do not remove-->

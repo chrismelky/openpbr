@@ -21,7 +21,7 @@ describe('Service Tests', () => {
             service = injector.get(AttributeService);
             httpMock = injector.get(HttpTestingController);
 
-            elemDefault = new Attribute(0, 'AAAAAAA', 'AAAAAAA', 'AAAAAAA', ValueType.TEXT, false, false, 0);
+            elemDefault = new Attribute(0, 'AAAAAAA', 'AAAAAAA', 'AAAAAAA', ValueType.TEXT, false, false, 0, false);
         });
 
         describe('Service methods', async () => {
@@ -61,7 +61,8 @@ describe('Service Tests', () => {
                         valueType: 'BBBBBB',
                         isMandatory: true,
                         isUnique: true,
-                        sortOrder: 1
+                        sortOrder: 1,
+                        isUserAttribute: true
                     },
                     elemDefault
                 );
@@ -84,7 +85,8 @@ describe('Service Tests', () => {
                         valueType: 'BBBBBB',
                         isMandatory: true,
                         isUnique: true,
-                        sortOrder: 1
+                        sortOrder: 1,
+                        isUserAttribute: true
                     },
                     elemDefault
                 );

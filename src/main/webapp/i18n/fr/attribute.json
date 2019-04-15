@@ -23,6 +23,7 @@
             "isMandatory": "Is Mandatory",
             "isUnique": "Is Unique",
             "sortOrder": "Sort Order",
+            "isUserAttribute": "Is User Attribute",
             "optionSet": "Option Set"
         }
     }

@@ -44,6 +44,8 @@ public class AttributeCriteria implements Serializable {
 
     private IntegerFilter sortOrder;
 
+    private BooleanFilter isUserAttribute;
+
     private LongFilter optionSetId;
 
     public LongFilter getId() {
@@ -110,6 +112,14 @@ public class AttributeCriteria implements Serializable {
         this.sortOrder = sortOrder;
     }
 
+    public BooleanFilter getIsUserAttribute() {
+        return isUserAttribute;
+    }
+
+    public void setIsUserAttribute(BooleanFilter isUserAttribute) {
+        this.isUserAttribute = isUserAttribute;
+    }
+
     public LongFilter getOptionSetId() {
         return optionSetId;
     }
@@ -137,6 +147,7 @@ public class AttributeCriteria implements Serializable {
             Objects.equals(isMandatory, that.isMandatory) &&
             Objects.equals(isUnique, that.isUnique) &&
             Objects.equals(sortOrder, that.sortOrder) &&
+            Objects.equals(isUserAttribute, that.isUserAttribute) &&
             Objects.equals(optionSetId, that.optionSetId);
     }
 
@@ -151,6 +162,7 @@ public class AttributeCriteria implements Serializable {
         isMandatory,
         isUnique,
         sortOrder,
+        isUserAttribute,
         optionSetId
         );
     }
@@ -166,6 +178,7 @@ public class AttributeCriteria implements Serializable {
                 (isMandatory != null ? "isMandatory=" + isMandatory + ", " : "") +
                 (isUnique != null ? "isUnique=" + isUnique + ", " : "") +
                 (sortOrder != null ? "sortOrder=" + sortOrder + ", " : "") +
+                (isUserAttribute != null ? "isUserAttribute=" + isUserAttribute + ", " : "") +
                 (optionSetId != null ? "optionSetId=" + optionSetId + ", " : "") +
             "}";
     }

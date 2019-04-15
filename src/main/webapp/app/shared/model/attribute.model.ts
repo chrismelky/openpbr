@@ -33,6 +33,7 @@ export interface IAttribute {
     isMandatory?: boolean;
     isUnique?: boolean;
     sortOrder?: number;
+    isUserAttribute?: boolean;
     optionSet?: IOptionSet;
 }
 
@@ -46,9 +47,11 @@ export class Attribute implements IAttribute {
         public isMandatory?: boolean,
         public isUnique?: boolean,
         public sortOrder?: number,
+        public isUserAttribute?: boolean,
         public optionSet?: IOptionSet
     ) {
         this.isMandatory = this.isMandatory || false;
         this.isUnique = this.isUnique || false;
+        this.isUserAttribute = this.isUserAttribute || false;
     }
 }

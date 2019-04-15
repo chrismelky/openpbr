@@ -29,6 +29,22 @@ export class AttributeResolve implements Resolve<IAttribute> {
     }
 }
 
+@Injectable({ providedIn: 'root' })
+export class AttributeByTypeResolve implements Resolve<IAttribute[]> {
+    constructor(private service: AttributeService) {}
+
+    resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<IAttribute[]> {
+        const attFilter = route.data['attributeType'];
+        if (attFilter) {
+            return this.service.query(attFilter).pipe(
+                filter((response: HttpResponse<Attribute[]>) => response.ok),
+                map((attribute: HttpResponse<Attribute[]>) => attribute.body)
+            );
+        }
+        return of(null);
+    }
+}
+
 export const attributeRoute: Routes = [
     {
         path: '',

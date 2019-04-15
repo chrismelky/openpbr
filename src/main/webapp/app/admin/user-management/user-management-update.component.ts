@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 import { JhiLanguageHelper, User, UserService } from 'app/core';
 import { UserInfo } from 'app/shared/model/user-info.model';
+import { Attribute } from 'app/shared/model/attribute.model';
 
 @Component({
     selector: 'pbr-user-mgmt-update',
@@ -14,6 +15,7 @@ export class UserMgmtUpdateComponent implements OnInit {
     languages: any[];
     authorities: any[];
     isSaving: boolean;
+    attributes: Attribute;
 
     constructor(
         private languageHelper: JhiLanguageHelper,
@@ -24,8 +26,10 @@ export class UserMgmtUpdateComponent implements OnInit {
 
     ngOnInit() {
         this.isSaving = false;
-        this.route.data.subscribe(({ user }) => {
+        this.route.data.subscribe(({ user, attributes }) => {
             this.user = user.body ? user.body : user;
+            this.attributes = attributes;
+            console.log(attributes);
         });
         this.authorities = [];
         this.userService.authorities().subscribe(authorities => {

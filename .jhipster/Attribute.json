@@ -1,5 +1,16 @@
 {
-    "name": "Attribute",
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "optionSet",
+            "otherEntityRelationshipName": "attribute",
+            "relationshipName": "optionSet",
+            "otherEntityField": "name",
+            "otherEntityRelationshipNameUndefined": false
+        }
+    ],
     "fields": [
         {
             "fieldName": "uid",
@@ -55,25 +66,21 @@
         {
             "fieldName": "sortOrder",
             "fieldType": "Integer"
-        }
-    ],
-    "relationships": [
+        },
         {
-            "relationshipType": "many-to-one",
-            "otherEntityName": "optionSet",
-            "otherEntityRelationshipName": "attribute",
-            "relationshipName": "optionSet",
-            "otherEntityField": "name"
+            "fieldName": "isUserAttribute",
+            "fieldType": "Boolean",
+            "fieldValidateRules": [
+                "required"
+            ]
         }
     ],
     "changelogDate": "20190406114518",
-    "entityTableName": "attribute",
     "dto": "no",
-    "pagination": "pagination",
+    "searchEngine": "elasticsearch",
     "service": "serviceClass",
+    "entityTableName": "attribute",
+    "databaseType": "sql",
     "jpaMetamodelFiltering": true,
-    "fluentMethods": true,
-    "clientRootFolder": "",
-    "applications": "*",
-    "enableEntityAudit": true
+    "pagination": "pagination"
 }

@@ -9,9 +9,17 @@ import { AddButtonComponent } from './button/add-button.component';
 import { JhMaterialModule } from 'app/shared/jh-material.module';
 import { MultselectComponent } from './multselect/multselect.component';
 import { ActionMenuComponent } from './action-menu/action-menu.component';
+import { OrgUnitComponent } from './org-unit/org-unit.component';
 @NgModule({
     imports: [JhMaterialModule, OpenpbrSharedLibsModule, OpenpbrSharedCommonModule, RouterModule],
-    declarations: [PbrLoginModalComponent, HasAnyAuthorityDirective, AddButtonComponent, MultselectComponent, ActionMenuComponent],
+    declarations: [
+        PbrLoginModalComponent,
+        HasAnyAuthorityDirective,
+        AddButtonComponent,
+        MultselectComponent,
+        ActionMenuComponent,
+        OrgUnitComponent
+    ],
     providers: [{ provide: NgbDateAdapter, useClass: NgbDateMomentAdapter }],
     entryComponents: [PbrLoginModalComponent],
     exports: [
@@ -21,7 +29,8 @@ import { ActionMenuComponent } from './action-menu/action-menu.component';
         HasAnyAuthorityDirective,
         AddButtonComponent,
         MultselectComponent,
-        ActionMenuComponent
+        ActionMenuComponent,
+        OrgUnitComponent
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
