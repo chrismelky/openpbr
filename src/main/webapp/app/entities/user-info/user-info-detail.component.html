@@ -61,6 +61,12 @@
                 <dd>
                     {{userInfo.user?.login}}
                 </dd>
+                <dt><span jhiTranslate="openpbrApp.userInfo.attributeValues">Attribute Values</span></dt>
+                <dd>
+                    <span *ngFor="let attributeValues of userInfo.attributeValues; let last = last">
+                        <a [routerLink]="['/attribute-value', attributeValues?.id, 'view' ]">{{attributeValues.id}}</a>{{last ? '' : ', '}}
+                    </span>
+                </dd>
             </dl>
 
             <button type="submit"

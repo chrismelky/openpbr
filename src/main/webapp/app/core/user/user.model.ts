@@ -1,5 +1,6 @@
 import { Gender } from 'app/shared/model/user-info.model';
 import { Moment } from 'moment';
+import { IAttributeValue } from 'app/shared/model/attribute-value.model';
 
 export interface IUser {
     id?: any;
@@ -23,6 +24,7 @@ export interface IUser {
     lastModifiedBy?: string;
     lastModifiedDate?: Date;
     password?: string;
+    attributeValues?: IAttributeValue[];
 }
 
 export class User implements IUser {
@@ -47,7 +49,8 @@ export class User implements IUser {
         public createdDate?: Date,
         public lastModifiedBy?: string,
         public lastModifiedDate?: Date,
-        public password?: string
+        public password?: string,
+        public attributeValues?: IAttributeValue[]
     ) {
         this.id = id ? id : null;
         this.login = login ? login : null;
@@ -70,5 +73,6 @@ export class User implements IUser {
         this.lastModifiedBy = lastModifiedBy ? lastModifiedBy : null;
         this.lastModifiedDate = lastModifiedDate ? lastModifiedDate : null;
         this.password = password ? password : null;
+        this.attributeValues = attributeValues ? attributeValues : [];
     }
 }

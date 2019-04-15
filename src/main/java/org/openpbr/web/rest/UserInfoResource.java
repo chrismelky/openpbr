@@ -98,13 +98,14 @@ public class UserInfoResource {
     /**
      * GET  /user-infos : get all the userInfos.
      *
+     * @param eagerload flag to eager load entities from relationships (This is applicable for many-to-many)
      * @return the ResponseEntity with status 200 (OK) and the list of userInfos in body
      */
     @GetMapping("/user-infos")
     @Transactional(readOnly = true)
-    public List<UserInfo> getAllUserInfos() {
+    public List<UserInfo> getAllUserInfos(@RequestParam(required = false, defaultValue = "false") boolean eagerload) {
         log.debug("REST request to get all UserInfos");
-        return userInfoRepository.findAll();
+        return userInfoRepository.findAllWithEagerRelationships();
     }
 
     /**
@@ -117,7 +118,7 @@ public class UserInfoResource {
     @Transactional(readOnly = true)
     public ResponseEntity<UserInfo> getUserInfo(@PathVariable Long id) {
         log.debug("REST request to get UserInfo : {}", id);
-        Optional<UserInfo> userInfo = userInfoRepository.findById(id);
+        Optional<UserInfo> userInfo = userInfoRepository.findOneWithEagerRelationships(id);
         return ResponseUtil.wrapOrNotFound(userInfo);
     }
 

@@ -13,6 +13,18 @@
                                  constraintName="fk_user_info_user_id"
                                  referencedColumnNames="id"
                                  referencedTableName="pbr_user"/>
+    </changeSet>
+    <changeSet id="20190329085732-4" author="chris">
+        <addForeignKeyConstraint baseColumnNames="user_info_id"
+                                 baseTableName="user_attribute_values"
+                                 constraintName="fk_user_attribute_values_user_info_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="user_info"/>
+        <addForeignKeyConstraint baseColumnNames="attribute_values_id"
+                                 baseTableName="user_attribute_values"
+                                 constraintName="fk_user_attribute_values_attribute_values_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="attribute_value"/>
 
     </changeSet>
 </databaseChangeLog>

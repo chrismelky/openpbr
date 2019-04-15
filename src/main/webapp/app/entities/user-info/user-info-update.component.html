@@ -158,6 +158,12 @@
                         This field is required.
                     </small>
                 </div>
+                <div class="form-group">
+                    <label jhiTranslate="openpbrApp.userInfo.attributeValues" for="field_attributeValues">Attribute Values</label>
+                    <select class="form-control" id="field_attributeValues" multiple name="attributeValues" [(ngModel)]="userInfo.attributeValues">
+                        <option [ngValue]="getSelected(userInfo.attributeValues, attributeValueOption)" *ngFor="let attributeValueOption of attributevalues; trackBy: trackAttributeValueById">{{attributeValueOption.id}}</option>
+                    </select>
+                </div>
             </div>
             <div>
                 <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">

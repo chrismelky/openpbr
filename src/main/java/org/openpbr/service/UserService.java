@@ -259,6 +259,7 @@ public class UserService {
         userInfo.setNationality(userDTO.getNationality());
         userInfo.setEmployer(userDTO.getEmployer());
         userInfo.setEducation(userDTO.getEducation());
+        userInfo.setAttributeValues(userDTO.getAttributeValues());
         userInfoRepository.save(userInfo);
         userInfoSearchRepository.save(userInfo);
     }

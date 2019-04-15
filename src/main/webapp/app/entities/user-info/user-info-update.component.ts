@@ -8,6 +8,8 @@ import { JhiAlertService } from 'ng-jhipster';
 import { IUserInfo } from 'app/shared/model/user-info.model';
 import { UserInfoService } from './user-info.service';
 import { IUser, UserService } from 'app/core';
+import { IAttributeValue } from 'app/shared/model/attribute-value.model';
+import { AttributeValueService } from 'app/entities/attribute-value';
 
 @Component({
     selector: 'pbr-user-info-update',
@@ -18,12 +20,15 @@ export class UserInfoUpdateComponent implements OnInit {
     isSaving: boolean;
 
     users: IUser[];
+
+    attributevalues: IAttributeValue[];
     birthDayDp: any;
 
     constructor(
         protected jhiAlertService: JhiAlertService,
         protected userInfoService: UserInfoService,
         protected userService: UserService,
+        protected attributeValueService: AttributeValueService,
         protected activatedRoute: ActivatedRoute
     ) {}
 
@@ -39,6 +44,13 @@ export class UserInfoUpdateComponent implements OnInit {
                 map((response: HttpResponse<IUser[]>) => response.body)
             )
             .subscribe((res: IUser[]) => (this.users = res), (res: HttpErrorResponse) => this.onError(res.message));
+        this.attributeValueService
+            .query()
+            .pipe(
+                filter((mayBeOk: HttpResponse<IAttributeValue[]>) => mayBeOk.ok),
+                map((response: HttpResponse<IAttributeValue[]>) => response.body)
+            )
+            .subscribe((res: IAttributeValue[]) => (this.attributevalues = res), (res: HttpErrorResponse) => this.onError(res.message));
     }
 
     previousState() {
@@ -73,5 +85,20 @@ export class UserInfoUpdateComponent implements OnInit {
 
     trackUserById(index: number, item: IUser) {
         return item.id;
+    }
+
+    trackAttributeValueById(index: number, item: IAttributeValue) {
+        return item.id;
+    }
+
+    getSelected(selectedVals: Array<any>, option: any) {
+        if (selectedVals) {
+            for (let i = 0; i < selectedVals.length; i++) {
+                if (option.id === selectedVals[i].id) {
+                    return selectedVals[i];
+                }
+            }
+        }
+        return option;
     }
 }

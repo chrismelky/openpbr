@@ -32,7 +32,7 @@ public class AttributeValue extends AbstractAuditingEntity implements Serializab
     @Column(name = "value", nullable = false)
     private String value;
 
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false, fetch = FetchType.EAGER)
     @NotNull
     @JsonIgnoreProperties("attributeValues")
     private Attribute attribute;

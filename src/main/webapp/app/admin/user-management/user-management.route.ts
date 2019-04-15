@@ -60,7 +60,7 @@ export const userMgmtRoute: Routes = [
             attributes: AttributeByTypeResolve
         },
         data: {
-            attributeType: { 'isUserAttribute.equals': true }
+            attributeType: { 'isUserAttribute.equals': true, sort: ['sortOrder'] }
         }
     },
     {
@@ -69,6 +69,9 @@ export const userMgmtRoute: Routes = [
         resolve: {
             user: UserMgmtResolve,
             attributes: AttributeByTypeResolve
+        },
+        data: {
+            attributeType: { 'isUserAttribute.equals': true, sort: ['sortOrder'] }
         }
     }
 ];

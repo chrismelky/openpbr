@@ -12,9 +12,12 @@ import org.openpbr.web.rest.errors.ExceptionTranslator;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.web.PageableHandlerMethodArgumentResolver;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
@@ -27,6 +30,7 @@ import org.springframework.validation.Validator;
 import javax.persistence.EntityManager;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -92,6 +96,9 @@ public class UserInfoResourceIntTest {
     private UserInfoRepository userInfoRepository;
     @Autowired
     private UserRepository userRepository;
+
+    @Mock
+    private UserInfoRepository userInfoRepositoryMock;
 
     /**
      * This repository is mocked in the org.openpbr.repository.search test package.
@@ -268,6 +275,39 @@ public class UserInfoResourceIntTest {
             .andExpect(jsonPath("$.[*].education").value(hasItem(DEFAULT_EDUCATION.toString())));
     }
     
+    @SuppressWarnings({"unchecked"})
+    public void getAllUserInfosWithEagerRelationshipsIsEnabled() throws Exception {
+        UserInfoResource userInfoResource = new UserInfoResource(userInfoRepositoryMock, mockUserInfoSearchRepository, userRepository);
+        when(userInfoRepositoryMock.findAllWithEagerRelationships(any())).thenReturn(new PageImpl(new ArrayList<>()));
+
+        MockMvc restUserInfoMockMvc = MockMvcBuilders.standaloneSetup(userInfoResource)
+            .setCustomArgumentResolvers(pageableArgumentResolver)
+            .setControllerAdvice(exceptionTranslator)
+            .setConversionService(createFormattingConversionService())
+            .setMessageConverters(jacksonMessageConverter).build();
+
+        restUserInfoMockMvc.perform(get("/api/user-infos?eagerload=true"))
+        .andExpect(status().isOk());
+
+        verify(userInfoRepositoryMock, times(1)).findAllWithEagerRelationships(any());
+    }
+
+    @SuppressWarnings({"unchecked"})
+    public void getAllUserInfosWithEagerRelationshipsIsNotEnabled() throws Exception {
+        UserInfoResource userInfoResource = new UserInfoResource(userInfoRepositoryMock, mockUserInfoSearchRepository, userRepository);
+            when(userInfoRepositoryMock.findAllWithEagerRelationships(any())).thenReturn(new PageImpl(new ArrayList<>()));
+            MockMvc restUserInfoMockMvc = MockMvcBuilders.standaloneSetup(userInfoResource)
+            .setCustomArgumentResolvers(pageableArgumentResolver)
+            .setControllerAdvice(exceptionTranslator)
+            .setConversionService(createFormattingConversionService())
+            .setMessageConverters(jacksonMessageConverter).build();
+
+        restUserInfoMockMvc.perform(get("/api/user-infos?eagerload=true"))
+        .andExpect(status().isOk());
+
+            verify(userInfoRepositoryMock, times(1)).findAllWithEagerRelationships(any());
+    }
+
     @Test
     @Transactional
     public void getUserInfo() throws Exception {

@@ -2,10 +2,7 @@ package org.openpbr.service.dto;
 
 import org.openpbr.config.Constants;
 
-import org.openpbr.domain.Authority;
-import org.openpbr.domain.IdentifiableEntity;
-import org.openpbr.domain.User;
-import org.openpbr.domain.UserInfo;
+import org.openpbr.domain.*;
 import org.openpbr.domain.enumeration.Gender;
 
 import javax.persistence.Column;
@@ -17,6 +14,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.*;
 import java.time.Instant;
 import java.time.LocalDate;
+import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -146,6 +144,17 @@ public class UserDTO extends IdentifiableEntity  {
 
     private Set<String> authorities;
 
+    public Set<AttributeValue> getAttributeValues() {
+        return attributeValues;
+    }
+
+    public void setAttributeValues(Set<AttributeValue> attributeValues) {
+        this.attributeValues = attributeValues;
+    }
+
+    private Set<AttributeValue> attributeValues = new HashSet<>();
+
+
     public UserDTO() {
         // Empty constructor needed for Jackson.
     }
@@ -180,6 +189,7 @@ public class UserDTO extends IdentifiableEntity  {
             this.nationality = user.getUserInfo().getNationality();
             this.employer = user.getUserInfo().getEmployer();
             this.education = user.getUserInfo().getEducation();
+            this.attributeValues = user.getUserInfo().getAttributeValues();
         }
 
     }

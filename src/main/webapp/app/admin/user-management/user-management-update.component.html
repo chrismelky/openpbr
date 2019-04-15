@@ -120,14 +120,21 @@
 
                 <!--<pbr-org-unit></pbr-org-unit>-->
 
-                <ng-container *ngIf="attributes">
-                    <ng-container *ngFor="let att of attributes">
-                        <ng-container [ngSwitch]="att.type" >
-                            <mat-form-field *ngSwitchCase="TEXT" class="input-full-width">
-                                <input matInput type="text" placeholder="{{att.name}}"  name="{{att.name}}"
-                                       [(ngModel)]="att.value" minlength="10" maxlength="80">
+                <ng-container *ngIf="user.attributeValues">
+                    <ng-container *ngFor="let attValue of user.attributeValues">
+                        <!--<ng-container [ngSwitch]="attValue.attribute.valueType" >-->
+                            <mat-form-field *ngIf="attValue.attribute.valueType === 'TEXT' " class="input-full-width">
+                                <input matInput type="text" placeholder="{{attValue.attribute.name}}"  [required]="attValue.attribute.isMandatory"
+                                       name="{{attValue.attribute.name}}"
+                                       [(ngModel)]="attValue.value">
                             </mat-form-field>
-                        </ng-container>
+                            <mat-radio-group  *ngIf="attValue.attribute.valueType === 'YES_NO'"  [(ngModel)]="attValue.value"
+                                              name="{{attValue.attribute.name}}"
+                                             aria-label="Select {{attValue.attribute.name}}">
+                                <mat-radio-button [value]="'YES'">YES</mat-radio-button>
+                                <mat-radio-button [value]="'NO'">NO</mat-radio-button>
+                            </mat-radio-group>
+                        <!--</ng-container>-->
                     </ng-container>
                 </ng-container>
 

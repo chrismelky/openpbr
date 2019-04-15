@@ -29,7 +29,8 @@
             "nationality": "Nationality",
             "employer": "Employer",
             "education": "Education",
-            "user": "User"
+            "user": "User",
+            "attributeValues": "Attribute Values"
         }
     }
 }

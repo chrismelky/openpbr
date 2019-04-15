@@ -14,6 +14,15 @@
             "useJPADerivedIdentifier": true,
             "otherEntityRelationshipName": "userInfo",
             "otherEntityRelationshipNameUndefined": false
+        },
+        {
+            "relationshipName": "attributeValues",
+            "otherEntityName": "attributeValue",
+            "relationshipType": "many-to-many",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "userInfo",
+            "otherEntityRelationshipNameUndefined": false
         }
     ],
     "fields": [

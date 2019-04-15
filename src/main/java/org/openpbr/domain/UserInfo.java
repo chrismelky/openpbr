@@ -12,7 +12,9 @@ import javax.validation.constraints.*;
 import org.springframework.data.elasticsearch.annotations.Document;
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 import org.openpbr.domain.enumeration.Gender;
 
@@ -77,6 +79,21 @@ public class UserInfo extends IdentifiableEntity implements Serializable {
     @JoinColumn(name = "id")
     @JsonIgnoreProperties("userInfo")
     private User user;
+
+    @ManyToMany( fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    @JoinTable(name = "user_attribute_values",
+        joinColumns = @JoinColumn(name = "user_info_id", referencedColumnName = "id"),
+        inverseJoinColumns = @JoinColumn(name = "attribute_values_id", referencedColumnName = "id"))
+    private Set<AttributeValue> attributeValues = new HashSet<>();
+
+    public Set<AttributeValue> getAttributeValues() {
+        return attributeValues;
+    }
+
+    public void setAttributeValues(Set<AttributeValue> attributeValues) {
+        this.attributeValues = attributeValues;
+    }
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {

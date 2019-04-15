@@ -1,5 +1,6 @@
 import { Moment } from 'moment';
 import { IUser } from 'app/core/user/user.model';
+import { IAttributeValue } from 'app/shared/model/attribute-value.model';
 
 export const enum Gender {
     FEMALE = 'FEMALE',
@@ -23,6 +24,7 @@ export interface IUserInfo {
     employer?: string;
     education?: string;
     user?: IUser;
+    attributeValues?: IAttributeValue[];
 }
 
 export class UserInfo implements IUserInfo {
@@ -41,6 +43,7 @@ export class UserInfo implements IUserInfo {
         public nationality?: string,
         public employer?: string,
         public education?: string,
-        public user?: IUser
+        public user?: IUser,
+        public attributeValues?: IAttributeValue[]
     ) {}
 }
