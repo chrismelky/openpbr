@@ -82,5 +82,6 @@
     "entityTableName": "attribute",
     "databaseType": "sql",
     "jpaMetamodelFiltering": true,
+    "enableEntityAudit": true,
     "pagination": "pagination"
 }
