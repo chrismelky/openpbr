@@ -85,7 +85,8 @@ Generic styles
         //background-color: rgb(33, 150, 243) !important;
     }
 }
-button:focus {
+button:focus,
+tr:focus {
     outline: 0 !important;
     border: 0 !important;
     box-shadow: none !important;
@@ -100,6 +101,7 @@ button:focus {
     table {
         tr:hover {
             background: rgba(0, 0, 0, 0.03) !important;
+            cursor: pointer !important;
         }
     }
 }
