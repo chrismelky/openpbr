@@ -10,6 +10,7 @@ import { JhMaterialModule } from 'app/shared/jh-material.module';
 import { MultselectComponent } from './multselect/multselect.component';
 import { ActionMenuComponent } from './action-menu/action-menu.component';
 import { OrgUnitComponent } from './org-unit/org-unit.component';
+import { AttributesComponent } from './attributes/attributes.component';
 @NgModule({
     imports: [JhMaterialModule, OpenpbrSharedLibsModule, OpenpbrSharedCommonModule, RouterModule],
     declarations: [
@@ -18,7 +19,8 @@ import { OrgUnitComponent } from './org-unit/org-unit.component';
         AddButtonComponent,
         MultselectComponent,
         ActionMenuComponent,
-        OrgUnitComponent
+        OrgUnitComponent,
+        AttributesComponent
     ],
     providers: [{ provide: NgbDateAdapter, useClass: NgbDateMomentAdapter }],
     entryComponents: [PbrLoginModalComponent],
@@ -30,7 +32,8 @@ import { OrgUnitComponent } from './org-unit/org-unit.component';
         AddButtonComponent,
         MultselectComponent,
         ActionMenuComponent,
-        OrgUnitComponent
+        OrgUnitComponent,
+        AttributesComponent
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

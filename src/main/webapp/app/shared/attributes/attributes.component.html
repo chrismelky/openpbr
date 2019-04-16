@@ -1,0 +1,46 @@
+<form name="attrForm" role="form" novalidate  #attrForm="ngForm" >
+<ng-container *ngFor="let attValue of attributeValues">
+        <mat-form-field class="input-full-width"
+            *ngIf="attValue.attribute.valueType === 'TEXT' ||
+                   attValue.attribute.valueType === 'NUMBER'">
+            <input matInput [type]="(attValue.attribute.valueType === 'NUMBER')? 'number': 'text'"
+                   placeholder="{{attValue.attribute.name}}"  [required]="attValue.attribute.isMandatory"
+                   name="{{attValue.attribute.name}}" (ngModelChange)="attrValueChange(attrForm)"
+                   [(ngModel)]="attValue.value" #attrField="ngModel" >
+            <mat-error *ngIf="attrField.dirty && attrField.invalid">
+                <small class="form-text text-danger"
+                       *ngIf="attrField.errors.required" jhiTranslate="entity.validation.required">
+                    This field is required.
+                </small>
+            </mat-error>
+        </mat-form-field>
+        <mat-radio-group  *ngIf="attValue.attribute.valueType === 'YES_NO'"  [(ngModel)]="attValue.value"
+                          name="{{attValue.attribute.name}}" (ngModelChange)="attrValueChange(attrForm)"
+                          [required]="attValue.attribute.isMandatory"
+                          aria-label="Select {{attValue.attribute.name}}" #attrField="ngModel">
+            <mat-label >{{attValue.attribute.name}}? </mat-label><br/>
+            <mat-radio-button [value]="'YES'">YES</mat-radio-button>
+            <mat-radio-button [value]="'NO'">NO</mat-radio-button>
+            <mat-error *ngIf="attrField.dirty && attrField.invalid">
+                <small class="form-text text-danger"
+                       *ngIf="attrField.errors.required" jhiTranslate="entity.validation.required">
+                    This field is required.
+                </small>
+            </mat-error>
+        </mat-radio-group>
+        <mat-form-field *ngIf="attValue.attribute.valueType === 'DATE' " class="input-full-width">
+            <input name="{{attValue.attribute.name}}" (ngModelChange)="attrValueChange(attrForm)"
+                   [(ngModel)]="attValue.value" matInput [matDatepicker]="dp3"
+                   [required]="attValue.attribute.isMandatory" #attrField="ngModel"
+                   placeholder="{{attValue.attribute.name}}(mm/dd/yyyy)" >
+            <mat-datepicker-toggle matSuffix [for]="dp3"></mat-datepicker-toggle>
+            <mat-datepicker touchUi #dp3 disabled="false"></mat-datepicker>
+            <mat-error *ngIf="attrField.dirty && attrField.invalid">
+                <small class="form-text text-danger"
+                       *ngIf="attrField.errors.required" jhiTranslate="entity.validation.required">
+                    This field is required.
+                </small>
+            </mat-error>
+        </mat-form-field>
+    </ng-container>
+</form>

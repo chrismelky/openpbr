@@ -16,6 +16,9 @@ export class UserMgmtUpdateComponent implements OnInit {
     languages: any[];
     authorities: any[];
     isSaving: boolean;
+    userAttributes: Attribute[];
+    userInitialAttrValues: AttributeValue[];
+    attrForm = { form: { invalid: false } };
 
     constructor(
         private languageHelper: JhiLanguageHelper,
@@ -28,23 +31,8 @@ export class UserMgmtUpdateComponent implements OnInit {
         this.isSaving = false;
         this.route.data.subscribe(({ user, attributes }) => {
             this.user = user.body ? user.body : user;
-            console.log(this.user);
-            let userAttribute = [];
-            if (attributes) {
-                attributes.forEach(att => {
-                    const exist = this.user.attributeValues.find(a => {
-                        return a.attribute.id === att.id;
-                    });
-                    if (exist) {
-                        userAttribute.push(exist);
-                    } else {
-                        const newAtt: AttributeValue = { attribute: att, value: null };
-                        userAttribute.push(newAtt);
-                    }
-                });
-            }
-            this.user.attributeValues = userAttribute;
-            console.log(this.user);
+            this.userAttributes = [...attributes];
+            this.userInitialAttrValues = [...this.user.attributeValues];
         });
         this.authorities = [];
         this.userService.authorities().subscribe(authorities => {
@@ -53,6 +41,11 @@ export class UserMgmtUpdateComponent implements OnInit {
         this.languageHelper.getAll().then(languages => {
             this.languages = languages;
         });
+    }
+
+    onAttrValueChange(attrValues) {
+        this.user.attributeValues = attrValues.data;
+        this.attrForm = attrValues.form;
     }
 
     previousState() {

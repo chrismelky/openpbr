@@ -106,6 +106,14 @@ button:focus {
 .tree-invisible {
     display: none;
 }
+form {
+    mat-form-field,
+    mat-radio-group,
+    mat-checkbox,
+    .pbr-multselect td {
+        padding: 10px 0 !important;
+    }
+}
 
 .error {
     color: white;

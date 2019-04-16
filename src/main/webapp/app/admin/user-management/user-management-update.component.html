@@ -6,13 +6,14 @@
             </h2>
             <div >
                 <pbr-alert-error></pbr-alert-error>
-
-                <mat-form-field  [hidden]="true">
-                    <input matInput type="text" class="form-control" name="id"
-                        [(ngModel)]="user.id" readonly>
-                </mat-form-field>
-
-                <mat-form-field class="input-full-width">
+                <ng-container>
+                    <mat-form-field  [hidden]="true">
+                        <input matInput type="text" class="form-control" name="id"
+                               [(ngModel)]="user.id" readonly>
+                    </mat-form-field>
+                </ng-container>
+                <ng-container>
+                    <mat-form-field class="input-full-width">
                         <input matInput placeholder="Username" type="text"  name="login" #loginInput="ngModel"
                                [(ngModel)]="user.login" required minlength="1" maxlength="50" pattern="^[_.@A-Za-z0-9-]*$" />
                         <mat-error *ngIf="loginInput.dirty && loginInput.invalid">
@@ -32,121 +33,107 @@
                                 This field can only contain letters, digits and e-mail addresses.
                             </small>
                         </mat-error>
-                </mat-form-field>
-                <mat-form-field class="input-full-width">
-                    <input placeholder="First Name" matInput name="firstName" #firstNameInput="ngModel"
-                        [(ngModel)]="user.firstName" maxlength="50" />
-
-                    <mat-error *ngIf="firstNameInput.dirty && firstNameInput.invalid">
-                        <small class="form-text text-danger"
-                        *ngIf="firstNameInput.errors.maxlength" jhiTranslate="entity.validation.maxlength"
-                        [translateValues]="{max: 50}">
-                            This field cannot be longer than 50 characters.
-                        </small>
-                    </mat-error>
-                </mat-form-field>
-                <mat-form-field class="input-full-width">
-                    <input matInput type="text" placeholder="Last Name" name="lastName" #lastNameInput="ngModel"
-                        [(ngModel)]="user.lastName" maxlength="50">
-                    <mat-error *ngIf="lastNameInput.dirty && lastNameInput.invalid">
-                        <small class="form-text text-danger"
-                               *ngIf="lastNameInput.errors.maxlength" jhiTranslate="entity.validation.maxlength"
-                               [translateValues]="{max: 50}">
-                            This field cannot be longer than 50 characters.
-                        </small>
-                    </mat-error>
-                </mat-form-field>
-
-                <mat-form-field class="input-full-width">
-                    <input matInput type="email" placeholder="Email"  name="email" #emailInput="ngModel"
-                        [(ngModel)]="user.email" minlength="5" required maxlength="254" email>
-                    <mat-error *ngIf="emailInput.dirty && emailInput.invalid">
-                        <small class="form-text text-danger"
-                               *ngIf="emailInput.errors.required" jhiTranslate="entity.validation.required">
-                            This field is required.
-                        </small>
-
-                        <small class="form-text text-danger"
-                               *ngIf="emailInput.errors.maxlength" jhiTranslate="entity.validation.maxlength"
-                               [translateValues]="{max: 100}">
-                            This field cannot be longer than 100 characters.
-                        </small>
-
-                        <small class="form-text text-danger"
-                               *ngIf="emailInput.errors.minlength" jhiTranslate="entity.validation.minlength"
-                               [translateValues]="{min: 5}">
-                            This field is required to be at least 5 characters.
-                        </small>
-
-                        <small class="form-text text-danger"
-                               *ngIf="emailInput.errors.email" jhiTranslate="global.messages.validate.email.invalid">
-                            Your email is invalid.
-                        </small>
-                    </mat-error>
-
-                </mat-form-field>
-
-                <mat-form-field class="input-full-width">
-                    <input matInput type="text" placeholder="Mobile phone Number"  name="phoneNumber" #phoneNumberInput="ngModel"
-                           [(ngModel)]="user.phoneNumber" minlength="10" maxlength="80">
-                    <mat-error *ngIf="phoneNumberInput.dirty && phoneNumberInput.invalid">
-
-                        <small class="form-text text-danger"
-                               *ngIf="phoneNumberInput.errors.maxlength" jhiTranslate="entity.validation.maxlength"
-                               [translateValues]="{max: 80}">
-                            This field cannot be longer than 80 characters.
-                        </small>
-
-                        <small class="form-text text-danger"
-                               *ngIf="phoneNumberInput.errors.minlength" jhiTranslate="entity.validation.minlength"
-                               [translateValues]="{min: 10}">
-                            This field is required to be at least 10 characters.
-                        </small>
-                    </mat-error>
-
-                </mat-form-field>
-
-                <mat-checkbox  [disabled]="user.id === null" type="checkbox" id="activated" name="activated" [(ngModel)]="user.activated">
-                        <mat-label jhiTranslate="userManagement.activated">Activated</mat-label>
-                </mat-checkbox>
-
-                <mat-form-field  *ngIf="languages && languages.length > 0" class="input-full-width" >
-                    <mat-select  id="langKey" name="langKey" [(ngModel)]="user.langKey" placeholder="Language">
-                        <mat-option *ngFor="let language of languages" [value]="language">{{language | findLanguageFromKey}}</mat-option>
-                    </mat-select>
-                </mat-form-field>
-
-                <pbr-multselect title="Authorities" (notify)="onAuthoritiesChanged($event)" *ngIf="authorities" [items]="authorities" isObject="false" [selectedItems]="user.authorities"></pbr-multselect>
-
-                <!--<pbr-org-unit></pbr-org-unit>-->
-
-                <ng-container *ngIf="user.attributeValues">
-                    <ng-container *ngFor="let attValue of user.attributeValues">
-                            <mat-form-field *ngIf="attValue.attribute.valueType === 'TEXT' " class="input-full-width">
-                                <input matInput type="text" placeholder="{{attValue.attribute.name}}"  [required]="attValue.attribute.isMandatory"
-                                       name="{{attValue.attribute.name}}"
-                                       [(ngModel)]="attValue.value">
-                            </mat-form-field>
-                            <mat-radio-group  *ngIf="attValue.attribute.valueType === 'YES_NO'"  [(ngModel)]="attValue.value"
-                                              name="{{attValue.attribute.name}}"
-                                             aria-label="Select {{attValue.attribute.name}}">
-                                <mat-label>{{attValue.attribute.name}}? </mat-label>
-                                <mat-radio-button [value]="'YES'">YES</mat-radio-button>
-                                <mat-radio-button [value]="'NO'">NO</mat-radio-button>
-                            </mat-radio-group>
-                            <mat-form-field *ngIf="attValue.attribute.valueType === 'DATE' " class="input-full-width">
-                                <input name="{{attValue.attribute.name}}"
-                                       [(ngModel)]="attValue.value" matInput [matDatepicker]="dp3"
-                                       placeholder="{{attValue.attribute.name}}" disabled>
-                                <mat-datepicker-toggle matSuffix [for]="dp3"></mat-datepicker-toggle>
-                                <mat-datepicker touchUi #dp3 disabled="false"></mat-datepicker>
-                            </mat-form-field>
-                    </ng-container>
+                    </mat-form-field>
                 </ng-container>
+                <ng-container>
+                    <mat-form-field class="input-full-width">
+                        <input placeholder="First Name" matInput name="firstName" #firstNameInput="ngModel"
+                               [(ngModel)]="user.firstName" maxlength="50" />
 
+                        <mat-error *ngIf="firstNameInput.dirty && firstNameInput.invalid">
+                            <small class="form-text text-danger"
+                                   *ngIf="firstNameInput.errors.maxlength" jhiTranslate="entity.validation.maxlength"
+                                   [translateValues]="{max: 50}">
+                                This field cannot be longer than 50 characters.
+                            </small>
+                        </mat-error>
+                    </mat-form-field>
+                </ng-container>
+                <ng-container>
+                    <mat-form-field class="input-full-width">
+                        <input matInput type="text" placeholder="Last Name" name="lastName" #lastNameInput="ngModel"
+                               [(ngModel)]="user.lastName" maxlength="50">
+                        <mat-error *ngIf="lastNameInput.dirty && lastNameInput.invalid">
+                            <small class="form-text text-danger"
+                                   *ngIf="lastNameInput.errors.maxlength" jhiTranslate="entity.validation.maxlength"
+                                   [translateValues]="{max: 50}">
+                                This field cannot be longer than 50 characters.
+                            </small>
+                        </mat-error>
+                    </mat-form-field>
+                </ng-container>
+                <ng-container>
+                    <mat-form-field class="input-full-width">
+                        <input matInput type="email" placeholder="Email"  name="email" #emailInput="ngModel"
+                               [(ngModel)]="user.email" minlength="5" required maxlength="254" email>
+                        <mat-error *ngIf="emailInput.dirty && emailInput.invalid">
+                            <small class="form-text text-danger"
+                                   *ngIf="emailInput.errors.required" jhiTranslate="entity.validation.required">
+                                This field is required.
+                            </small>
+
+                            <small class="form-text text-danger"
+                                   *ngIf="emailInput.errors.maxlength" jhiTranslate="entity.validation.maxlength"
+                                   [translateValues]="{max: 100}">
+                                This field cannot be longer than 100 characters.
+                            </small>
+
+                            <small class="form-text text-danger"
+                                   *ngIf="emailInput.errors.minlength" jhiTranslate="entity.validation.minlength"
+                                   [translateValues]="{min: 5}">
+                                This field is required to be at least 5 characters.
+                            </small>
+
+                            <small class="form-text text-danger"
+                                   *ngIf="emailInput.errors.email" jhiTranslate="global.messages.validate.email.invalid">
+                                Your email is invalid.
+                            </small>
+                        </mat-error>
+
+                    </mat-form-field>
+                </ng-container>
+                <ng-container>
+                    <mat-form-field class="input-full-width">
+                        <input matInput type="text" placeholder="Mobile phone Number"  name="phoneNumber" #phoneNumberInput="ngModel"
+                               [(ngModel)]="user.phoneNumber" minlength="10" maxlength="80">
+                        <mat-error *ngIf="phoneNumberInput.dirty && phoneNumberInput.invalid">
+
+                            <small class="form-text text-danger"
+                                   *ngIf="phoneNumberInput.errors.maxlength" jhiTranslate="entity.validation.maxlength"
+                                   [translateValues]="{max: 80}">
+                                This field cannot be longer than 80 characters.
+                            </small>
+
+                            <small class="form-text text-danger"
+                                   *ngIf="phoneNumberInput.errors.minlength" jhiTranslate="entity.validation.minlength"
+                                   [translateValues]="{min: 10}">
+                                This field is required to be at least 10 characters.
+                            </small>
+                        </mat-error>
+
+                    </mat-form-field>
+                </ng-container>
+                <ng-container>
+                    <mat-checkbox  [disabled]="user.id === null" type="checkbox" id="activated" name="activated" [(ngModel)]="user.activated">
+                        <mat-label jhiTranslate="userManagement.activated">Activated</mat-label>
+                    </mat-checkbox>
+                </ng-container>
+                <ng-container>
+                    <mat-form-field  *ngIf="languages && languages.length > 0" class="input-full-width" >
+                        <mat-select  id="langKey" name="langKey" [(ngModel)]="user.langKey" placeholder="Language">
+                            <mat-option *ngFor="let language of languages" [value]="language">{{language | findLanguageFromKey}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </ng-container>
+                <ng-container>
+                    <pbr-multselect title="Authorities" (notify)="onAuthoritiesChanged($event)" *ngIf="authorities" [items]="authorities" isObject="false" [selectedItems]="user.authorities"></pbr-multselect>
+                </ng-container>
+                <ng-container>
+                    <pbr-attributes [attrs]="userAttributes" [initialValues]="userInitialAttrValues" (attributeValueOut)="onAttrValueChange($event)"></pbr-attributes>
+                </ng-container>
             </div>
             <div class="pbr-action-footer">
-                <button mat-raised-button type="submit" [disabled]="editForm.form.invalid || isSaving" >
+                <button mat-raised-button type="submit" [disabled]="editForm.form.invalid || isSaving || attrForm.form.invalid" >
                     <span jhiTranslate="entity.action.save">Save</span>
                 </button>
                 <button mat-raised-button type="button"  (click)="previousState()">
