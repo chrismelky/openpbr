@@ -1,0 +1,96 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="pbr-org-unit-group-set-heading" jhiTranslate="openpbrApp.orgUnitGroupSet.home.createOrEditLabel">Create or edit a Org Unit Group Set</h2>
+            <div>
+                <pbr-alert-error></pbr-alert-error>
+                <div class="form-group" [hidden]="!orgUnitGroupSet.id">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="orgUnitGroupSet.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="openpbrApp.orgUnitGroupSet.uid" for="field_uid">Uid</label>
+                    <input type="text" class="form-control" name="uid" id="field_uid"
+                        [(ngModel)]="orgUnitGroupSet.uid" required minlength="11" maxlength="11"/>
+                    <div [hidden]="!(editForm.controls.uid?.dirty && editForm.controls.uid?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.uid?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.uid?.errors?.minlength" jhiTranslate="entity.validation.minlength" [translateValues]="{ min: 11 }">
+                        This field is required to be at least 11 characters.
+                        </small>
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.uid?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 11 }">
+                        This field cannot be longer than 11 characters.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="openpbrApp.orgUnitGroupSet.code" for="field_code">Code</label>
+                    <input type="text" class="form-control" name="code" id="field_code"
+                        [(ngModel)]="orgUnitGroupSet.code" maxlength="50"/>
+                    <div [hidden]="!(editForm.controls.code?.dirty && editForm.controls.code?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.code?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 50 }">
+                        This field cannot be longer than 50 characters.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="openpbrApp.orgUnitGroupSet.name" for="field_name">Name</label>
+                    <input type="text" class="form-control" name="name" id="field_name"
+                        [(ngModel)]="orgUnitGroupSet.name" required maxlength="230"/>
+                    <div [hidden]="!(editForm.controls.name?.dirty && editForm.controls.name?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.name?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.name?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 230 }">
+                        This field cannot be longer than 230 characters.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="openpbrApp.orgUnitGroupSet.description" for="field_description">Description</label>
+                    <input type="text" class="form-control" name="description" id="field_description"
+                        [(ngModel)]="orgUnitGroupSet.description" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="openpbrApp.orgUnitGroupSet.sortOrder" for="field_sortOrder">Sort Order</label>
+                    <input type="number" class="form-control" name="sortOrder" id="field_sortOrder"
+                        [(ngModel)]="orgUnitGroupSet.sortOrder" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="openpbrApp.orgUnitGroupSet.isActive" for="field_isActive">Is Active</label>
+                    <input type="checkbox" class="form-control" name="isActive" id="field_isActive"
+                        [(ngModel)]="orgUnitGroupSet.isActive" />
+                </div>
+
+                <div class="form-group">
+                    <label jhiTranslate="openpbrApp.orgUnitGroupSet.orgUnitGroups" for="field_orgUnitGroups">Org Unit Groups</label>
+                    <select class="form-control" id="field_orgUnitGroups" multiple name="orgUnitGroups" [(ngModel)]="orgUnitGroupSet.orgUnitGroups" required>
+                        <option [ngValue]="getSelected(orgUnitGroupSet.orgUnitGroups, orgUnitGroupOption)" *ngFor="let orgUnitGroupOption of orgunitgroups; trackBy: trackOrgUnitGroupById">{{orgUnitGroupOption.name}}</option>
+                    </select>
+                </div>
+                <div [hidden]="!(editForm.controls.orgUnitGroups?.dirty && editForm.controls.orgUnitGroups?.invalid)">
+                    <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.orgUnitGroups?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                    </small>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

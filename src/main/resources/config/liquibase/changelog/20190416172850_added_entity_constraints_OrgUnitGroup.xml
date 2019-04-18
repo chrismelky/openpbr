@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <!--
+        Added the constraints for entity OrgUnitGroup.
+    -->
+    <changeSet id="20190416172850-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="org_unit_group_id"
+                                 baseTableName="org_unit_group_members"
+                                 constraintName="fk_org_unit_group_members_org_unit_group_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="org_unit_group"/>
+        <addForeignKeyConstraint baseColumnNames="organisation_unit_id"
+                                 baseTableName="org_unit_group_members"
+                                 constraintName="fk_org_unit_group_members_organisation_unit_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="organisation_unit"/>
+        
+    </changeSet>
+</databaseChangeLog>

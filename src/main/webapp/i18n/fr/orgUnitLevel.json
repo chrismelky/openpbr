@@ -1,0 +1,25 @@
+{
+    "openpbrApp": {
+        "orgUnitLevel": {
+            "home": {
+                "title": "OrgUnitLevels",
+                "createLabel": "Créer un nouveau Org Unit Level",
+                "createOrEditLabel": "Créer ou éditer un Org Unit Level",
+                "search": "Recherche pour Org Unit Level"
+            },
+            "created": "Un nouveau Org Unit Level a été créé avec l'identifiant {{ param }}",
+            "updated": "Le Org Unit Level avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le Org Unit Level avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer le Org Unit Level {{ id }} ?"
+            },
+            "detail": {
+                "title": "Org Unit Level"
+            },
+            "uid": "Uid",
+            "code": "Code",
+            "name": "Name",
+            "level": "Level"
+        }
+    }
+}

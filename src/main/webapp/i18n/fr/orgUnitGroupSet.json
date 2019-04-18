@@ -1,0 +1,28 @@
+{
+    "openpbrApp": {
+        "orgUnitGroupSet": {
+            "home": {
+                "title": "OrgUnitGroupSets",
+                "createLabel": "Créer un nouveau Org Unit Group Set",
+                "createOrEditLabel": "Créer ou éditer un Org Unit Group Set",
+                "search": "Recherche pour Org Unit Group Set"
+            },
+            "created": "Un nouveau Org Unit Group Set a été créé avec l'identifiant {{ param }}",
+            "updated": "Le Org Unit Group Set avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le Org Unit Group Set avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer le Org Unit Group Set {{ id }} ?"
+            },
+            "detail": {
+                "title": "Org Unit Group Set"
+            },
+            "uid": "Uid",
+            "code": "Code",
+            "name": "Name",
+            "description": "Description",
+            "sortOrder": "Sort Order",
+            "isActive": "Is Active",
+            "orgUnitGroups": "Org Unit Groups"
+        }
+    }
+}

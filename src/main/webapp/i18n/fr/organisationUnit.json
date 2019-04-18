@@ -1,0 +1,36 @@
+{
+    "openpbrApp": {
+        "organisationUnit": {
+            "home": {
+                "title": "OrganisationUnits",
+                "createLabel": "Créer un nouveau Organisation Unit",
+                "createOrEditLabel": "Créer ou éditer un Organisation Unit",
+                "search": "Recherche pour Organisation Unit"
+            },
+            "created": "Un nouveau Organisation Unit a été créé avec l'identifiant {{ param }}",
+            "updated": "Le Organisation Unit avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le Organisation Unit avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer le Organisation Unit {{ id }} ?"
+            },
+            "detail": {
+                "title": "Organisation Unit"
+            },
+            "uid": "Uid",
+            "code": "Code",
+            "name": "Name",
+            "level": "Level",
+            "openingDate": "Opening Date",
+            "closedDate": "Closed Date",
+            "url": "Url",
+            "latitude": "Latitude",
+            "longitude": "Longitude",
+            "address": "Address",
+            "email": "Email",
+            "phoneNumner": "Phone Numner",
+            "sortOrder": "Sort Order",
+            "isActive": "Is Active",
+            "parent": "Parent"
+        }
+    }
+}

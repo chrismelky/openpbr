@@ -1,0 +1,109 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="openpbrApp.organisationUnit.home.title">Organisation Units</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-organisation-unit" [routerLink]="['/organisation-unit/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span class="hidden-sm-down"  jhiTranslate="openpbrApp.organisationUnit.home.createLabel">
+            Create new Organisation Unit
+            </span>
+        </button>
+    </h2>
+    <pbr-alert></pbr-alert>
+    <div class="row">
+        <div class="col-sm-12">
+            <form name="searchForm" class="form-inline">
+                <div class="input-group w-100 mt-3">
+                    <input type="text" class="form-control" [(ngModel)]="currentSearch" id="currentSearch" name="currentSearch" placeholder="{{ 'openpbrApp.organisationUnit.home.search' | translate }}">
+                    <button class="input-group-append btn btn-info" (click)="search(currentSearch)">
+                        <fa-icon [icon]="'search'"></fa-icon>
+                    </button>
+                    <button class="input-group-append btn btn-danger" (click)="clear()" *ngIf="currentSearch">
+                        <fa-icon [icon]="'trash-alt'"></fa-icon>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="organisationUnits">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="uid"><span jhiTranslate="openpbrApp.organisationUnit.uid">Uid</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="code"><span jhiTranslate="openpbrApp.organisationUnit.code">Code</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="name"><span jhiTranslate="openpbrApp.organisationUnit.name">Name</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="level"><span jhiTranslate="openpbrApp.organisationUnit.level">Level</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="openingDate"><span jhiTranslate="openpbrApp.organisationUnit.openingDate">Opening Date</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="closedDate"><span jhiTranslate="openpbrApp.organisationUnit.closedDate">Closed Date</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="url"><span jhiTranslate="openpbrApp.organisationUnit.url">Url</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="latitude"><span jhiTranslate="openpbrApp.organisationUnit.latitude">Latitude</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="longitude"><span jhiTranslate="openpbrApp.organisationUnit.longitude">Longitude</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="address"><span jhiTranslate="openpbrApp.organisationUnit.address">Address</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="email"><span jhiTranslate="openpbrApp.organisationUnit.email">Email</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="phoneNumner"><span jhiTranslate="openpbrApp.organisationUnit.phoneNumner">Phone Numner</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="sortOrder"><span jhiTranslate="openpbrApp.organisationUnit.sortOrder">Sort Order</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="isActive"><span jhiTranslate="openpbrApp.organisationUnit.isActive">Is Active</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="parent.name"><span jhiTranslate="openpbrApp.organisationUnit.parent">Parent</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let organisationUnit of organisationUnits ;trackBy: trackId">
+                <td><a [routerLink]="['/organisation-unit', organisationUnit.id, 'view' ]">{{organisationUnit.id}}</a></td>
+                <td>{{organisationUnit.uid}}</td>
+                <td>{{organisationUnit.code}}</td>
+                <td>{{organisationUnit.name}}</td>
+                <td>{{organisationUnit.level}}</td>
+                <td>{{organisationUnit.openingDate | date:'mediumDate'}}</td>
+                <td>{{organisationUnit.closedDate | date:'mediumDate'}}</td>
+                <td>{{organisationUnit.url}}</td>
+                <td>{{organisationUnit.latitude}}</td>
+                <td>{{organisationUnit.longitude}}</td>
+                <td>{{organisationUnit.address}}</td>
+                <td>{{organisationUnit.email}}</td>
+                <td>{{organisationUnit.phoneNumner}}</td>
+                <td>{{organisationUnit.sortOrder}}</td>
+                <td>{{organisationUnit.isActive}}</td>
+                <td>
+                    <div *ngIf="organisationUnit.parent">
+                        <a [routerLink]="['../organisation-unit', organisationUnit.parent?.id, 'view' ]" >{{organisationUnit.parent?.name}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['/organisation-unit', organisationUnit.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/organisation-unit', organisationUnit.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', 'organisation-unit', { outlets: { popup: organisationUnit.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div *ngIf="organisationUnits && organisationUnits.length">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="totalItems" [maxSize]="5" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+        </div>
+    </div>
+</div>

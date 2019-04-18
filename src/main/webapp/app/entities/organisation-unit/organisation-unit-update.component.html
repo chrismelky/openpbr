@@ -1,0 +1,151 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="pbr-organisation-unit-heading" jhiTranslate="openpbrApp.organisationUnit.home.createOrEditLabel">Create or edit a Organisation Unit</h2>
+            <div>
+                <pbr-alert-error></pbr-alert-error>
+                <div class="form-group" [hidden]="!organisationUnit.id">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="organisationUnit.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="openpbrApp.organisationUnit.uid" for="field_uid">Uid</label>
+                    <input type="text" class="form-control" name="uid" id="field_uid"
+                        [(ngModel)]="organisationUnit.uid" required minlength="11" maxlength="11"/>
+                    <div [hidden]="!(editForm.controls.uid?.dirty && editForm.controls.uid?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.uid?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.uid?.errors?.minlength" jhiTranslate="entity.validation.minlength" [translateValues]="{ min: 11 }">
+                        This field is required to be at least 11 characters.
+                        </small>
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.uid?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 11 }">
+                        This field cannot be longer than 11 characters.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="openpbrApp.organisationUnit.code" for="field_code">Code</label>
+                    <input type="text" class="form-control" name="code" id="field_code"
+                        [(ngModel)]="organisationUnit.code" maxlength="50"/>
+                    <div [hidden]="!(editForm.controls.code?.dirty && editForm.controls.code?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.code?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 50 }">
+                        This field cannot be longer than 50 characters.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="openpbrApp.organisationUnit.name" for="field_name">Name</label>
+                    <input type="text" class="form-control" name="name" id="field_name"
+                        [(ngModel)]="organisationUnit.name" required maxlength="230"/>
+                    <div [hidden]="!(editForm.controls.name?.dirty && editForm.controls.name?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.name?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.name?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 230 }">
+                        This field cannot be longer than 230 characters.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="openpbrApp.organisationUnit.level" for="field_level">Level</label>
+                    <input type="number" class="form-control" name="level" id="field_level"
+                        [(ngModel)]="organisationUnit.level" required/>
+                    <div [hidden]="!(editForm.controls.level?.dirty && editForm.controls.level?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.level?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.controls.level?.errors?.number" jhiTranslate="entity.validation.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="openpbrApp.organisationUnit.openingDate" for="field_openingDate">Opening Date</label>
+                    <div class="input-group">
+                        <input id="field_openingDate" type="text" class="form-control" name="openingDate" ngbDatepicker  #openingDateDp="ngbDatepicker" [(ngModel)]="organisationUnit.openingDate"
+                        />
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="openingDateDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="openpbrApp.organisationUnit.closedDate" for="field_closedDate">Closed Date</label>
+                    <div class="input-group">
+                        <input id="field_closedDate" type="text" class="form-control" name="closedDate" ngbDatepicker  #closedDateDp="ngbDatepicker" [(ngModel)]="organisationUnit.closedDate"
+                        />
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="closedDateDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="openpbrApp.organisationUnit.url" for="field_url">Url</label>
+                    <input type="text" class="form-control" name="url" id="field_url"
+                        [(ngModel)]="organisationUnit.url" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="openpbrApp.organisationUnit.latitude" for="field_latitude">Latitude</label>
+                    <input type="number" class="form-control" name="latitude" id="field_latitude"
+                        [(ngModel)]="organisationUnit.latitude" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="openpbrApp.organisationUnit.longitude" for="field_longitude">Longitude</label>
+                    <input type="number" class="form-control" name="longitude" id="field_longitude"
+                        [(ngModel)]="organisationUnit.longitude" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="openpbrApp.organisationUnit.address" for="field_address">Address</label>
+                    <input type="text" class="form-control" name="address" id="field_address"
+                        [(ngModel)]="organisationUnit.address" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="openpbrApp.organisationUnit.email" for="field_email">Email</label>
+                    <input type="text" class="form-control" name="email" id="field_email"
+                        [(ngModel)]="organisationUnit.email" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="openpbrApp.organisationUnit.phoneNumner" for="field_phoneNumner">Phone Numner</label>
+                    <input type="text" class="form-control" name="phoneNumner" id="field_phoneNumner"
+                        [(ngModel)]="organisationUnit.phoneNumner" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="openpbrApp.organisationUnit.sortOrder" for="field_sortOrder">Sort Order</label>
+                    <input type="number" class="form-control" name="sortOrder" id="field_sortOrder"
+                        [(ngModel)]="organisationUnit.sortOrder" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="openpbrApp.organisationUnit.isActive" for="field_isActive">Is Active</label>
+                    <input type="checkbox" class="form-control" name="isActive" id="field_isActive"
+                        [(ngModel)]="organisationUnit.isActive" />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="openpbrApp.organisationUnit.parent" for="field_parent">Parent</label>
+                    <select class="form-control" id="field_parent" name="parent" [(ngModel)]="organisationUnit.parent">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="organisationUnitOption.id === organisationUnit.parent?.id ? organisationUnit.parent : organisationUnitOption" *ngFor="let organisationUnitOption of parents; trackBy: trackOrganisationUnitById">{{organisationUnitOption.name}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

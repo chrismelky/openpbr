@@ -12,6 +12,10 @@
                 "optionValue": "Option Value",
                 "attribute": "Attribute",
                 "attributeValue": "Attribute Value",
+                "orgUnitLevel": "Org Unit Level",
+                "orgUnitGroupSet": "Org Unit Group Set",
+                "orgUnitGroup": "Org Unit Group",
+                "organisationUnit": "Organisation Unit",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {

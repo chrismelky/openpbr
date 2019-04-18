@@ -1,0 +1,49 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="orgUnitGroup">
+            <h2><span jhiTranslate="openpbrApp.orgUnitGroup.detail.title">Org Unit Group</span> {{orgUnitGroup.id}}</h2>
+            <hr>
+            <pbr-alert-error></pbr-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="openpbrApp.orgUnitGroup.uid">Uid</span></dt>
+                <dd>
+                    <span>{{orgUnitGroup.uid}}</span>
+                </dd>
+                <dt><span jhiTranslate="openpbrApp.orgUnitGroup.code">Code</span></dt>
+                <dd>
+                    <span>{{orgUnitGroup.code}}</span>
+                </dd>
+                <dt><span jhiTranslate="openpbrApp.orgUnitGroup.name">Name</span></dt>
+                <dd>
+                    <span>{{orgUnitGroup.name}}</span>
+                </dd>
+                <dt><span jhiTranslate="openpbrApp.orgUnitGroup.sortOrder">Sort Order</span></dt>
+                <dd>
+                    <span>{{orgUnitGroup.sortOrder}}</span>
+                </dd>
+                <dt><span jhiTranslate="openpbrApp.orgUnitGroup.isActive">Is Active</span></dt>
+                <dd>
+                    <span>{{orgUnitGroup.isActive}}</span>
+                </dd>
+                <dt><span jhiTranslate="openpbrApp.orgUnitGroup.organisationUnits">Orgnisation Units</span></dt>
+                <dd>
+                    <span *ngFor="let organisationUnits of orgUnitGroup.organisationUnits; let last = last">
+                        <a [routerLink]="['/organisation-unit', organisationUnits?.id, 'view' ]">{{organisationUnits.name}}</a>{{last ? '' : ', '}}
+                    </span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/org-unit-group', orgUnitGroup.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

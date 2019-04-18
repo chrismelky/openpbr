@@ -1,0 +1,85 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="organisationUnit">
+            <h2><span jhiTranslate="openpbrApp.organisationUnit.detail.title">Organisation Unit</span> {{organisationUnit.id}}</h2>
+            <hr>
+            <pbr-alert-error></pbr-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="openpbrApp.organisationUnit.uid">Uid</span></dt>
+                <dd>
+                    <span>{{organisationUnit.uid}}</span>
+                </dd>
+                <dt><span jhiTranslate="openpbrApp.organisationUnit.code">Code</span></dt>
+                <dd>
+                    <span>{{organisationUnit.code}}</span>
+                </dd>
+                <dt><span jhiTranslate="openpbrApp.organisationUnit.name">Name</span></dt>
+                <dd>
+                    <span>{{organisationUnit.name}}</span>
+                </dd>
+                <dt><span jhiTranslate="openpbrApp.organisationUnit.level">Level</span></dt>
+                <dd>
+                    <span>{{organisationUnit.level}}</span>
+                </dd>
+                <dt><span jhiTranslate="openpbrApp.organisationUnit.openingDate">Opening Date</span></dt>
+                <dd>
+                    <span>{{organisationUnit.openingDate}}</span>
+                </dd>
+                <dt><span jhiTranslate="openpbrApp.organisationUnit.closedDate">Closed Date</span></dt>
+                <dd>
+                    <span>{{organisationUnit.closedDate}}</span>
+                </dd>
+                <dt><span jhiTranslate="openpbrApp.organisationUnit.url">Url</span></dt>
+                <dd>
+                    <span>{{organisationUnit.url}}</span>
+                </dd>
+                <dt><span jhiTranslate="openpbrApp.organisationUnit.latitude">Latitude</span></dt>
+                <dd>
+                    <span>{{organisationUnit.latitude}}</span>
+                </dd>
+                <dt><span jhiTranslate="openpbrApp.organisationUnit.longitude">Longitude</span></dt>
+                <dd>
+                    <span>{{organisationUnit.longitude}}</span>
+                </dd>
+                <dt><span jhiTranslate="openpbrApp.organisationUnit.address">Address</span></dt>
+                <dd>
+                    <span>{{organisationUnit.address}}</span>
+                </dd>
+                <dt><span jhiTranslate="openpbrApp.organisationUnit.email">Email</span></dt>
+                <dd>
+                    <span>{{organisationUnit.email}}</span>
+                </dd>
+                <dt><span jhiTranslate="openpbrApp.organisationUnit.phoneNumner">Phone Numner</span></dt>
+                <dd>
+                    <span>{{organisationUnit.phoneNumner}}</span>
+                </dd>
+                <dt><span jhiTranslate="openpbrApp.organisationUnit.sortOrder">Sort Order</span></dt>
+                <dd>
+                    <span>{{organisationUnit.sortOrder}}</span>
+                </dd>
+                <dt><span jhiTranslate="openpbrApp.organisationUnit.isActive">Is Active</span></dt>
+                <dd>
+                    <span>{{organisationUnit.isActive}}</span>
+                </dd>
+                <dt><span jhiTranslate="openpbrApp.organisationUnit.parent">Parent</span></dt>
+                <dd>
+                    <div *ngIf="organisationUnit.parent">
+                        <a [routerLink]="['/organisation-unit', organisationUnit.parent?.id, 'view']">{{organisationUnit.parent?.name}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/organisation-unit', organisationUnit.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

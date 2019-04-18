@@ -24,7 +24,15 @@ import org.openpbr.domain.enumeration.ValueType;
 public class Attribute extends IdentifiableEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequenceGenerator")
     @SequenceGenerator(name = "sequenceGenerator")
@@ -60,14 +68,6 @@ public class Attribute extends IdentifiableEntity implements Serializable {
     private OptionSet optionSet;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
 
     public Attribute uid(String uid) {
         this.uid = uid;
