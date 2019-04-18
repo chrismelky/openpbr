@@ -53,6 +53,10 @@ export class OrgUnitGroupSetUpdateComponent implements OnInit {
         }
     }
 
+    onGroupChanged(groups) {
+        this.orgUnitGroupSet.orgUnitGroups = groups;
+    }
+
     protected subscribeToSaveResponse(result: Observable<HttpResponse<IOrgUnitGroupSet>>) {
         result.subscribe((res: HttpResponse<IOrgUnitGroupSet>) => this.onSaveSuccess(), (res: HttpErrorResponse) => this.onSaveError());
     }

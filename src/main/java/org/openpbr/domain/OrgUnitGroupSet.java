@@ -38,15 +38,6 @@ public class OrgUnitGroupSet extends IdentifiableEntity implements Serializable 
     private Long id;
 
     @NotNull
-    @Size(min = 11, max = 11)
-    @Column(name = "pbr_uid", length = 11, nullable = false, unique = true)
-    private String uid;
-
-    @Size(max = 50)
-    @Column(name = "code", length = 50, unique = true)
-    private String code;
-
-    @NotNull
     @Size(max = 230)
     @Column(name = "name", length = 230, nullable = false, unique = true)
     private String name;
@@ -65,7 +56,7 @@ public class OrgUnitGroupSet extends IdentifiableEntity implements Serializable 
     @NotNull
     @JoinTable(name = "org_unit_group_set_members",
                joinColumns = @JoinColumn(name = "org_unit_group_set_id", referencedColumnName = "id"),
-               inverseJoinColumns = @JoinColumn(name = "org_unit_groups_id", referencedColumnName = "id"))
+               inverseJoinColumns = @JoinColumn(name = "org_unit_group_id", referencedColumnName = "id"))
     private Set<OrgUnitGroup> orgUnitGroups = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove

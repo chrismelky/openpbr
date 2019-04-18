@@ -111,7 +111,10 @@ tr:focus {
 form {
     mat-form-field,
     mat-radio-group,
-    mat-checkbox,
+    mat-checkbox {
+        width: 100% !important;
+        padding: 10px 0 !important;
+    }
     .pbr-multselect td {
         padding: 10px 0 !important;
     }

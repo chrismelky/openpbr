@@ -1,6 +1,6 @@
 <table style="width: 100%" class="pbr-multselect">
     <tr>
-        <td style="width: 45%">
+        <td style="width: 45%; min-width: 45%; max-width: 45%">
             <label for="itemToSelect">Available {{title}}</label>
             <select class="mat-elevation-z2" id="itemToSelect" multiple [(ngModel)]="itemToSelect" style="width: 100%" (dblclick)="selectItem(itemToSelect)">
                 <option *ngFor="let item of items" [ngValue]="item">{{(isObject == true)?item.name: item}}</option>
@@ -9,7 +9,7 @@
                 <span>ASSIGN ALL {{items.length}}</span><mat-icon>arrow_right</mat-icon>
             </button>
         </td>
-        <td style="width: 10%; vertical-align: center; text-align: center">
+        <td style="width: 10%; min-width: 10%; max-width: 10%; vertical-align: center; text-align: center">
             <div>
                <span *ngIf="itemToSelect.length">{{itemToSelect.length}} Selected</span>
                <span *ngIf="itemToRemove.length">{{itemToRemove.length}} Selected</span>
@@ -23,7 +23,7 @@
                 </button>
             </div>
         </td>
-        <td style="width: 45%" >
+        <td style="width: 45%; min-width: 45%; max-width: 45%" >
             <label for="itemToRemove">Selected {{title}}</label>
             <select class="mat-elevation-z2" id="itemToRemove" multiple style="width: 100%" [(ngModel)]="itemToRemove" (dblclick)="removeItem(itemToRemove)">
                 <option *ngFor="let selectedItem of selectedItems" [ngValue]="selectedItem">{{(isObject == true)?selectedItem.name:selectedItem}}</option>

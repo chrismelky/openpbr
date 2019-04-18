@@ -24,7 +24,7 @@ export class MultselectComponent implements OnInit, OnChanges {
     }
     selectItem(items) {
         items.forEach(item => {
-            const idx = this.items.indexOf(item);
+            const idx = this.isObject ? this.items.map(i => i.id).indexOf(item.id) : this.items.indexOf(item);
             if (idx !== -1) {
                 this.items.splice(idx, 1);
                 this.selectedItems.push(item);
@@ -67,7 +67,9 @@ export class MultselectComponent implements OnInit, OnChanges {
     ngOnChanges(changes: SimpleChanges): void {
         if (this.selectedItems != null && (changes['selectedItems'] || changes['items'])) {
             this.selectedItems.forEach(item => {
-                const idx = this.items.indexOf(item);
+                //    const idx = this.items.indexOf(item);
+                const idx = this.isObject ? this.items.map(i => i.id).indexOf(item.id) : this.items.indexOf(item);
+
                 if (idx !== -1) {
                     this.items.splice(idx, 1);
                 }

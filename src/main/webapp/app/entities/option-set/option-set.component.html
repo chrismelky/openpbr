@@ -39,7 +39,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr *ngFor="let optionSet of optionSets ;trackBy: trackId">
+            <tr *ngFor="let optionSet of optionSets ;trackBy: trackId" [routerLink]="['/option-set', optionSet.id, 'edit']">
                 <td><a [routerLink]="['/option-set', optionSet.id, 'view' ]">{{optionSet.id}}</a></td>
                 <td>{{optionSet.uid}}</td>
                 <td>{{optionSet.code}}</td>
