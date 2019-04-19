@@ -6,8 +6,7 @@ import { filter, map } from 'rxjs/operators';
 import { JhiAlertService } from 'ng-jhipster';
 import { IOrgUnitGroup } from 'app/shared/model/org-unit-group.model';
 import { OrgUnitGroupService } from './org-unit-group.service';
-import { IOrganisationUnit } from 'app/shared/model/organisation-unit.model';
-import { OrganisationUnitService } from 'app/entities/organisation-unit';
+import { IOrganisationUnit, OrganisationUnit } from 'app/shared/model/organisation-unit.model';
 
 @Component({
     selector: 'pbr-org-unit-group-update',
@@ -16,13 +15,11 @@ import { OrganisationUnitService } from 'app/entities/organisation-unit';
 export class OrgUnitGroupUpdateComponent implements OnInit {
     orgUnitGroup: IOrgUnitGroup;
     isSaving: boolean;
-
-    organisationunits: IOrganisationUnit[];
+    orgUnitSelected: IOrganisationUnit[] = [];
 
     constructor(
         protected jhiAlertService: JhiAlertService,
         protected orgUnitGroupService: OrgUnitGroupService,
-        protected organisationUnitService: OrganisationUnitService,
         protected activatedRoute: ActivatedRoute
     ) {}
 
@@ -30,14 +27,14 @@ export class OrgUnitGroupUpdateComponent implements OnInit {
         this.isSaving = false;
         this.activatedRoute.data.subscribe(({ orgUnitGroup }) => {
             this.orgUnitGroup = orgUnitGroup;
+            this.orgUnitGroup.organisationUnits.forEach((ou: OrganisationUnit) => {
+                this.orgUnitSelected.push(ou);
+            });
         });
-        this.organisationUnitService
-            .query()
-            .pipe(
-                filter((mayBeOk: HttpResponse<IOrganisationUnit[]>) => mayBeOk.ok),
-                map((response: HttpResponse<IOrganisationUnit[]>) => response.body)
-            )
-            .subscribe((res: IOrganisationUnit[]) => (this.organisationunits = res), (res: HttpErrorResponse) => this.onError(res.message));
+    }
+
+    onOrgSelectedChange(ous: OrganisationUnit[]) {
+        this.orgUnitGroup.organisationUnits = ous;
     }
 
     previousState() {
@@ -68,20 +65,5 @@ export class OrgUnitGroupUpdateComponent implements OnInit {
 
     protected onError(errorMessage: string) {
         this.jhiAlertService.error(errorMessage, null, null);
-    }
-
-    trackOrganisationUnitById(index: number, item: IOrganisationUnit) {
-        return item.id;
-    }
-
-    getSelected(selectedVals: Array<any>, option: any) {
-        if (selectedVals) {
-            for (let i = 0; i < selectedVals.length; i++) {
-                if (option.id === selectedVals[i].id) {
-                    return selectedVals[i];
-                }
-            }
-        }
-        return option;
     }
 }

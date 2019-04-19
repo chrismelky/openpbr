@@ -14,7 +14,7 @@ export interface IOrganisationUnit {
     longitude?: number;
     address?: string;
     email?: string;
-    phoneNumner?: string;
+    phoneNumber?: string;
     sortOrder?: number;
     isActive?: boolean;
     parent?: IOrganisationUnit;
@@ -34,7 +34,7 @@ export class OrganisationUnit implements IOrganisationUnit {
         public longitude?: number,
         public address?: string,
         public email?: string,
-        public phoneNumner?: string,
+        public phoneNumber?: string,
         public sortOrder?: number,
         public isActive?: boolean,
         public parent?: IOrganisationUnit

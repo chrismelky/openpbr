@@ -22,7 +22,7 @@
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="uid" type="varchar(11)">
-                <constraints nullable="false" unique="true" uniqueConstraintName="ux_organisation_unit_pbr_uid" />
+                <constraints nullable="false" unique="true" uniqueConstraintName="ux_organisation_unit_uid" />
             </column>
 
             <column name="code" type="varchar(50)">
@@ -77,7 +77,7 @@
                 <constraints nullable="true" />
             </column>
             <column name="parent_id" type="bigint">
-                <constraints unique="true" nullable="true" uniqueConstraintName="ux_organisation_unit_parent_id" />
+                <constraints  nullable="true" />
             </column>
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>

@@ -11,8 +11,11 @@ import { MultselectComponent } from './multselect/multselect.component';
 import { ActionMenuComponent } from './action-menu/action-menu.component';
 import { OrgUnitComponent } from './org-unit/org-unit.component';
 import { AttributesComponent } from './attributes/attributes.component';
+import { OrgUnitFilterComponent } from './org-unit-filter/org-unit-filter.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
+
 @NgModule({
-    imports: [JhMaterialModule, OpenpbrSharedLibsModule, OpenpbrSharedCommonModule, RouterModule],
+    imports: [JhMaterialModule, OpenpbrSharedLibsModule, OpenpbrSharedCommonModule, RouterModule, FlexLayoutModule],
     declarations: [
         PbrLoginModalComponent,
         HasAnyAuthorityDirective,
@@ -20,7 +23,8 @@ import { AttributesComponent } from './attributes/attributes.component';
         MultselectComponent,
         ActionMenuComponent,
         OrgUnitComponent,
-        AttributesComponent
+        AttributesComponent,
+        OrgUnitFilterComponent
     ],
     providers: [{ provide: NgbDateAdapter, useClass: NgbDateMomentAdapter }],
     entryComponents: [PbrLoginModalComponent],
@@ -33,7 +37,9 @@ import { AttributesComponent } from './attributes/attributes.component';
         MultselectComponent,
         ActionMenuComponent,
         OrgUnitComponent,
-        AttributesComponent
+        AttributesComponent,
+        OrgUnitFilterComponent,
+        FlexLayoutModule
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

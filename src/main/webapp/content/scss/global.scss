@@ -119,6 +119,27 @@ form {
         padding: 10px 0 !important;
     }
 }
+div.pr-org-unit-filter {
+    .container {
+        padding: 8px !important;
+        mat-list {
+            border: 1px solid #ced4da;
+            border-radius: 0.15rem;
+            max-height: 200px;
+            min-height: 200px;
+            overflow-y: scroll;
+            mat-list-item {
+                height: 24px !important;
+                cursor: pointer;
+                font-size: 14px;
+            }
+            mat-checkbox {
+                width: 21px !important;
+                height: 48px !important;
+            }
+        }
+    }
+}
 
 .error {
     color: white;
