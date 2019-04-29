@@ -27,9 +27,11 @@ export class OrgUnitGroupUpdateComponent implements OnInit {
         this.isSaving = false;
         this.activatedRoute.data.subscribe(({ orgUnitGroup }) => {
             this.orgUnitGroup = orgUnitGroup;
-            this.orgUnitGroup.organisationUnits.forEach((ou: OrganisationUnit) => {
-                this.orgUnitSelected.push(ou);
-            });
+            if (this.orgUnitGroup.organisationUnits) {
+                this.orgUnitGroup.organisationUnits.forEach((ou: OrganisationUnit) => {
+                    this.orgUnitSelected.push(ou);
+                });
+            }
         });
     }
 

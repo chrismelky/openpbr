@@ -13,20 +13,19 @@ import { SelectionModel } from '@angular/cdk/collections';
     styles: []
 })
 export class OrgUnitFilterComponent implements OnInit {
-    @Input() initSelection: IOrganisationUnit[];
+    @Input() selectedOrgUnits: IOrganisationUnit[];
+    @Input() multiple: Boolean;
     @Output() onOrgSelectedChange: EventEmitter<any> = new EventEmitter<any>();
     orgUnitLevels: OrgUnitLevel[];
-    // orgUnitSelection: SelectionModel<IOrganisationUnit>;
     userLevel = 1;
     orgUnits = [];
 
     constructor(private orgUnitLevelService: OrgUnitLevelService, private orgUnitService: OrganisationUnitService) {}
 
     ngOnInit() {
-        if (this.initSelection === null) {
-            this.initSelection = [];
+        if (this.selectedOrgUnits === null) {
+            this.selectedOrgUnits = [];
         }
-        // this.orgUnitSelection = new SelectionModel<IOrganisationUnit>(true, this.initSelection);
         this.orgUnitLevelService
             .query({ 'level.greaterOrEqualThan': this.userLevel })
             .pipe(
@@ -60,17 +59,23 @@ export class OrgUnitFilterComponent implements OnInit {
     }
 
     toggleOrgUnit(ou: OrganisationUnit) {
-        const idx = this.initSelection.map(i => i.id).indexOf(ou.id);
-        if (idx !== -1) {
-            this.initSelection.splice(idx, 1);
-        } else {
-            this.initSelection.push(ou);
+        if (!this.multiple) {
+            this.selectedOrgUnits.length = 0;
+            this.selectedOrgUnits.push(ou);
+            this.onOrgSelectedChange.emit(this.selectedOrgUnits);
+            return;
         }
-        this.onOrgSelectedChange.emit(this.initSelection);
+        const idx = this.selectedOrgUnits.map(i => i.id).indexOf(ou.id);
+        if (idx !== -1) {
+            this.selectedOrgUnits.splice(idx, 1);
+        } else {
+            this.selectedOrgUnits.push(ou);
+        }
+        this.onOrgSelectedChange.emit(this.selectedOrgUnits);
     }
 
     isSelected(ou: OrganisationUnit) {
-        const idx = this.initSelection.map(i => i.id).indexOf(ou.id);
+        const idx = this.selectedOrgUnits.map(i => i.id).indexOf(ou.id);
         return idx !== -1;
     }
 

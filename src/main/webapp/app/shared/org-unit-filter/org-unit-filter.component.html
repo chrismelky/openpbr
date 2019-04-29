@@ -3,7 +3,8 @@
          <mat-label>{{l.name}}</mat-label>
          <mat-list>
              <mat-list-item *ngFor="let ou of orgUnits[l.level]; trackBy: trackOuBy" fxLayout="column" fxLayoutAlign="start centre">
-                 <mat-checkbox [checked]="isSelected(ou)" (change)="toggleOrgUnit(ou);" >&nbsp;</mat-checkbox>
+                 <mat-checkbox *ngIf="multiple" [checked]="isSelected(ou)" (change)="toggleOrgUnit(ou);" >&nbsp;</mat-checkbox>
+                 <mat-radio-button *ngIf="!multiple" [checked]="isSelected(ou)" (change)="toggleOrgUnit(ou);"></mat-radio-button>
                  <mat-label (click)="getOrgUnits(l.level+1, ou.id)">{{ou.name}}</mat-label>
              </mat-list-item>
          </mat-list>
@@ -11,7 +12,7 @@
     <div fxFlex="25" class="mat-elevation-z2 container"  fxLayout="column">
         <mat-label style="color:darkorange; font-weight: bold">Selected</mat-label>
         <mat-list>
-            <mat-list-item style="color:darkorange; font-weight: bold"  *ngFor="let ou of initSelection; trackBy: trackOuBy" (dblclick)="toggleOrgUnit(ou)">{{ou.name}}</mat-list-item>
+            <mat-list-item style="color:darkorange; font-weight: bold" *ngFor="let ou of selectedOrgUnits; trackBy: trackOuBy" (dblclick)="toggleOrgUnit(ou)">{{ou.name}}</mat-list-item>
         </mat-list>
     </div>
 </div>
