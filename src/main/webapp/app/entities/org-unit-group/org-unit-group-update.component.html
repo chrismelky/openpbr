@@ -40,7 +40,7 @@
                     <span jhiTranslate="openpbrApp.orgUnitGroup.isActive">Is Active</span>
                 </mat-checkbox>
                 <pbr-org-unit-filter [multiple]="true" [selectedOrgUnits]="orgUnitSelected" (onOrgSelectedChange)="onOrgSelectedChange($event)"></pbr-org-unit-filter>
-                <pbr-org-unit-tree [multiple]="false" [treeNodeService]="orgUnitService" [initialSelection]="orgUnitSelected" (onNodeSelectionChange)="onOrgSelectedChange($event)"></pbr-org-unit-tree>
+                <pbr-tree-view [multiple]="false" [treeNodeService]="orgUnitService" [initialSelection]="orgUnitSelected" (onNodeSelectionChange)="onOrgSelectedChange($event)"></pbr-tree-view>
             </div>
             <div>
                 <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">

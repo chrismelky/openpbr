@@ -1,16 +1,16 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { NestedTreeControl } from '@angular/cdk/tree';
-import { DynamicDataSource } from './org-unit-tree-datasource';
-import { Node } from './org-unit-tree-datasource';
+import { DynamicDataSource } from './tree-view-datasource';
+import { Node } from './tree-view-datasource';
 import { filter, map } from 'rxjs/operators';
 import { HttpResponse } from '@angular/common/http';
 
 @Component({
-    selector: 'pbr-org-unit-tree',
-    templateUrl: './org-unit-tree.component.html',
+    selector: 'pbr-tree-view',
+    templateUrl: './tree-view.component.html',
     styles: []
 })
-export class OrgUnitTreeComponent implements OnInit {
+export class TreeViewComponent implements OnInit {
     treeControl: NestedTreeControl<any>;
     dataSource: DynamicDataSource;
     selectedNodes: Node[];
