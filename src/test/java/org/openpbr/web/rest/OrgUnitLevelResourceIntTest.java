@@ -496,7 +496,7 @@ public class OrgUnitLevelResourceIntTest {
     public void updateOrgUnitLevel() throws Exception {
         // Initialize the database
         orgUnitLevelService.save(orgUnitLevel);
-        // As the test used the service layer, reset the Elasticsearch mock repository
+        // As the test used the treeNodeService layer, reset the Elasticsearch mock repository
         reset(mockOrgUnitLevelSearchRepository);
 
         int databaseSizeBeforeUpdate = orgUnitLevelRepository.findAll().size();

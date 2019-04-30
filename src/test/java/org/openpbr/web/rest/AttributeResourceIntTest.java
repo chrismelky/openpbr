@@ -759,7 +759,7 @@ public class AttributeResourceIntTest {
     public void updateAttribute() throws Exception {
         // Initialize the database
         attributeService.save(attribute);
-        // As the test used the service layer, reset the Elasticsearch mock repository
+        // As the test used the treeNodeService layer, reset the Elasticsearch mock repository
         reset(mockAttributeSearchRepository);
 
         int databaseSizeBeforeUpdate = attributeRepository.findAll().size();

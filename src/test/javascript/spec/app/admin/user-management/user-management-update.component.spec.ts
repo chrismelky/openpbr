@@ -58,7 +58,7 @@ describe('Component Tests', () => {
         });
 
         describe('save', () => {
-            it('Should call update service on save for existing user', inject(
+            it('Should call update treeNodeService on save for existing user', inject(
                 [],
                 fakeAsync(() => {
                     // GIVEN
@@ -81,7 +81,7 @@ describe('Component Tests', () => {
                 })
             ));
 
-            it('Should call create service on save for new user', inject(
+            it('Should call create treeNodeService on save for new user', inject(
                 [],
                 fakeAsync(() => {
                     // GIVEN

@@ -9,7 +9,7 @@ import { AddButtonComponent } from './button/add-button.component';
 import { JhMaterialModule } from 'app/shared/jh-material.module';
 import { MultselectComponent } from './multselect/multselect.component';
 import { ActionMenuComponent } from './action-menu/action-menu.component';
-import { OrgUnitComponent } from './org-unit/org-unit.component';
+import { OrgUnitTreeComponent } from './org-unit-tree/org-unit-tree.component';
 import { AttributesComponent } from './attributes/attributes.component';
 import { OrgUnitFilterComponent } from './org-unit-filter/org-unit-filter.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -22,7 +22,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
         AddButtonComponent,
         MultselectComponent,
         ActionMenuComponent,
-        OrgUnitComponent,
+        OrgUnitTreeComponent,
         AttributesComponent,
         OrgUnitFilterComponent
     ],
@@ -36,7 +36,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
         AddButtonComponent,
         MultselectComponent,
         ActionMenuComponent,
-        OrgUnitComponent,
+        OrgUnitTreeComponent,
         AttributesComponent,
         OrgUnitFilterComponent,
         FlexLayoutModule

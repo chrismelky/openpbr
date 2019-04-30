@@ -15,7 +15,7 @@ import org.springframework.core.env.Environment;
 import java.util.Arrays;
 
 /**
- * Aspect for logging execution of service and repository Spring components.
+ * Aspect for logging execution of treeNodeService and repository Spring components.
  *
  * By default, it only runs with the "dev" profile.
  */

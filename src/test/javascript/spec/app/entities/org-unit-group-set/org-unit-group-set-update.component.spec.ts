@@ -28,7 +28,7 @@ describe('Component Tests', () => {
         });
 
         describe('save', () => {
-            it('Should call update service on save for existing entity', fakeAsync(() => {
+            it('Should call update treeNodeService on save for existing entity', fakeAsync(() => {
                 // GIVEN
                 const entity = new OrgUnitGroupSet(123);
                 spyOn(service, 'update').and.returnValue(of(new HttpResponse({ body: entity })));
@@ -42,7 +42,7 @@ describe('Component Tests', () => {
                 expect(comp.isSaving).toEqual(false);
             }));
 
-            it('Should call create service on save for new entity', fakeAsync(() => {
+            it('Should call create treeNodeService on save for new entity', fakeAsync(() => {
                 // GIVEN
                 const entity = new OrgUnitGroupSet();
                 spyOn(service, 'create').and.returnValue(of(new HttpResponse({ body: entity })));

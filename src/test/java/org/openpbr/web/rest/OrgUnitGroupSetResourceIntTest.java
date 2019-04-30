@@ -638,7 +638,7 @@ public class OrgUnitGroupSetResourceIntTest {
     public void updateOrgUnitGroupSet() throws Exception {
         // Initialize the database
         orgUnitGroupSetService.save(orgUnitGroupSet);
-        // As the test used the service layer, reset the Elasticsearch mock repository
+        // As the test used the treeNodeService layer, reset the Elasticsearch mock repository
         reset(mockOrgUnitGroupSetSearchRepository);
 
         int databaseSizeBeforeUpdate = orgUnitGroupSetRepository.findAll().size();

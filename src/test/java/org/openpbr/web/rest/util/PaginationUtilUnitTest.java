@@ -14,7 +14,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpHeaders;
 
 /**
- * Tests based on parsing algorithm in app/components/util/pagination-util.service.js
+ * Tests based on parsing algorithm in app/components/util/pagination-util.treeNodeService.js
  *
  * @see PaginationUtil
  */

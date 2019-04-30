@@ -141,6 +141,39 @@ div.pr-org-unit-filter {
     }
 }
 
+div.pbr-tree {
+    min-height: 400px;
+    max-height: 400px;
+    height: 400px;
+    overflow-y: auto;
+    overflow-x: auto;
+    padding: 20px;
+    border-radius: 0.15rem;
+
+    button {
+        width: auto;
+        height: auto;
+        line-height: inherit;
+    }
+    mat-label {
+        cursor: pointer;
+    }
+    mat-label.tree-node-selected {
+        font-weight: bold;
+        color: orange;
+    }
+
+    .mat-tree-node {
+        min-height: 0 !important;
+        height: 18px !important;
+    }
+    ul {
+        border-left: 1px solid #333;
+        margin-left: 10px;
+        padding-left: 10px;
+    }
+}
+
 .error {
     color: white;
     background-color: red;

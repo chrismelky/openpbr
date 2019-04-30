@@ -569,7 +569,7 @@ public class OptionSetResourceIntTest {
     public void updateOptionSet() throws Exception {
         // Initialize the database
         optionSetService.save(optionSet);
-        // As the test used the service layer, reset the Elasticsearch mock repository
+        // As the test used the treeNodeService layer, reset the Elasticsearch mock repository
         reset(mockOptionSetSearchRepository);
 
         int databaseSizeBeforeUpdate = optionSetRepository.findAll().size();

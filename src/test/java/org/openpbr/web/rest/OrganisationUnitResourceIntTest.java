@@ -1070,7 +1070,7 @@ public class OrganisationUnitResourceIntTest {
     public void updateOrganisationUnit() throws Exception {
         // Initialize the database
         organisationUnitService.save(organisationUnit);
-        // As the test used the service layer, reset the Elasticsearch mock repository
+        // As the test used the treeNodeService layer, reset the Elasticsearch mock repository
         reset(mockOrganisationUnitSearchRepository);
 
         int databaseSizeBeforeUpdate = organisationUnitRepository.findAll().size();

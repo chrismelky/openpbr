@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { filter, map } from 'rxjs/operators';
 import { JhiAlertService } from 'ng-jhipster';
 import { IOrgUnitGroup } from 'app/shared/model/org-unit-group.model';
 import { OrgUnitGroupService } from './org-unit-group.service';
 import { IOrganisationUnit, OrganisationUnit } from 'app/shared/model/organisation-unit.model';
+import { OrganisationUnitService } from 'app/entities/organisation-unit';
 
 @Component({
     selector: 'pbr-org-unit-group-update',
@@ -20,7 +20,8 @@ export class OrgUnitGroupUpdateComponent implements OnInit {
     constructor(
         protected jhiAlertService: JhiAlertService,
         protected orgUnitGroupService: OrgUnitGroupService,
-        protected activatedRoute: ActivatedRoute
+        protected activatedRoute: ActivatedRoute,
+        private orgUnitService: OrganisationUnitService
     ) {}
 
     ngOnInit() {
