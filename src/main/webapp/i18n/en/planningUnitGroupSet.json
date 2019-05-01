@@ -1,0 +1,27 @@
+{
+    "openpbrApp": {
+        "planningUnitGroupSet": {
+            "home": {
+                "title": "Planning Unit Group Sets",
+                "createLabel": "Create a new Planning Unit Group Set",
+                "createOrEditLabel": "Create or edit a Planning Unit Group Set",
+                "search": "Search for Planning Unit Group Set"
+            },
+            "created": "A new Planning Unit Group Set is created with identifier {{ param }}",
+            "updated": "A Planning Unit Group Set is updated with identifier {{ param }}",
+            "deleted": "A Planning Unit Group Set is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Planning Unit Group Set {{ id }}?"
+            },
+            "detail": {
+                "title": "Planning Unit Group Set"
+            },
+            "uid": "Uid",
+            "code": "Code",
+            "name": "Name",
+            "sortOrder": "Sort Order",
+            "isActive": "Is Active",
+            "planningUnitGroups": "Planning Unit Groups"
+        }
+    }
+}

@@ -1,0 +1,29 @@
+{
+    "openpbrApp": {
+        "planningUnit": {
+            "home": {
+                "title": "PlanningUnits",
+                "createLabel": "Créer un nouveau Planning Unit",
+                "createOrEditLabel": "Créer ou éditer un Planning Unit",
+                "search": "Recherche pour Planning Unit"
+            },
+            "created": "Un nouveau Planning Unit a été créé avec l'identifiant {{ param }}",
+            "updated": "Le Planning Unit avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le Planning Unit avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer le Planning Unit {{ id }} ?"
+            },
+            "detail": {
+                "title": "Planning Unit"
+            },
+            "uid": "Uid",
+            "code": "Code",
+            "name": "Name",
+            "level": "Level",
+            "sortOrder": "Sort Order",
+            "isActive": "Is Active",
+            "parent": "Parent",
+            "planningUnitGroup": "Planning Unit Group"
+        }
+    }
+}

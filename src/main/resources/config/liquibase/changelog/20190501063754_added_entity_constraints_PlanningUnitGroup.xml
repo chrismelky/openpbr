@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <!--
+        Added the constraints for entity PlanningUnitGroup.
+    -->
+    <changeSet id="20190501063754-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="planning_unit_group_id"
+                                 baseTableName="planning_unit_group_members"
+                                 constraintName="fk_planning_unit_group_members_planning_unit_group_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="planning_unit_group"/>
+        <addForeignKeyConstraint baseColumnNames="planning_unit_id"
+                                 baseTableName="planning_unit_group_members"
+                                 constraintName="fk_planning_unit_group_members_planning_unit_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="planning_unit"/>
+        
+    </changeSet>
+</databaseChangeLog>

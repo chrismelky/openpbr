@@ -16,6 +16,10 @@
                 "orgUnitGroupSet": "Org Unit Group Set",
                 "orgUnitGroup": "Org Unit Group",
                 "organisationUnit": "Organisation Unit",
+                "planningUnitGroupSet": "Planning Unit Group Set",
+                "planningUnitGroup": "Planning Unit Group",
+                "planningUnitLevel": "Planning Unit Level",
+                "planningUnit": "Planning Unit",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {

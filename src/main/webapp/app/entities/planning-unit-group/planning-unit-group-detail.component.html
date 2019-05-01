@@ -1,0 +1,49 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="planningUnitGroup">
+            <h2><span jhiTranslate="openpbrApp.planningUnitGroup.detail.title">Planning Unit Group</span> {{planningUnitGroup.id}}</h2>
+            <hr>
+            <pbr-alert-error></pbr-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="openpbrApp.planningUnitGroup.uid">Uid</span></dt>
+                <dd>
+                    <span>{{planningUnitGroup.uid}}</span>
+                </dd>
+                <dt><span jhiTranslate="openpbrApp.planningUnitGroup.code">Code</span></dt>
+                <dd>
+                    <span>{{planningUnitGroup.code}}</span>
+                </dd>
+                <dt><span jhiTranslate="openpbrApp.planningUnitGroup.name">Name</span></dt>
+                <dd>
+                    <span>{{planningUnitGroup.name}}</span>
+                </dd>
+                <dt><span jhiTranslate="openpbrApp.planningUnitGroup.sortOrder">Sort Order</span></dt>
+                <dd>
+                    <span>{{planningUnitGroup.sortOrder}}</span>
+                </dd>
+                <dt><span jhiTranslate="openpbrApp.planningUnitGroup.isActive">Is Active</span></dt>
+                <dd>
+                    <span>{{planningUnitGroup.isActive}}</span>
+                </dd>
+                <dt><span jhiTranslate="openpbrApp.planningUnitGroup.planningUnits">Planning Units</span></dt>
+                <dd>
+                    <span *ngFor="let planningUnits of planningUnitGroup.planningUnits; let last = last">
+                        <a [routerLink]="['/planning-unit', planningUnits?.id, 'view' ]">{{planningUnits.name}}</a>{{last ? '' : ', '}}
+                    </span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/planning-unit-group', planningUnitGroup.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

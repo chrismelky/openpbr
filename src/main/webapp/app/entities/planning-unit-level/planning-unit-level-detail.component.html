@@ -1,0 +1,43 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="planningUnitLevel">
+            <h2><span jhiTranslate="openpbrApp.planningUnitLevel.detail.title">Planning Unit Level</span> {{planningUnitLevel.id}}</h2>
+            <hr>
+            <pbr-alert-error></pbr-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="openpbrApp.planningUnitLevel.uid">Uid</span></dt>
+                <dd>
+                    <span>{{planningUnitLevel.uid}}</span>
+                </dd>
+                <dt><span jhiTranslate="openpbrApp.planningUnitLevel.code">Code</span></dt>
+                <dd>
+                    <span>{{planningUnitLevel.code}}</span>
+                </dd>
+                <dt><span jhiTranslate="openpbrApp.planningUnitLevel.name">Name</span></dt>
+                <dd>
+                    <span>{{planningUnitLevel.name}}</span>
+                </dd>
+                <dt><span jhiTranslate="openpbrApp.planningUnitLevel.level">Level</span></dt>
+                <dd>
+                    <span>{{planningUnitLevel.level}}</span>
+                </dd>
+                <dt><span jhiTranslate="openpbrApp.planningUnitLevel.isActive">Is Active</span></dt>
+                <dd>
+                    <span>{{planningUnitLevel.isActive}}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/planning-unit-level', planningUnitLevel.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

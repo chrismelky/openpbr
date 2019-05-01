@@ -1,0 +1,49 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="planningUnitGroupSet">
+            <h2><span jhiTranslate="openpbrApp.planningUnitGroupSet.detail.title">Planning Unit Group Set</span> {{planningUnitGroupSet.id}}</h2>
+            <hr>
+            <pbr-alert-error></pbr-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="openpbrApp.planningUnitGroupSet.uid">Uid</span></dt>
+                <dd>
+                    <span>{{planningUnitGroupSet.uid}}</span>
+                </dd>
+                <dt><span jhiTranslate="openpbrApp.planningUnitGroupSet.code">Code</span></dt>
+                <dd>
+                    <span>{{planningUnitGroupSet.code}}</span>
+                </dd>
+                <dt><span jhiTranslate="openpbrApp.planningUnitGroupSet.name">Name</span></dt>
+                <dd>
+                    <span>{{planningUnitGroupSet.name}}</span>
+                </dd>
+                <dt><span jhiTranslate="openpbrApp.planningUnitGroupSet.sortOrder">Sort Order</span></dt>
+                <dd>
+                    <span>{{planningUnitGroupSet.sortOrder}}</span>
+                </dd>
+                <dt><span jhiTranslate="openpbrApp.planningUnitGroupSet.isActive">Is Active</span></dt>
+                <dd>
+                    <span>{{planningUnitGroupSet.isActive}}</span>
+                </dd>
+                <dt><span jhiTranslate="openpbrApp.planningUnitGroupSet.planningUnitGroups">Planning Unit Groups</span></dt>
+                <dd>
+                    <span *ngFor="let planningUnitGroups of planningUnitGroupSet.planningUnitGroups; let last = last">
+                        <a [routerLink]="['/planning-unit-group', planningUnitGroups?.id, 'view' ]">{{planningUnitGroups.name}}</a>{{last ? '' : ', '}}
+                    </span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/planning-unit-group-set', planningUnitGroupSet.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>
