@@ -2,7 +2,6 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HttpErrorResponse, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { filter, map } from 'rxjs/operators';
 import { JhiEventManager, JhiParseLinks, JhiAlertService } from 'ng-jhipster';
 
 import { IOrganisationUnit } from 'app/shared/model/organisation-unit.model';
@@ -30,6 +29,7 @@ export class OrganisationUnitComponent implements OnInit, OnDestroy {
     predicate: any;
     previousPage: any;
     reverse: any;
+    parentOrgUnit: IOrganisationUnit;
 
     constructor(
         protected organisationUnitService: OrganisationUnitService,
@@ -53,15 +53,20 @@ export class OrganisationUnitComponent implements OnInit, OnDestroy {
                 : '';
     }
 
+    parentOrgUnitChanged(parentOrgUnit: IOrganisationUnit[]) {
+        this.parentOrgUnit = parentOrgUnit[0];
+        this.loadAll();
+    }
+
     loadAll() {
+        let option: any = { page: this.page - 1, size: this.itemsPerPage, sort: this.sort() };
+        if (this.parentOrgUnit) {
+            option['parentId.equals'] = this.parentOrgUnit.id;
+        }
         if (this.currentSearch) {
+            option.query = this.currentSearch;
             this.organisationUnitService
-                .search({
-                    page: this.page - 1,
-                    query: this.currentSearch,
-                    size: this.itemsPerPage,
-                    sort: this.sort()
-                })
+                .search(option)
                 .subscribe(
                     (res: HttpResponse<IOrganisationUnit[]>) => this.paginateOrganisationUnits(res.body, res.headers),
                     (res: HttpErrorResponse) => this.onError(res.message)
@@ -69,11 +74,7 @@ export class OrganisationUnitComponent implements OnInit, OnDestroy {
             return;
         }
         this.organisationUnitService
-            .query({
-                page: this.page - 1,
-                size: this.itemsPerPage,
-                sort: this.sort()
-            })
+            .query(option)
             .subscribe(
                 (res: HttpResponse<IOrganisationUnit[]>) => this.paginateOrganisationUnits(res.body, res.headers),
                 (res: HttpErrorResponse) => this.onError(res.message)

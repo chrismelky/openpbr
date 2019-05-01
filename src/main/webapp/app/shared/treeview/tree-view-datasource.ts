@@ -12,13 +12,14 @@ export class Node {
     expanded: boolean;
     level: number;
     children?: Node[];
-    constructor(id, name, level) {
+    constructor(id, name, level, expanded = false) {
         this.id = id;
         this.name = name;
         this.level = level;
         this.isLoading = false;
         this.expanded = false;
         this.children = [];
+        this.expanded = expanded;
     }
 }
 

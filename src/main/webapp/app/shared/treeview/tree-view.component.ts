@@ -28,7 +28,9 @@ export class TreeViewComponent implements OnInit {
         this.selectedNodes = this.initialSelection.map(i => new Node(i.id, i.name, i.level));
         this.dataSource = new DynamicDataSource(this.treeControl, this.treeNodeService);
         if (this.rootNode) {
-            this.dataSource.data = [new Node(this.rootNode.id, this.rootNode.name, this.rootNode.level)];
+            const root = [new Node(this.rootNode.id, this.rootNode.name, this.rootNode.level, true)];
+            this.dataSource.data = root;
+            root.forEach(n => this.treeControl.expand(n));
             return;
         }
         this.treeNodeService
@@ -38,7 +40,9 @@ export class TreeViewComponent implements OnInit {
                 map((resp: HttpResponse<any[]>) => resp.body)
             )
             .subscribe((defaultRootNodes: any[]) => {
-                this.dataSource.data = defaultRootNodes.map(i => new Node(i.id, i.name, i.level));
+                const root = defaultRootNodes.map(i => new Node(i.id, i.name, i.level, true));
+                this.dataSource.data = root;
+                root.forEach(n => this.treeControl.expand(n));
             });
     }
 
