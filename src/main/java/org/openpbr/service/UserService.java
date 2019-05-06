@@ -260,6 +260,8 @@ public class UserService {
         userInfo.setEmployer(userDTO.getEmployer());
         userInfo.setEducation(userDTO.getEducation());
         userInfo.setAttributeValues(userDTO.getAttributeValues());
+        userInfo.setOrganisationUnit(userDTO.getOrganisationUnit());
+        userInfo.setPlanningUnit(userDTO.getPlanningUnit());
         userInfoRepository.save(userInfo);
         userInfoSearchRepository.save(userInfo);
     }

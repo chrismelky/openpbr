@@ -1,6 +1,8 @@
 import { Moment } from 'moment';
 import { IUser } from 'app/core/user/user.model';
 import { IAttributeValue } from 'app/shared/model/attribute-value.model';
+import { IOrganisationUnit } from 'app/shared/model/organisation-unit.model';
+import { IPlanningUnit } from 'app/shared/model/planning-unit.model';
 
 export const enum Gender {
     FEMALE = 'FEMALE',
@@ -25,6 +27,8 @@ export interface IUserInfo {
     education?: string;
     user?: IUser;
     attributeValues?: IAttributeValue[];
+    organisationUnit?: IOrganisationUnit;
+    planningUnit?: IPlanningUnit;
 }
 
 export class UserInfo implements IUserInfo {
@@ -44,6 +48,8 @@ export class UserInfo implements IUserInfo {
         public employer?: string,
         public education?: string,
         public user?: IUser,
-        public attributeValues?: IAttributeValue[]
+        public attributeValues?: IAttributeValue[],
+        public organisationUnit?: IOrganisationUnit,
+        public planningUnit?: IPlanningUnit
     ) {}
 }

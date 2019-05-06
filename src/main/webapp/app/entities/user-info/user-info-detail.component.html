@@ -67,6 +67,18 @@
                         <a [routerLink]="['/attribute-value', attributeValues?.id, 'view' ]">{{attributeValues.id}}</a>{{last ? '' : ', '}}
                     </span>
                 </dd>
+                <dt><span jhiTranslate="openpbrApp.userInfo.organisationUnit">Organisation Unit</span></dt>
+                <dd>
+                    <div *ngIf="userInfo.organisationUnit">
+                        <a [routerLink]="['/organisation-unit', userInfo.organisationUnit?.id, 'view']">{{userInfo.organisationUnit?.name}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="openpbrApp.userInfo.planningUnit">Planning Unit</span></dt>
+                <dd>
+                    <div *ngIf="userInfo.planningUnit">
+                        <a [routerLink]="['/planning-unit', userInfo.planningUnit?.id, 'view']">{{userInfo.planningUnit?.name}}</a>
+                    </div>
+                </dd>
             </dl>
 
             <button type="submit"

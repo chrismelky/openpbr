@@ -10,6 +10,10 @@ import { UserInfoService } from './user-info.service';
 import { IUser, UserService } from 'app/core';
 import { IAttributeValue } from 'app/shared/model/attribute-value.model';
 import { AttributeValueService } from 'app/entities/attribute-value';
+import { IOrganisationUnit } from 'app/shared/model/organisation-unit.model';
+import { OrganisationUnitService } from 'app/entities/organisation-unit';
+import { IPlanningUnit } from 'app/shared/model/planning-unit.model';
+import { PlanningUnitService } from 'app/entities/planning-unit';
 
 @Component({
     selector: 'pbr-user-info-update',
@@ -22,6 +26,10 @@ export class UserInfoUpdateComponent implements OnInit {
     users: IUser[];
 
     attributevalues: IAttributeValue[];
+
+    organisationunits: IOrganisationUnit[];
+
+    planningunits: IPlanningUnit[];
     birthDayDp: any;
 
     constructor(
@@ -29,6 +37,8 @@ export class UserInfoUpdateComponent implements OnInit {
         protected userInfoService: UserInfoService,
         protected userService: UserService,
         protected attributeValueService: AttributeValueService,
+        protected organisationUnitService: OrganisationUnitService,
+        protected planningUnitService: PlanningUnitService,
         protected activatedRoute: ActivatedRoute
     ) {}
 
@@ -51,6 +61,20 @@ export class UserInfoUpdateComponent implements OnInit {
                 map((response: HttpResponse<IAttributeValue[]>) => response.body)
             )
             .subscribe((res: IAttributeValue[]) => (this.attributevalues = res), (res: HttpErrorResponse) => this.onError(res.message));
+        this.organisationUnitService
+            .query()
+            .pipe(
+                filter((mayBeOk: HttpResponse<IOrganisationUnit[]>) => mayBeOk.ok),
+                map((response: HttpResponse<IOrganisationUnit[]>) => response.body)
+            )
+            .subscribe((res: IOrganisationUnit[]) => (this.organisationunits = res), (res: HttpErrorResponse) => this.onError(res.message));
+        this.planningUnitService
+            .query()
+            .pipe(
+                filter((mayBeOk: HttpResponse<IPlanningUnit[]>) => mayBeOk.ok),
+                map((response: HttpResponse<IPlanningUnit[]>) => response.body)
+            )
+            .subscribe((res: IPlanningUnit[]) => (this.planningunits = res), (res: HttpErrorResponse) => this.onError(res.message));
     }
 
     previousState() {
@@ -88,6 +112,14 @@ export class UserInfoUpdateComponent implements OnInit {
     }
 
     trackAttributeValueById(index: number, item: IAttributeValue) {
+        return item.id;
+    }
+
+    trackOrganisationUnitById(index: number, item: IOrganisationUnit) {
+        return item.id;
+    }
+
+    trackPlanningUnitById(index: number, item: IPlanningUnit) {
         return item.id;
     }
 

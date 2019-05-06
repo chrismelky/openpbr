@@ -5,6 +5,10 @@ import { JhiLanguageHelper, User, UserService } from 'app/core';
 import { UserInfo } from 'app/shared/model/user-info.model';
 import { Attribute } from 'app/shared/model/attribute.model';
 import { AttributeValue } from 'app/shared/model/attribute-value.model';
+import { OrganisationUnitService } from 'app/entities/organisation-unit';
+import { PlanningUnitService } from 'app/entities/planning-unit';
+import { IOrganisationUnit } from 'app/shared/model/organisation-unit.model';
+import { IPlanningUnit } from 'app/shared/model/planning-unit.model';
 
 @Component({
     selector: 'pbr-user-mgmt-update',
@@ -24,7 +28,9 @@ export class UserMgmtUpdateComponent implements OnInit {
         private languageHelper: JhiLanguageHelper,
         private userService: UserService,
         private route: ActivatedRoute,
-        private router: Router
+        private router: Router,
+        private orgUnitService: OrganisationUnitService,
+        private planningUnitService: PlanningUnitService
     ) {}
 
     ngOnInit() {
@@ -46,6 +52,14 @@ export class UserMgmtUpdateComponent implements OnInit {
     onAttrValueChange(attrValues) {
         this.user.attributeValues = attrValues.data;
         this.attrForm = attrValues.form;
+    }
+
+    onOrgUnitChange(ou: IOrganisationUnit) {
+        this.user.organisationUnit = ou[0];
+    }
+
+    onPlanningUnitChange(pu: IPlanningUnit) {
+        this.user.planningUnit = pu[0];
     }
 
     previousState() {

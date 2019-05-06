@@ -131,6 +131,11 @@
                 <ng-container>
                     <pbr-attributes [attrs]="userAttributes" [initialValues]="userInitialAttrValues" (attributeValueOut)="onAttrValueChange($event)"></pbr-attributes>
                 </ng-container>
+                <div fxLayout="row" fxLayoutAlign="start stretch" fxLayoutGap="4px">
+                    <pbr-tree-view title="Organisation Unit" fxFlex="49" [multiple]="false" [initialSelection]="user.organisationUnit !== null ? [user.organisationUnit] : []" [treeNodeService]="orgUnitService" (onNodeSelectionChange)="onOrgUnitChange($event)"></pbr-tree-view>
+                    <div fxFlex="2"></div>
+                    <pbr-tree-view title="Planning Unit" fxFlex="49" [multiple]="false" [initialSelection]="user.planningUnit !== null ? [user.planningUnit] : []" [treeNodeService]="planningUnitService" (onNodeSelectionChange)="onPlanningUnitChange($event)"></pbr-tree-view>
+                </div>
             </div>
             <div class="pbr-action-footer">
                 <button mat-raised-button type="submit" [disabled]="editForm.form.invalid || isSaving || attrForm.form.invalid" >

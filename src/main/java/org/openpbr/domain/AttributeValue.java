@@ -48,7 +48,7 @@ public class AttributeValue extends AbstractAuditingEntity implements Serializab
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
 
     public String getValue() {
-        return value;
+        return value.toString();
     }
 
     public AttributeValue value(String value) {
@@ -57,7 +57,7 @@ public class AttributeValue extends AbstractAuditingEntity implements Serializab
     }
 
     public void setValue(String value) {
-        this.value = value;
+        this.value = value.toString();
     }
 
     public Attribute getAttribute() {

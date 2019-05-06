@@ -91,5 +91,17 @@
         <addPrimaryKey columnNames="user_info_id, attribute_values_id" tableName="user_attribute_values"/>
 
     </changeSet>
+
+    <changeSet id="20190329085732-5" author="chris">
+        <addColumn tableName="user_info">
+            <column name="organisation_unit_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="planning_unit_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+        </addColumn>
+    </changeSet>
     <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here, do not remove-->
 </databaseChangeLog>

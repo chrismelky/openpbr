@@ -27,4 +27,19 @@
                                  referencedTableName="attribute_value"/>
 
     </changeSet>
+
+    <changeSet id="20190329085732-6" author="chris">
+
+        <addForeignKeyConstraint baseColumnNames="organisation_unit_id"
+                                 baseTableName="user_info"
+                                 constraintName="fk_user_info_organisation_unit_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="organisation_unit"/>
+
+        <addForeignKeyConstraint baseColumnNames="planning_unit_id"
+                                 baseTableName="user_info"
+                                 constraintName="fk_user_info_planning_unit_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="planning_unit"/>
+    </changeSet>
 </databaseChangeLog>

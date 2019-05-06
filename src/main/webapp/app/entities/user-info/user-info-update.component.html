@@ -164,6 +164,20 @@
                         <option [ngValue]="getSelected(userInfo.attributeValues, attributeValueOption)" *ngFor="let attributeValueOption of attributevalues; trackBy: trackAttributeValueById">{{attributeValueOption.id}}</option>
                     </select>
                 </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="openpbrApp.userInfo.organisationUnit" for="field_organisationUnit">Organisation Unit</label>
+                    <select class="form-control" id="field_organisationUnit" name="organisationUnit" [(ngModel)]="userInfo.organisationUnit" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="organisationUnitOption.id === userInfo.organisationUnit?.id ? userInfo.organisationUnit : organisationUnitOption" *ngFor="let organisationUnitOption of organisationunits; trackBy: trackOrganisationUnitById">{{organisationUnitOption.name}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="openpbrApp.userInfo.planningUnit" for="field_planningUnit">Planning Unit</label>
+                    <select class="form-control" id="field_planningUnit" name="planningUnit" [(ngModel)]="userInfo.planningUnit" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="planningUnitOption.id === userInfo.planningUnit?.id ? userInfo.planningUnit : planningUnitOption" *ngFor="let planningUnitOption of planningunits; trackBy: trackPlanningUnitById">{{planningUnitOption.name}}</option>
+                    </select>
+                </div>
             </div>
             <div>
                 <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">

@@ -60,7 +60,8 @@ export const userMgmtRoute: Routes = [
             attributes: AttributeByTypeResolve
         },
         data: {
-            attributeType: { 'isUserAttribute.equals': true, sort: ['sortOrder'] }
+            attributeType: { 'isUserAttribute.equals': true, sort: ['sortOrder'] },
+            pageTitle: 'userManagement.home.title'
         }
     },
     {
@@ -71,7 +72,8 @@ export const userMgmtRoute: Routes = [
             attributes: AttributeByTypeResolve
         },
         data: {
-            attributeType: { 'isUserAttribute.equals': true, sort: ['sortOrder'] }
+            attributeType: { 'isUserAttribute.equals': true, sort: ['sortOrder'] },
+            pageTitle: 'userManagement.home.title'
         }
     }
 ];

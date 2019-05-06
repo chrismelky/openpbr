@@ -1,6 +1,8 @@
 import { Gender } from 'app/shared/model/user-info.model';
 import { Moment } from 'moment';
 import { IAttributeValue } from 'app/shared/model/attribute-value.model';
+import { IOrganisationUnit, OrganisationUnit } from 'app/shared/model/organisation-unit.model';
+import { IPlanningUnit } from 'app/shared/model/planning-unit.model';
 
 export interface IUser {
     id?: any;
@@ -25,6 +27,8 @@ export interface IUser {
     lastModifiedDate?: Date;
     password?: string;
     attributeValues?: IAttributeValue[];
+    organisationUnit?: IOrganisationUnit;
+    planningUnit?: IPlanningUnit;
 }
 
 export class User implements IUser {
@@ -50,7 +54,9 @@ export class User implements IUser {
         public lastModifiedBy?: string,
         public lastModifiedDate?: Date,
         public password?: string,
-        public attributeValues?: IAttributeValue[]
+        public attributeValues?: IAttributeValue[],
+        public organisationUnit?: IOrganisationUnit,
+        public planningUnit?: IPlanningUnit
     ) {
         this.id = id ? id : null;
         this.login = login ? login : null;
@@ -74,5 +80,7 @@ export class User implements IUser {
         this.lastModifiedDate = lastModifiedDate ? lastModifiedDate : null;
         this.password = password ? password : null;
         this.attributeValues = attributeValues ? attributeValues : [];
+        this.organisationUnit = organisationUnit ? organisationUnit : null;
+        this.planningUnit = planningUnit ? planningUnit : null;
     }
 }

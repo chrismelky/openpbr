@@ -1,5 +1,7 @@
 package org.openpbr.service.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.openpbr.config.Constants;
 
 import org.openpbr.domain.*;
@@ -154,6 +156,29 @@ public class UserDTO extends IdentifiableEntity  {
 
     private Set<AttributeValue> attributeValues = new HashSet<>();
 
+    public OrganisationUnit getOrganisationUnit() {
+        return organisationUnit;
+    }
+
+    public void setOrganisationUnit(OrganisationUnit organisationUnit) {
+        this.organisationUnit = organisationUnit;
+    }
+
+    public PlanningUnit getPlanningUnit() {
+        return planningUnit;
+    }
+
+    public void setPlanningUnit(PlanningUnit planningUnit) {
+        this.planningUnit = planningUnit;
+    }
+
+    @JsonIgnoreProperties({"isActive","sortOrder",
+        "phoneNumber", "email", "address", "longitude", "latitude", "url",
+        "closedDate", "openingDate", "uid", "code", "createdBy","createdDate", "lastModifiedBy", "lastModifiedDate"})
+    private OrganisationUnit organisationUnit;
+
+    private PlanningUnit planningUnit;
+
 
     public UserDTO() {
         // Empty constructor needed for Jackson.
@@ -190,6 +215,8 @@ public class UserDTO extends IdentifiableEntity  {
             this.employer = user.getUserInfo().getEmployer();
             this.education = user.getUserInfo().getEducation();
             this.attributeValues = user.getUserInfo().getAttributeValues();
+            this.organisationUnit = user.getUserInfo().getOrganisationUnit();
+            this.planningUnit = user.getUserInfo().getPlanningUnit();
         }
 
     }

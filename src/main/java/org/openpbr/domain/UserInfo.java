@@ -87,6 +87,14 @@ public class UserInfo extends IdentifiableEntity implements Serializable {
         inverseJoinColumns = @JoinColumn(name = "attribute_values_id", referencedColumnName = "id"))
     private Set<AttributeValue> attributeValues = new HashSet<>();
 
+    @ManyToOne
+    @JsonIgnoreProperties("userInfos")
+    private OrganisationUnit organisationUnit;
+
+    @ManyToOne
+    @JsonIgnoreProperties("userInfos")
+    private PlanningUnit planningUnit;
+
     public Set<AttributeValue> getAttributeValues() {
         return attributeValues;
     }
@@ -268,6 +276,32 @@ public class UserInfo extends IdentifiableEntity implements Serializable {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public OrganisationUnit getOrganisationUnit() {
+        return organisationUnit;
+    }
+
+    public UserInfo organisationUnit(OrganisationUnit organisationUnit) {
+        this.organisationUnit = organisationUnit;
+        return this;
+    }
+
+    public void setOrganisationUnit(OrganisationUnit organisationUnit) {
+        this.organisationUnit = organisationUnit;
+    }
+
+    public PlanningUnit getPlanningUnit() {
+        return planningUnit;
+    }
+
+    public UserInfo planningUnit(PlanningUnit planningUnit) {
+        this.planningUnit = planningUnit;
+        return this;
+    }
+
+    public void setPlanningUnit(PlanningUnit planningUnit) {
+        this.planningUnit = planningUnit;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

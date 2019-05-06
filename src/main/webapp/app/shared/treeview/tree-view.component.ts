@@ -18,14 +18,19 @@ export class TreeViewComponent implements OnInit {
     @Input() rootNode: any;
     @Input() initialSelection: any[] = [];
     @Input() multiple = true;
+    @Input() title: string;
     @Output() onNodeSelectionChange: EventEmitter<Node[]> = new EventEmitter<Node[]>();
+    parentIds = [];
 
     constructor() {
         this.treeControl = new NestedTreeControl<any>(node => node.children);
     }
 
     ngOnInit() {
-        this.selectedNodes = this.initialSelection.map(i => new Node(i.id, i.name, i.level));
+        this.selectedNodes = this.initialSelection.map(i => {
+            this.getParents(i);
+            return new Node(i.id, i.name, i.level);
+        });
         this.dataSource = new DynamicDataSource(this.treeControl, this.treeNodeService);
         if (this.rootNode) {
             const root = [new Node(this.rootNode.id, this.rootNode.name, this.rootNode.level, true)];
@@ -44,6 +49,18 @@ export class TreeViewComponent implements OnInit {
                 this.dataSource.data = root;
                 root.forEach(n => this.treeControl.expand(n));
             });
+    }
+
+    getParents(node) {
+        let parent = node.parent;
+        while (parent) {
+            this.parentIds.push(parent.id);
+            parent = parent.parent;
+        }
+    }
+
+    getTotalChildren(nodeId) {
+        return this.parentIds.filter(p => p === nodeId).length;
     }
 
     toggleSelect(node: Node) {

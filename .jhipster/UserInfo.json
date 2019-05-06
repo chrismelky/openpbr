@@ -23,6 +23,23 @@
             "ownerSide": true,
             "otherEntityRelationshipName": "userInfo",
             "otherEntityRelationshipNameUndefined": false
+        },
+        {
+            "relationshipName": "organisationUnit",
+            "otherEntityName": "organisationUnit",
+            "relationshipType": "many-to-one",
+            "relationshipValidateRules": [],
+            "otherEntityField": "name",
+            "otherEntityRelationshipName": "userInfo",
+            "otherEntityRelationshipNameUndefined": true
+        },
+        {
+            "relationshipName": "planningUnit",
+            "otherEntityName": "planningUnit",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "name",
+            "otherEntityRelationshipName": "userInfo",
+            "otherEntityRelationshipNameUndefined": true
         }
     ],
     "fields": [

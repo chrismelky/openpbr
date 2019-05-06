@@ -30,7 +30,9 @@
             "employer": "Employer",
             "education": "Education",
             "user": "User",
-            "attributeValues": "Attribute Values"
+            "attributeValues": "Attribute Values",
+            "organisationUnit": "Organisation Unit",
+            "planningUnit": "Planning Unit"
         }
     }
 }

@@ -1,6 +1,7 @@
 package org.openpbr.domain;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -79,6 +80,9 @@ public class OrganisationUnit extends IdentifiableEntity implements Serializable
 
     @OneToOne
     @JoinColumn(unique = true)
+    @JsonIgnoreProperties({"isActive","sortOrder",
+        "phoneNumber", "email", "address", "longitude", "latitude", "url",
+        "closedDate", "openingDate", "uid","code", "createdBy","createdDate", "lastModifiedBy", "lastModifiedDate"})
     private OrganisationUnit parent;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
