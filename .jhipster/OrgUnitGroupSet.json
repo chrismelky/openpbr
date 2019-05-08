@@ -54,6 +54,15 @@
             "relationshipName": "orgUnitGroups",
             "otherEntityField": "name",
             "ownerSide": true
+        },
+        {
+            "relationshipName": "attributeValues",
+            "otherEntityName": "attributeValue",
+            "relationshipType": "many-to-many",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "orgUnitGroupSet",
+            "otherEntityRelationshipNameUndefined": false
         }
     ],
     "changelogDate": "20190416172849",
@@ -65,5 +74,6 @@
     "fluentMethods": true,
     "clientRootFolder": "",
     "applications": "*",
-    "enableEntityAudit": true
+    "enableEntityAudit": true,
+    "searchEngine": "ElasticSearch"
 }

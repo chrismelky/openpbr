@@ -20,4 +20,17 @@
                                  referencedTableName="org_unit_group"/>
         
     </changeSet>
+
+    <changeSet id="20190416172849-4" author="chris">
+        <addForeignKeyConstraint baseColumnNames="org_unit_group_set_id"
+                                 baseTableName="org_unit_group_set_attribute_values"
+                                 constraintName="fk_org_unit_group_set_attribute_values_org_unit_group_set_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="org_unit_group_set"/>
+        <addForeignKeyConstraint baseColumnNames="attribute_value_id"
+                                 baseTableName="org_unit_group_set_attribute_values"
+                                 constraintName="fk_org_unit_group_set_attribute_values_attribute_values_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="attribute_value"/>
+    </changeSet>
 </databaseChangeLog>

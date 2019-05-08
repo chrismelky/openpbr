@@ -60,6 +60,18 @@
         <addPrimaryKey columnNames="org_unit_group_set_id, org_unit_group_id" tableName="org_unit_group_set_members"/>
         
     </changeSet>
+    <changeSet id="20190416172849-3" author="chris">
+        <createTable tableName="org_unit_group_set_attribute_values">
+            <column name="attribute_value_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="org_unit_group_set_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addPrimaryKey columnNames="org_unit_group_set_id, attribute_value_id" tableName="org_unit_group_set_attribute_values"/>
+    </changeSet>
     
     <!-- Added the entity audit columns -->
     <changeSet id="20190416173127-audit-1" author="jhipster-entity-audit">

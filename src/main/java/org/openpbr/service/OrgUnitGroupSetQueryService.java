@@ -109,6 +109,10 @@ public class OrgUnitGroupSetQueryService extends QueryService<OrgUnitGroupSet> {
                 specification = specification.and(buildSpecification(criteria.getOrgUnitGroupsId(),
                     root -> root.join(OrgUnitGroupSet_.orgUnitGroups, JoinType.LEFT).get(OrgUnitGroup_.id)));
             }
+            if (criteria.getAttributeValuesId() != null) {
+                specification = specification.and(buildSpecification(criteria.getAttributeValuesId(),
+                    root -> root.join(OrgUnitGroupSet_.attributeValues, JoinType.LEFT).get(AttributeValue_.id)));
+            }
         }
         return specification;
     }

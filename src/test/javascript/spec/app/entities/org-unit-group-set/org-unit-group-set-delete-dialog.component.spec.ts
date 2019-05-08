@@ -31,7 +31,7 @@ describe('Component Tests', () => {
         });
 
         describe('confirmDelete', () => {
-            it('Should call delete treeNodeService on confirmDelete', inject(
+            it('Should call delete service on confirmDelete', inject(
                 [],
                 fakeAsync(() => {
                     // GIVEN

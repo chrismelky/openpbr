@@ -1,4 +1,5 @@
 import { IOrgUnitGroup } from 'app/shared/model/org-unit-group.model';
+import { IAttributeValue } from 'app/shared/model/attribute-value.model';
 
 export interface IOrgUnitGroupSet {
     id?: number;
@@ -9,6 +10,7 @@ export interface IOrgUnitGroupSet {
     sortOrder?: number;
     isActive?: boolean;
     orgUnitGroups?: IOrgUnitGroup[];
+    attributeValues?: IAttributeValue[];
 }
 
 export class OrgUnitGroupSet implements IOrgUnitGroupSet {
@@ -20,7 +22,8 @@ export class OrgUnitGroupSet implements IOrgUnitGroupSet {
         public description?: string,
         public sortOrder?: number,
         public isActive?: boolean,
-        public orgUnitGroups?: IOrgUnitGroup[]
+        public orgUnitGroups?: IOrgUnitGroup[],
+        public attributeValues?: IAttributeValue[]
     ) {
         this.isActive = this.isActive || false;
     }

@@ -59,6 +59,13 @@ public class OrgUnitGroupSet extends IdentifiableEntity implements Serializable 
                inverseJoinColumns = @JoinColumn(name = "org_unit_group_id", referencedColumnName = "id"))
     private Set<OrgUnitGroup> orgUnitGroups = new HashSet<>();
 
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    @JoinTable(name = "org_unit_group_set_attribute_values",
+        joinColumns = @JoinColumn(name = "org_unit_group_set_id", referencedColumnName = "id"),
+        inverseJoinColumns = @JoinColumn(name = "attribute_value_id", referencedColumnName = "id"))
+    private Set<AttributeValue> attributeValues = new HashSet<>();
+
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public OrgUnitGroupSet uid(String uid) {
         this.uid = uid;
@@ -145,6 +152,29 @@ public class OrgUnitGroupSet extends IdentifiableEntity implements Serializable 
 
     public void setOrgUnitGroups(Set<OrgUnitGroup> orgUnitGroups) {
         this.orgUnitGroups = orgUnitGroups;
+    }
+
+    public Set<AttributeValue> getAttributeValues() {
+        return attributeValues;
+    }
+
+    public OrgUnitGroupSet attributeValues(Set<AttributeValue> attributeValues) {
+        this.attributeValues = attributeValues;
+        return this;
+    }
+
+    public OrgUnitGroupSet addAttributeValues(AttributeValue attributeValue) {
+        this.attributeValues.add(attributeValue);
+        return this;
+    }
+
+    public OrgUnitGroupSet removeAttributeValues(AttributeValue attributeValue) {
+        this.attributeValues.remove(attributeValue);
+        return this;
+    }
+
+    public void setAttributeValues(Set<AttributeValue> attributeValues) {
+        this.attributeValues = attributeValues;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

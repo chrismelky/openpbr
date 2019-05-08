@@ -34,6 +34,6 @@ export class AttributesComponent implements OnInit {
     }
 
     attrValueChange() {
-        this.attributeValueOut.emit({ form: this.attrForm, data: this.attributeValues });
+        this.attributeValueOut.emit({ form: this.attrForm, data: this.attributeValues.filter(i => i.value !== null) });
     }
 }

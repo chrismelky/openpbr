@@ -45,6 +45,9 @@
                 <ng-container>
                     <pbr-multselect title="Org Unit Groups" (notify)="onGroupChanged($event)" *ngIf="orgunitgroups" [items]="orgunitgroups" [isObject]="true" [selectedItems]="orgUnitGroupSet.orgUnitGroups"></pbr-multselect>
                 </ng-container>
+                <ng-container>
+                    <pbr-attributes [attrs]="orgUnitGroupSetAttributes" [initialValues]="orgUnitGroupSetInitialAttrValues" (attributeValueOut)="onAttrValueChange($event)"></pbr-attributes>
+                </ng-container>
                 <!--<div class="form-group">-->
                     <!--<label jhiTranslate="openpbrApp.orgUnitGroupSet.orgUnitGroups" for="field_orgUnitGroups">Org Unit Groups</label>-->
                     <!--<select class="form-control" id="field_orgUnitGroups" multiple name="orgUnitGroups" [(ngModel)]="orgUnitGroupSet.orgUnitGroups" required>-->

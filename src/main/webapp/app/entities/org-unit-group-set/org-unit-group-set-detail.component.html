@@ -35,6 +35,12 @@
                         <a [routerLink]="['/org-unit-group', orgUnitGroups?.id, 'view' ]">{{orgUnitGroups.name}}</a>{{last ? '' : ', '}}
                     </span>
                 </dd>
+                <dt><span jhiTranslate="openpbrApp.orgUnitGroupSet.attributeValues">Attribute Values</span></dt>
+                <dd>
+                    <span *ngFor="let attributeValues of orgUnitGroupSet.attributeValues; let last = last">
+                        <a [routerLink]="['/attribute-value', attributeValues?.id, 'view' ]">{{attributeValues.id}}</a>{{last ? '' : ', '}}
+                    </span>
+                </dd>
             </dl>
 
             <button type="submit"

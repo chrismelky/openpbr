@@ -4,6 +4,7 @@ import org.openpbr.OpenpbrApp;
 
 import org.openpbr.domain.OrgUnitGroupSet;
 import org.openpbr.domain.OrgUnitGroup;
+import org.openpbr.domain.AttributeValue;
 import org.openpbr.repository.OrgUnitGroupSetRepository;
 import org.openpbr.repository.search.OrgUnitGroupSetSearchRepository;
 import org.openpbr.service.OrgUnitGroupSetService;
@@ -585,6 +586,25 @@ public class OrgUnitGroupSetResourceIntTest {
         defaultOrgUnitGroupSetShouldNotBeFound("orgUnitGroupsId.equals=" + (orgUnitGroupsId + 1));
     }
 
+
+    @Test
+    @Transactional
+    public void getAllOrgUnitGroupSetsByAttributeValuesIsEqualToSomething() throws Exception {
+        // Initialize the database
+        AttributeValue attributeValues = AttributeValueResourceIntTest.createEntity(em);
+        em.persist(attributeValues);
+        em.flush();
+        orgUnitGroupSet.addAttributeValues(attributeValues);
+        orgUnitGroupSetRepository.saveAndFlush(orgUnitGroupSet);
+        Long attributeValuesId = attributeValues.getId();
+
+        // Get all the orgUnitGroupSetList where attributeValues equals to attributeValuesId
+        defaultOrgUnitGroupSetShouldBeFound("attributeValuesId.equals=" + attributeValuesId);
+
+        // Get all the orgUnitGroupSetList where attributeValues equals to attributeValuesId + 1
+        defaultOrgUnitGroupSetShouldNotBeFound("attributeValuesId.equals=" + (attributeValuesId + 1));
+    }
+
     /**
      * Executes the search, and checks that the default entity is returned
      */
@@ -638,7 +658,7 @@ public class OrgUnitGroupSetResourceIntTest {
     public void updateOrgUnitGroupSet() throws Exception {
         // Initialize the database
         orgUnitGroupSetService.save(orgUnitGroupSet);
-        // As the test used the treeNodeService layer, reset the Elasticsearch mock repository
+        // As the test used the service layer, reset the Elasticsearch mock repository
         reset(mockOrgUnitGroupSetSearchRepository);
 
         int databaseSizeBeforeUpdate = orgUnitGroupSetRepository.findAll().size();

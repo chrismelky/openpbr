@@ -22,7 +22,8 @@
             "description": "Description",
             "sortOrder": "Sort Order",
             "isActive": "Is Active",
-            "orgUnitGroups": "Org Unit Groups"
+            "orgUnitGroups": "Org Unit Groups",
+            "attributeValues": "Attribute Values"
         }
     }
 }
