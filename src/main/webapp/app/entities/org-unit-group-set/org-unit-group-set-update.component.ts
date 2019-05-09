@@ -47,13 +47,14 @@ export class OrgUnitGroupSetUpdateComponent implements OnInit {
                 map((response: HttpResponse<IOrgUnitGroup[]>) => response.body)
             )
             .subscribe((res: IOrgUnitGroup[]) => (this.orgunitgroups = res), (res: HttpErrorResponse) => this.onError(res.message));
-        this.attributeValueService
-            .query()
-            .pipe(
-                filter((mayBeOk: HttpResponse<IAttributeValue[]>) => mayBeOk.ok),
-                map((response: HttpResponse<IAttributeValue[]>) => response.body)
-            )
-            .subscribe((res: IAttributeValue[]) => (this.attributevalues = res), (res: HttpErrorResponse) => this.onError(res.message));
+        //TODO  remove
+        // this.attributeValueService
+        //     .query()
+        //     .pipe(
+        //         filter((mayBeOk: HttpResponse<IAttributeValue[]>) => mayBeOk.ok),
+        //         map((response: HttpResponse<IAttributeValue[]>) => response.body)
+        //     )
+        //     .subscribe((res: IAttributeValue[]) => (this.attributevalues = res), (res: HttpErrorResponse) => this.onError(res.message));
     }
 
     previousState() {

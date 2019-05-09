@@ -17,14 +17,14 @@ import java.util.Optional;
 @Repository
 public interface OrgUnitGroupRepository extends JpaRepository<OrgUnitGroup, Long>, JpaSpecificationExecutor<OrgUnitGroup> {
 
-    @Query(value = "select distinct org_unit_group from OrgUnitGroup org_unit_group left join fetch org_unit_group.organisationUnits",
+    @Query(value = "select distinct org_unit_group from OrgUnitGroup org_unit_group left join fetch org_unit_group.organisationUnits left join fetch org_unit_group.attributeValues",
         countQuery = "select count(distinct org_unit_group) from OrgUnitGroup org_unit_group")
     Page<OrgUnitGroup> findAllWithEagerRelationships(Pageable pageable);
 
-    @Query(value = "select distinct org_unit_group from OrgUnitGroup org_unit_group left join fetch org_unit_group.organisationUnits")
+    @Query(value = "select distinct org_unit_group from OrgUnitGroup org_unit_group left join fetch org_unit_group.organisationUnits left join fetch org_unit_group.attributeValues")
     List<OrgUnitGroup> findAllWithEagerRelationships();
 
-    @Query("select org_unit_group from OrgUnitGroup org_unit_group left join fetch org_unit_group.organisationUnits where org_unit_group.id =:id")
+    @Query("select org_unit_group from OrgUnitGroup org_unit_group left join fetch org_unit_group.organisationUnits left join fetch org_unit_group.attributeValues where org_unit_group.id =:id")
     Optional<OrgUnitGroup> findOneWithEagerRelationships(@Param("id") Long id);
 
 }

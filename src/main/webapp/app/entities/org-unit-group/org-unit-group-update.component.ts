@@ -7,6 +7,8 @@ import { IOrgUnitGroup } from 'app/shared/model/org-unit-group.model';
 import { OrgUnitGroupService } from './org-unit-group.service';
 import { IOrganisationUnit, OrganisationUnit } from 'app/shared/model/organisation-unit.model';
 import { OrganisationUnitService } from 'app/entities/organisation-unit';
+import { Attribute } from 'app/shared/model/attribute.model';
+import { AttributeValue } from 'app/shared/model/attribute-value.model';
 
 @Component({
     selector: 'pbr-org-unit-group-update',
@@ -16,6 +18,9 @@ export class OrgUnitGroupUpdateComponent implements OnInit {
     orgUnitGroup: IOrgUnitGroup;
     isSaving: boolean;
     orgUnitSelected: IOrganisationUnit[] = [];
+    orgUnitGroupAttributes: Attribute[];
+    orgUnitGroupInitialAttrValues: AttributeValue[];
+    attrForm = { form: { invalid: false } };
 
     constructor(
         protected jhiAlertService: JhiAlertService,
@@ -26,8 +31,10 @@ export class OrgUnitGroupUpdateComponent implements OnInit {
 
     ngOnInit() {
         this.isSaving = false;
-        this.activatedRoute.data.subscribe(({ orgUnitGroup }) => {
+        this.activatedRoute.data.subscribe(({ orgUnitGroup, attributes }) => {
             this.orgUnitGroup = orgUnitGroup;
+            this.orgUnitGroupAttributes = [...attributes];
+            this.orgUnitGroupInitialAttrValues = [...this.orgUnitGroup.attributeValues];
             if (this.orgUnitGroup.organisationUnits) {
                 this.orgUnitGroup.organisationUnits.forEach((ou: OrganisationUnit) => {
                     this.orgUnitSelected.push(ou);
@@ -38,6 +45,11 @@ export class OrgUnitGroupUpdateComponent implements OnInit {
 
     onOrgSelectedChange(ous: OrganisationUnit[]) {
         this.orgUnitGroup.organisationUnits = ous;
+    }
+
+    onAttrValueChange(attrValues) {
+        this.orgUnitGroup.attributeValues = attrValues.data;
+        this.attrForm = attrValues.form;
     }
 
     previousState() {

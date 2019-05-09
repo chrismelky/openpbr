@@ -12,6 +12,7 @@ import { OrgUnitGroupDetailComponent } from './org-unit-group-detail.component';
 import { OrgUnitGroupUpdateComponent } from './org-unit-group-update.component';
 import { OrgUnitGroupDeletePopupComponent } from './org-unit-group-delete-dialog.component';
 import { IOrgUnitGroup } from 'app/shared/model/org-unit-group.model';
+import { AttributeByTypeResolve } from 'app/entities/attribute';
 
 @Injectable({ providedIn: 'root' })
 export class OrgUnitGroupResolve implements Resolve<IOrgUnitGroup> {
@@ -59,11 +60,13 @@ export const orgUnitGroupRoute: Routes = [
         path: 'new',
         component: OrgUnitGroupUpdateComponent,
         resolve: {
-            orgUnitGroup: OrgUnitGroupResolve
+            orgUnitGroup: OrgUnitGroupResolve,
+            attributes: AttributeByTypeResolve
         },
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'openpbrApp.orgUnitGroup.home.title'
+            pageTitle: 'openpbrApp.orgUnitGroup.home.title',
+            attributeType: { 'isOrgUnitGroupAttribute.equals': true, sort: ['sortOrder'] }
         },
         canActivate: [UserRouteAccessService]
     },
@@ -71,11 +74,13 @@ export const orgUnitGroupRoute: Routes = [
         path: ':id/edit',
         component: OrgUnitGroupUpdateComponent,
         resolve: {
-            orgUnitGroup: OrgUnitGroupResolve
+            orgUnitGroup: OrgUnitGroupResolve,
+            attributes: AttributeByTypeResolve
         },
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'openpbrApp.orgUnitGroup.home.title'
+            pageTitle: 'openpbrApp.orgUnitGroup.home.title',
+            attributeType: { 'isOrgUnitGroupAttribute.equals': true, sort: ['sortOrder'] }
         },
         canActivate: [UserRouteAccessService]
     }

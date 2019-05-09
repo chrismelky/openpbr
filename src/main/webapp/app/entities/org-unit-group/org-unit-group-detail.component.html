@@ -25,10 +25,16 @@
                 <dd>
                     <span>{{orgUnitGroup.isActive}}</span>
                 </dd>
-                <dt><span jhiTranslate="openpbrApp.orgUnitGroup.organisationUnits">Orgnisation Units</span></dt>
+                <dt><span jhiTranslate="openpbrApp.orgUnitGroup.organisationUnits">Organisation Units</span></dt>
                 <dd>
                     <span *ngFor="let organisationUnits of orgUnitGroup.organisationUnits; let last = last">
                         <a [routerLink]="['/organisation-unit', organisationUnits?.id, 'view' ]">{{organisationUnits.name}}</a>{{last ? '' : ', '}}
+                    </span>
+                </dd>
+                <dt><span jhiTranslate="openpbrApp.orgUnitGroup.attributeValues">Attribute Values</span></dt>
+                <dd>
+                    <span *ngFor="let attributeValues of orgUnitGroup.attributeValues; let last = last">
+                        <a [routerLink]="['/attribute-value', attributeValues?.id, 'view' ]">{{attributeValues.id}}</a>{{last ? '' : ', '}}
                     </span>
                 </dd>
             </dl>

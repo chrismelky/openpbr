@@ -49,6 +49,15 @@
             "relationshipName": "organisationUnits",
             "otherEntityField": "name",
             "ownerSide": true
+        },
+        {
+            "relationshipName": "attributeValues",
+            "otherEntityName": "attributeValue",
+            "relationshipType": "many-to-many",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "orgUnitGroup",
+            "otherEntityRelationshipNameUndefined": false
         }
     ],
     "changelogDate": "20190416172850",
@@ -60,5 +69,7 @@
     "fluentMethods": true,
     "clientRootFolder": "",
     "applications": "*",
-    "enableEntityAudit": true
+    "enableEntityAudit": true,
+    "searchEngine": "elasticsearch",
+    "databaseType": "sql"
 }

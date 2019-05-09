@@ -61,6 +61,7 @@ public class CacheConfiguration {
             cm.createCache(org.openpbr.domain.PlanningUnit.class.getName(), jcacheConfiguration);
             cm.createCache(org.openpbr.domain.PlanningUnit.class.getName() + ".planningUnitGroups", jcacheConfiguration);
             cm.createCache(org.openpbr.domain.OrgUnitGroupSet.class.getName() + ".attributeValues", jcacheConfiguration);
+            cm.createCache(org.openpbr.domain.OrgUnitGroup.class.getName() + ".attributeValues", jcacheConfiguration);
             // jhipster-needle-ehcache-add-entry
         };
     }

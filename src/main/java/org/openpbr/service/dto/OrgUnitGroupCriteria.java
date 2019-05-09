@@ -36,6 +36,8 @@ public class OrgUnitGroupCriteria implements Serializable {
 
     private LongFilter organisationUnitsId;
 
+    private LongFilter attributeValuesId;
+
     public LongFilter getId() {
         return id;
     }
@@ -92,6 +94,14 @@ public class OrgUnitGroupCriteria implements Serializable {
         this.organisationUnitsId = organisationUnitsId;
     }
 
+    public LongFilter getAttributeValuesId() {
+        return attributeValuesId;
+    }
+
+    public void setAttributeValuesId(LongFilter attributeValuesId) {
+        this.attributeValuesId = attributeValuesId;
+    }
+
 
     @Override
     public boolean equals(Object o) {
@@ -109,7 +119,8 @@ public class OrgUnitGroupCriteria implements Serializable {
             Objects.equals(name, that.name) &&
             Objects.equals(sortOrder, that.sortOrder) &&
             Objects.equals(isActive, that.isActive) &&
-            Objects.equals(organisationUnitsId, that.organisationUnitsId);
+            Objects.equals(organisationUnitsId, that.organisationUnitsId) &&
+            Objects.equals(attributeValuesId, that.attributeValuesId);
     }
 
     @Override
@@ -121,7 +132,8 @@ public class OrgUnitGroupCriteria implements Serializable {
         name,
         sortOrder,
         isActive,
-        organisationUnitsId
+        organisationUnitsId,
+        attributeValuesId
         );
     }
 
@@ -135,6 +147,7 @@ public class OrgUnitGroupCriteria implements Serializable {
                 (sortOrder != null ? "sortOrder=" + sortOrder + ", " : "") +
                 (isActive != null ? "isActive=" + isActive + ", " : "") +
                 (organisationUnitsId != null ? "organisationUnitsId=" + organisationUnitsId + ", " : "") +
+                (attributeValuesId != null ? "attributeValuesId=" + attributeValuesId + ", " : "") +
             "}";
     }
 

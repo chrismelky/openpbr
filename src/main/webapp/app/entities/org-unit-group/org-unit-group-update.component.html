@@ -41,6 +41,8 @@
                 </mat-checkbox>
                 <pbr-org-unit-filter [multiple]="true" [selectedOrgUnits]="orgUnitSelected" (onOrgSelectedChange)="onOrgSelectedChange($event)"></pbr-org-unit-filter>
                 <pbr-tree-view [multiple]="false" [treeNodeService]="orgUnitService" [initialSelection]="orgUnitSelected" (onNodeSelectionChange)="onOrgSelectedChange($event)"></pbr-tree-view>
+                <pbr-attributes [attrs]="orgUnitGroupAttributes" [initialValues]="orgUnitGroupInitialAttrValues" (attributeValueOut)="onAttrValueChange($event)"></pbr-attributes>
+
             </div>
             <div>
                 <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">

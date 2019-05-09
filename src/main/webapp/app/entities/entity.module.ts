@@ -67,6 +67,10 @@ import { RouterModule } from '@angular/router';
             {
                 path: 'org-unit-group-set',
                 loadChildren: './org-unit-group-set/org-unit-group-set.module#OpenpbrOrgUnitGroupSetModule'
+            },
+            {
+                path: 'org-unit-group',
+                loadChildren: './org-unit-group/org-unit-group.module#OpenpbrOrgUnitGroupModule'
             }
             /* jhipster-needle-add-entity-route - JHipster will add entity modules routes here */
         ])

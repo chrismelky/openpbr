@@ -4,6 +4,7 @@ import org.openpbr.OpenpbrApp;
 
 import org.openpbr.domain.OrgUnitGroup;
 import org.openpbr.domain.OrganisationUnit;
+import org.openpbr.domain.AttributeValue;
 import org.openpbr.repository.OrgUnitGroupRepository;
 import org.openpbr.repository.search.OrgUnitGroupSearchRepository;
 import org.openpbr.service.OrgUnitGroupService;
@@ -534,6 +535,25 @@ public class OrgUnitGroupResourceIntTest {
         defaultOrgUnitGroupShouldNotBeFound("organisationUnitsId.equals=" + (organisationUnitsId + 1));
     }
 
+
+    @Test
+    @Transactional
+    public void getAllOrgUnitGroupsByAttributeValuesIsEqualToSomething() throws Exception {
+        // Initialize the database
+        AttributeValue attributeValues = AttributeValueResourceIntTest.createEntity(em);
+        em.persist(attributeValues);
+        em.flush();
+        orgUnitGroup.addAttributeValues(attributeValues);
+        orgUnitGroupRepository.saveAndFlush(orgUnitGroup);
+        Long attributeValuesId = attributeValues.getId();
+
+        // Get all the orgUnitGroupList where attributeValues equals to attributeValuesId
+        defaultOrgUnitGroupShouldBeFound("attributeValuesId.equals=" + attributeValuesId);
+
+        // Get all the orgUnitGroupList where attributeValues equals to attributeValuesId + 1
+        defaultOrgUnitGroupShouldNotBeFound("attributeValuesId.equals=" + (attributeValuesId + 1));
+    }
+
     /**
      * Executes the search, and checks that the default entity is returned
      */
@@ -586,7 +606,7 @@ public class OrgUnitGroupResourceIntTest {
     public void updateOrgUnitGroup() throws Exception {
         // Initialize the database
         orgUnitGroupService.save(orgUnitGroup);
-        // As the test used the treeNodeService layer, reset the Elasticsearch mock repository
+        // As the test used the service layer, reset the Elasticsearch mock repository
         reset(mockOrgUnitGroupSearchRepository);
 
         int databaseSizeBeforeUpdate = orgUnitGroupRepository.findAll().size();

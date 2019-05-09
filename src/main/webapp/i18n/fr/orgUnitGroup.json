@@ -21,7 +21,8 @@
             "name": "Name",
             "sortOrder": "Sort Order",
             "isActive": "Is Active",
-            "organisationUnits": "Organisation Units"
+            "organisationUnits": "Organisation Units",
+            "attributeValues": "Attribute Values"
         }
     }
 }

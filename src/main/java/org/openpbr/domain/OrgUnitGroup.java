@@ -56,6 +56,13 @@ public class OrgUnitGroup extends IdentifiableEntity implements Serializable {
                inverseJoinColumns = @JoinColumn(name = "organisation_unit_id", referencedColumnName = "id"))
     private Set<OrganisationUnit> organisationUnits = new HashSet<>();
 
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    @JoinTable(name = "org_unit_group_attribute_values",
+        joinColumns = @JoinColumn(name = "org_unit_group_id", referencedColumnName = "id"),
+        inverseJoinColumns = @JoinColumn(name = "attribute_value_id", referencedColumnName = "id"))
+    private Set<AttributeValue> attributeValues = new HashSet<>();
+
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public OrgUnitGroup uid(String uid) {
         this.uid = uid;
@@ -130,6 +137,32 @@ public class OrgUnitGroup extends IdentifiableEntity implements Serializable {
     public void setOrganisationUnits(Set<OrganisationUnit> organisationUnits) {
         this.organisationUnits = organisationUnits;
     }
+
+    public Set<AttributeValue> getAttributeValues() {
+        return attributeValues;
+    }
+
+    public OrgUnitGroup attributeValues(Set<AttributeValue> attributeValues) {
+        this.attributeValues = attributeValues;
+        return this;
+    }
+
+    public OrgUnitGroup addAttributeValues(AttributeValue attributeValue) {
+        this.attributeValues.add(attributeValue);
+     //   attributeValue.getOrgUnitGroups().add(this);
+        return this;
+    }
+
+    public OrgUnitGroup removeAttributeValues(AttributeValue attributeValue) {
+        this.attributeValues.remove(attributeValue);
+     //   attributeValue.getOrgUnitGroups().remove(this);
+        return this;
+    }
+
+    public void setAttributeValues(Set<AttributeValue> attributeValues) {
+        this.attributeValues = attributeValues;
+    }
+
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
     @Override
